@@ -1,0 +1,40 @@
+{
+  "main": {
+    "version": "main-20261021T001103-7062f83",
+    "commit": "7062f83728bb56b5e57e75e148201e85c9c59b91",
+    "apiVersion": "2026-10-11",
+    "views": [
+      {
+        "name": "consumer",
+        "path": "/v1/audience/:audience_id/graphql",
+        "sdl": "graphql/schema.graphql",
+        "introspection": "graphql/schema.json"
+      },
+      {
+        "name": "staff",
+        "path": "/v1/audience/:audience_id/staffql",
+        "sdl": "graphql/staff_schema.graphql",
+        "introspection": "graphql/staff_schema.json"
+      }
+    ]
+  },
+  "next": {
+    "version": "next-20261021T001103-f29ce9e",
+    "commit": "f29ce9e8c5016db075f2956846a450eae37df984",
+    "apiVersion": "2026-10-11",
+    "views": [
+      {
+        "name": "consumer",
+        "path": "/v1/audience/:audience_id/graphql",
+        "sdl": "graphql/schema.graphql",
+        "introspection": "graphql/schema.json"
+      },
+      {
+        "name": "staff",
+        "path": "/v1/audience/:audience_id/staffql",
+        "sdl": "graphql/staff_schema.graphql",
+        "introspection": "graphql/staff_schema.json"
+      }
+    ]
+  }
+}
