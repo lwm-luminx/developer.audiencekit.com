@@ -3,7 +3,7 @@
 // fails in CI instead of at runtime. No client uses codegen: the Kotlin and Swift SDKs, the staff apps and the
 // web clients keep their operations as string literals, which nothing else reads.
 //
-//   node scripts/graphql-documents/check.mjs --schema api/schema.graphql [options] <files, directories or globs>
+//   node scripts/graphql-documents/check.mjs --schema contracts/schema/schema.graphql [options] <files, directories or globs>
 //
 //   --schema <path>       The schema dump to validate against (required). Run once per endpoint.
 //   --endpoint <name>     The endpoint the schema serves (consumer, staff, tenants). A document sent elsewhere says so
@@ -12,11 +12,14 @@
 //   --allow-deprecated    Don't fail on fields, arguments and enum values marked @deprecated.
 //   --strict              Fail on documents that can't be checked because they interpolate runtime values.
 //   --verbose             List every document found, not only the failures.
+//   --snapshot <dir>      Also write each operation, with the fragments it spreads, to <dir> as a standalone
+//                         <OperationName>.graphql file (scripts/client-contracts keeps these for shipped app releases).
 //
 // What counts as a document, per language:
 //   Kotlin, Swift     """…""" and "…" literals whose body starts with query, mutation, subscription, fragment or {.
 //   TypeScript, JS    graphql`…` and gql`…` tagged templates, and plain templates or strings that start like one.
 //   Ruby              <<~GRAPHQL / <<~GQL heredocs (any delimiter), and other heredocs or strings that start like one.
+//   GraphQL           a .graphql or .gql file is one document.
 //
 // Interpolations ($name, ${…}, \(…), #{…}) are resolved when they name a string constant defined in one of the
 // checked files (Kotlin `const val`, Swift `static let`, TS `const`, Ruby constants), including constants built by
@@ -24,7 +27,7 @@
 // only under --strict. Fragments defined in one document can be spread from documents in other files of the same run.
 //
 // Output: one line per finding, `file:line: message`, then a summary. Exit 1 on any failure, 2 on a usage error.
-import { readFileSync, statSync, readdirSync, globSync } from 'node:fs';
+import { readFileSync, statSync, readdirSync, globSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve, relative, extname, join } from 'node:path';
 import { buildSchema, parse, validate, specifiedRules, NoDeprecatedCustomRule, NoUnusedFragmentsRule, Kind } from 'graphql';
 
@@ -34,18 +37,19 @@ const EXTENSIONS = {
   '.ts': 'typescript', '.tsx': 'typescript', '.mts': 'typescript', '.js': 'typescript', '.jsx': 'typescript',
   '.mjs': 'typescript', '.cjs': 'typescript',
   '.rb': 'ruby',
+  '.graphql': 'graphql', '.gql': 'graphql',
 };
 const SKIPPED_DIRECTORIES = new Set(['node_modules', '.git', '.build', 'build', '__generated__', 'dist', 'Pods', 'DerivedData']);
 const KEYWORDS = /^(query|mutation|subscription)\b/;
 
 function usage(message) {
   if (message) console.error(`check: ${message}`);
-  console.error('usage: node check.mjs --schema <schema.graphql> [--endpoint <name> | --only-endpoint <name>] [--allow-deprecated] [--strict] [--verbose] <files or globs>');
+  console.error('usage: node check.mjs --schema <schema.graphql> [--endpoint <name> | --only-endpoint <name>] [--allow-deprecated] [--strict] [--verbose] [--snapshot <dir>] <files or globs>');
   process.exit(2);
 }
 
 function parseArguments(argv) {
-  const options = { schema: null, endpoint: null, onlyEndpoint: null, allowDeprecated: false, strict: false, verbose: false, inputs: [] };
+  const options = { schema: null, endpoint: null, onlyEndpoint: null, allowDeprecated: false, strict: false, verbose: false, snapshot: null, inputs: [] };
   for (let i = 0; i < argv.length; i += 1) {
     const argument = argv[i];
     if (argument === '--schema') {
@@ -59,6 +63,10 @@ function parseArguments(argv) {
     } else if (argument === '--allow-deprecated') options.allowDeprecated = true;
     else if (argument === '--strict') options.strict = true;
     else if (argument === '--verbose') options.verbose = true;
+    else if (argument === '--snapshot') {
+      options.snapshot = argv[++i];
+      if (!options.snapshot) usage('--snapshot needs a directory');
+    }
     else if (argument === '--help' || argument === '-h') usage();
     else if (argument.startsWith('-')) usage(`unknown option ${argument}`);
     else options.inputs.push(argument);
@@ -69,13 +77,15 @@ function parseArguments(argv) {
 }
 
 // Files to check: a directory is walked for the known extensions, a glob is expanded, a file is taken as is.
+// Each file maps to the input it was found under, which --snapshot names sources relative to.
+const roots = new Map();
 function collectFiles(inputs) {
   const files = new Set();
-  const addFile = (path) => { if (EXTENSIONS[extname(path)]) files.add(resolve(path)); };
-  const walk = (directory) => {
+  const addFile = (path, root) => { if (EXTENSIONS[extname(path)]) { files.add(resolve(path)); roots.set(resolve(path), root); } };
+  const walk = (directory, root) => {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
-      if (entry.isDirectory()) { if (!SKIPPED_DIRECTORIES.has(entry.name)) walk(join(directory, entry.name)); }
-      else if (entry.isFile()) addFile(join(directory, entry.name));
+      if (entry.isDirectory()) { if (!SKIPPED_DIRECTORIES.has(entry.name)) walk(join(directory, entry.name), root); }
+      else if (entry.isFile()) addFile(join(directory, entry.name), root);
     }
   };
   for (const input of inputs) {
@@ -83,8 +93,8 @@ function collectFiles(inputs) {
     for (const match of matches) {
       let stat;
       try { stat = statSync(match); } catch { usage(`${match} doesn't exist`); }
-      if (stat.isDirectory()) walk(match);
-      else files.add(resolve(match));
+      if (stat.isDirectory()) walk(match, resolve(match, '..'));
+      else { files.add(resolve(match)); roots.set(resolve(match), resolve(match, '..')); }
     }
   }
   return [...files].sort();
@@ -258,7 +268,12 @@ function scanRuby(source) {
   return s.strings;
 }
 
-const SCANNERS = { kotlin: scanKotlin, swift: scanSwift, typescript: scanTypeScript, ruby: scanRuby };
+// GraphQL: the whole file is one document.
+function scanGraphQL(source) {
+  return [{ start: 0, bodyStart: 0, end: source.length, parts: [{ text: source }], tagged: true }];
+}
+
+const SCANNERS = { kotlin: scanKotlin, swift: scanSwift, typescript: scanTypeScript, ruby: scanRuby, graphql: scanGraphQL };
 
 // Constants: `val NAME = <string> + NAME2 + "…"` (Kotlin), `static let name = …` (Swift), `const name = …` (TS),
 // `NAME = …` (Ruby). The value is a template too, so a constant may build on other constants.
@@ -267,6 +282,7 @@ const DECLARATIONS = {
   swift: /\blet\s+([A-Za-z_]\w*)\s*(?::\s*String\??)?\s*=\s*/g,
   typescript: /\b(?:const|let|var)\s+([A-Za-z_$]\w*)\s*(?::\s*string)?\s*=\s*/g,
   ruby: /^\s*([A-Z][A-Za-z0-9_]*)\s*=\s*/gm,
+  graphql: /(?!)/g,
 };
 
 // The type a declaration sits in: the nearest preceding top-level class, struct, enum, object or extension (nested
@@ -463,6 +479,7 @@ function main() {
     }
     for (const fragment of borrowed) { text += `\n${fragment.text}`; addLines(fragment.file, fragment.line, fragment.text); }
     const hasOperation = document.ast.definitions.some((d) => d.kind === Kind.OPERATION_DEFINITION);
+    if (options.snapshot && hasOperation) snapshot(options.snapshot, document, text);
     const applicable = hasOperation ? rules : rules.filter((rule) => rule !== NoUnusedFragmentsRule);
     const errors = validate(schema, parse(text), applicable);
     for (const error of errors) {
@@ -483,6 +500,21 @@ function main() {
 }
 
 const show = (file) => relative(process.cwd(), file);
+
+// Writes one operation (with its borrowed fragments) as <dir>/<OperationName>.graphql. The same text found twice is
+// written once; a different operation under a taken name gets a -2, -3… suffix. The first line names the source.
+function snapshot(directory, document, text) {
+  mkdirSync(directory, { recursive: true });
+  const names = document.ast.definitions.filter((d) => d.kind === Kind.OPERATION_DEFINITION).map((d) => d.name?.value ?? 'Anonymous');
+  const source = relative(roots.get(document.file) ?? process.cwd(), document.file);
+  const body = `${text.replace(/^\s*\n/, '').replace(/\s+$/, '')}\n`;
+  const stem = names.join('+');
+  for (let n = 1; ; n += 1) {
+    const path = join(directory, `${stem}${n === 1 ? '' : `-${n}`}.graphql`);
+    if (!existsSync(path)) { writeFileSync(path, `# source: ${source}\n${body}`); return; }
+    if (readFileSync(path, 'utf8').replace(/^# source: .*\n/, '') === body) return;
+  }
+}
 const spreadsIn = (text) => [...text.matchAll(/\.\.\.\s*([A-Za-z_]\w*)/g)].map((m) => m[1]).filter((name) => name !== 'on');
 
 function describe(ast) {

@@ -35,7 +35,7 @@ These are the only tokens an audience can override:
 | Accent | `accent`, `accent-strong`, `accent-soft`, `accent-ink`, `on-accent`, `focus` |
 | Spectrum | `spectrum-1` … `spectrum-6`, `on-spectrum-1` … `on-spectrum-6` |
 
-The list lives in `api/config/theme_presets.json`, which `admin/scripts/tokens.mjs` generates from the design system's `tokens.json`.
+The list lives in `config/theme_presets.json`, which `bin/rake design:tokens` generates from the design system's `tokens.json`.
 
 ## Contrast rules
 
@@ -75,4 +75,4 @@ mutation {
 2. Set `data-theme` on the root element to the preset's theme for the current mode: `light` or `dark` for the default preset, `hot_mess` or `hot_mess_dark` for Hot Mess. Follow `prefers-color-scheme`.
 3. Set each override for the current mode as a CSS custom property on the root, such as `--accent: #b8236f`.
 
-The admin console does exactly this in `admin/src/design/theme.ts`. Its generated stylesheet, `admin/src/design/tokens.css`, defines every token for every theme, and these docs load the same file.
+The admin console does exactly this in `app/frontend/design/theme.ts`. Its generated stylesheet, `app/frontend/design/tokens.css`, defines every token for every theme, and these docs load the same file.

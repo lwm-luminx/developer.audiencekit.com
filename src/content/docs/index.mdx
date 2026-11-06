@@ -9,8 +9,11 @@ hero:
       link: /start/introduction/
       variant: primary
     - text: GraphQL reference
-      link: /api/graphql-reference/
+      link: /reference/graphql/
       variant: secondary
+    - text: SDKs
+      link: /sdks/
+      variant: minimal
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
@@ -25,8 +28,8 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 	<Card title="Kept fresh by machines">
 		Service tokens let workers such as the researcher verify venues and events and upsert them with provenance.
 	</Card>
-	<Card title="Open-source SDKs">
-		Swift and Kotlin clients, MIT licensed, ship together on one version from [audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk).
+	<Card title="SDKs for both platforms">
+		[AudienceKit](/sdks/audiencekit/) for an audience's own app and [StaffKit](/sdks/#staffkit) for staff tools, each for Swift and Kotlin, released together on one version.
 	</Card>
 </CardGrid>
 
@@ -36,6 +39,8 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 	<LinkCard title="Core concepts" href="/start/concepts/" description="Audiences, locales, venues, people and events, and how they relate." />
 	<LinkCard title="Authentication" href="/api/authentication/" description="User JWTs, application API keys, admin access and service tokens." />
 	<LinkCard title="Theme an audience" href="/guides/theming/" description="Presets, tenant tokens and the contrast rules the API enforces." />
-	<LinkCard title="Swift SDK" href="/sdks/swift/" description="Sign people in and read an audience from an iOS or macOS app." />
+	<LinkCard title="StaffQL reference" href="/reference/staffql/" description="The whole graph as staff tools see it, with the permissions each field needs." />
+	<LinkCard title="AudienceKit for Swift" href="/sdks/swift/audiencekit/" description="Sign people in and read an audience from an iOS or macOS app." />
+	<LinkCard title="AudienceKit for Kotlin" href="/sdks/kotlin/audiencekit/" description="The same client for Android and the JVM." />
 	<LinkCard title="Realtime" href="/api/realtime/" description="GraphQL subscriptions for chat, presence and the door." />
 </CardGrid>

@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-AudienceKit's data model is small. Every object below is defined in `api/app/models`.
+AudienceKit's data model is small. Every object below is defined in `app/models`.
 
 ## Audience
 

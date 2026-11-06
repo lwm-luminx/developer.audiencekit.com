@@ -9,16 +9,16 @@ AudienceKit is a generic, multi-tenant system for creating **audiences** (sub-cu
 
 ## What's in the platform
 
-Everything lives in one repository, [lwm-luminx/audience-kit](https://github.com/lwm-luminx/audience-kit):
+The platform is split across a few repositories under [lwm-luminx](https://github.com/lwm-luminx):
 
-| Component | Path | What it does |
+| Component | Where | What it does |
 | --- | --- | --- |
-| API | `api/` | Rails 8.1 on Ruby 4.0.7 with PostgreSQL/PostGIS and Redis. Serves GraphQL, a REST API under `/v1`, and Action Cable at `/connection`. |
-| Admin console | `admin/` | React and Relay. Served at `admin.<audience domain>`, skinned and scoped to that audience. |
-| Researcher worker | `workers/researcher/` | A local TypeScript worker that uses a model in LM Studio and Chrome to verify venues and events. |
-| Ruby SDK | `sdk/ruby/` | The `audience-kit` gem. |
-| SDK | `sdk/audience-kit-sdk/` | The public [audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk): the `AudienceKit` Swift package, the Kotlin Multiplatform core and the `audiencekit` Kotlin libraries for Android and the JVM, on one version. |
-| These docs | `docs/` | developer.audiencekit.com, built with Astro Starlight. |
+| API | `audience_kit_api` | Rails 8.1 on Ruby 4.0.7 with PostgreSQL/PostGIS and Redis. Serves GraphQL, a REST API under `/v1`, and Action Cable at `/connection`. |
+| Admin console | `audience_kit_api`, `app/frontend/` | React and Relay, built and served by the API through Vite Ruby. Served at `admin.<audience domain>`, skinned and scoped to that audience. |
+| Researcher worker | `audience-kit`, `workers/researcher/` | A local TypeScript worker that uses a model in LM Studio and Chrome to verify venues and events. |
+| Ruby SDK | `audience-kit`, `sdk/ruby/` | The `audience-kit` gem. |
+| SDK | [audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk) | The `AudienceKit` Swift package, the Kotlin Multiplatform core and the `audiencekit` Kotlin libraries for Android and the JVM, on one version. |
+| These docs | `audience_kit_api`, `docs/developer/` | developer.audiencekit.com, built with Astro Starlight in [developer.audiencekit.com](https://github.com/lwm-luminx/developer.audiencekit.com). |
 
 ## How these docs are organized
 

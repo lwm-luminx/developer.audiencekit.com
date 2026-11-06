@@ -50,11 +50,21 @@ Used by the [researcher worker](/guides/researcher/) with a service JWT. Admins 
 
 | Method and path | Scope | Description |
 | --- | --- | --- |
-| `GET /v1/research/snapshot` | `research:read` | The audience's locales and venues with their upcoming events. Filter with `?locale=<label>`. |
+| `GET /v1/research/snapshot` | `research:read` | The audience's locales (with their metro towns and the local guides staff linked to them) and venues with their upcoming events. Filter with `?locale=<label>`. |
 | `POST /v1/research/batch` | `places:write` and `events:write` | Upsert venues and events with provenance. Add `?dry_run=true` to validate without writing. |
 | `GET /v1/research/batches` | `research:read` | The 50 most recent batches. |
+| `POST /v1/research/imports` | `places:write` and `events:write` | Upload a listings file and start its dry run on the worker. The body is the file itself, or `{ "file": …, "filename": "ca.json", "kind": "locales" }`. Returns the upload (`202`) with its `id`, `kind` and `status: "previewing"`. |
+| `GET /v1/research/imports` | `research:read` | The last ten uploads, newest first, each with its `status`, `summary` and `rows`. |
+| `GET /v1/research/imports/:id` | `research:read` | One upload: poll it until `status` is `previewed` (then `rows` says what the import would do, a `kind`, `name` and `detail` per decision) or `failed` (`error` says why). |
+| `POST /v1/research/imports/:id/import` | `places:write` and `events:write` | Import a previewed upload for real, on the worker; poll until `imported`. |
 
 See [Automate with service tokens](/guides/service-tokens/) for the batch format.
+
+A listings file is one of the JSON files the `listings:*` rake tasks take, and its `kind` is read from its shape unless
+given: calendar listings (`calendar`: `{ source, regions, venues, events }`), researched locales and their venues
+(`locales`), researched People (`people`, each with a `kind`), social profiles to fill in where missing (`socials`:
+`people` or `venues` with their handles) or profiles to propose for review (`social_proposals`: entries with
+`candidates`). Admins upload the same files on the console's Curate › Imports page.
 
 ## Alexa
 
