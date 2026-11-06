@@ -43,6 +43,6 @@ An audience's consoles sign in with its production Facebook app (the AudienceKit
 
 ## Serve the admin console
 
-When the API runs with the admin console built into `admin/dist` (as it does on Heroku), it serves the console to any `admin.*` host, to `*.admin.audiencekit.com`, and to hosts listed in `ADMIN_HOSTS`. API paths (`/v1/…`, `/connection`, `/up`) still reach Rails on those hosts. The console calls `GET /v1/branding`, skins itself with the audience's theme and limits itself to that audience.
+When the API runs with the admin console built into `public/vite` (as it does on Heroku), it serves the console to any `admin.*` host, to `*.admin.audiencekit.com`, and to hosts listed in `ADMIN_HOSTS`. API paths (`/v1/…`, `/connection`, `/up`) still reach Rails on those hosts. The console calls `GET /v1/branding`, skins itself with the audience's theme and limits itself to that audience.
 
 Browsers on those hosts may call the API cross-origin, because CORS allows any console host that belongs to an audience.

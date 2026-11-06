@@ -1,10 +1,10 @@
 name: Site
 
 # Builds developer.audiencekit.com from the API's docs bundles (bundles/main and bundles/next, committed to main by the
-# API repository's Developer docs workflow on every build of its main and next branches) and the public
-# audience-kit-sdk, and
-# publishes it to gh-pages, which GitHub Pages serves with the custom domain developer.audiencekit.com.
-# A daily run picks up SDK changes, which don't trigger this repository.
+# API repository's Developer docs workflow on every build of its main and next branches), the public audience-kit-sdk
+# and the private staff-kit (or its snapshot in vendor/staff-kit/), and publishes it to gh-pages, which GitHub Pages
+# serves with the custom domain developer.audiencekit.com. A daily run picks up SDK changes, which don't trigger this
+# repository.
 
 on:
   push:
@@ -31,6 +31,16 @@ jobs:
         with:
           repository: lwm-luminx/audience-kit-sdk
           path: .sdk
+      # staff-kit is private: with the STAFF_KIT_TOKEN secret (a fine-grained token with contents read on it) the
+      # StaffKit pages are built from its current READMEs; without it, from the snapshot in vendor/staff-kit/.
+      - if: env.STAFF_KIT_TOKEN != ''
+        env:
+          STAFF_KIT_TOKEN: ${{ secrets.STAFF_KIT_TOKEN }}
+        uses: actions/checkout@v5
+        with:
+          repository: lwm-luminx/staff-kit
+          path: .staff-kit
+          token: ${{ secrets.STAFF_KIT_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22

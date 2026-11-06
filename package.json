@@ -5,9 +5,9 @@
   "description": "developer.audiencekit.com, the AudienceKit developer documentation (Astro Starlight), built from the API docs bundle and the public SDK.",
   "scripts": {
     "bundle": "node scripts/bundle.mjs",
-    "sdk": "node scripts/sdk.mjs",
+    "sdks": "node scripts/sdks.mjs",
     "reference": "node scripts/graphql-reference.mjs",
-    "sources": "npm run bundle && npm run sdk && npm run reference",
+    "sources": "npm run bundle && npm run sdks && npm run reference",
     "predev": "npm run sources",
     "dev": "astro dev",
     "prebuild": "npm run sources",

@@ -56,7 +56,7 @@ The API exchanges the token for a long-lived one, creates or updates the user fr
 }
 ```
 
-Send it as `Authorization: JWT <jwt>`. The JWT is signed with HS256. Its claims are built at sign-in by the transforms in `api/app/services/login_claims/`: the user's `id` and app-scoped `fb_id`, a `jti` that identifies the session, a `role` of `user` or `admin`, `fb_app_id` (the Facebook app used), and, for a sign-in on an audience's host, `audience_id`. A JWT with `audience_id` only works on that audience's endpoint.
+Send it as `Authorization: JWT <jwt>`. The JWT is signed with HS256. Its claims are built at sign-in by the transforms in `app/services/login_claims/`: the user's `id` and app-scoped `fb_id`, a `jti` that identifies the session, a `role` of `user` or `admin`, `fb_app_id` (the Facebook app used), and, for a sign-in on an audience's host, `audience_id`. A JWT with `audience_id` only works on that audience's endpoint.
 
 Every JWT also says which AudienceKit instance issued it and which endpoint it's for, and the API checks both:
 
