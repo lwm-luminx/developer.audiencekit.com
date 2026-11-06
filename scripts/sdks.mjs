@@ -188,6 +188,10 @@ ${staff ? '[StaffKit](/sdks/staffkit/)' : 'StaffKit'} is private at [lwm-luminx/
 
 AudienceKit calls the audience's \`graphql\` endpoint, StaffKit its \`staffql\` endpoint. The two serve the same graph; [GraphQL](/api/graphql/) explains the difference, and the SDKs' door and management calls always use \`staffql\`.
 
+## License
+
+Both SDKs are under the [AudienceKit SDK License](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE): use, change and redistribute them and build them into your apps freely, on one condition: the SDKs and anything derived from them may only be used with the AudienceKit service Love Wins Media operates (audiencekit.com, the audiences' own domains, and the development instances it provides), not with another implementation of the API. Releases made under the MIT License before the change stay MIT.
+
 ## Versions and the API
 
 Each SDK sends its version with every call, and the API refuses versions older than its minimum, so keep up with the changelogs. Clients that track the API's \`next\` branch can validate their documents against [/graphql/next/](/graphql/manifest.json) in CI (see [Validate documents](/api/validate-documents/)).

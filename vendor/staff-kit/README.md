@@ -24,3 +24,8 @@ npm install && node apps/focus/Tests/validate-schema.mjs && node apps/staff_andr
 
 The apps were moved here from the AudienceKit monorepo (lwm-luminx/audience-kit) as a snapshot; their earlier history
 is there.
+
+## License
+
+[AudienceKit SDK License](LICENSE), © Love Wins Media, Inc.: use, change and build on StaffKit freely, with the
+AudienceKit service Love Wins Media operates only. The same license as the [AudienceKit SDK](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE).

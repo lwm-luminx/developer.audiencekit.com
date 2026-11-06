@@ -1,1 +1,1 @@
-Snapshot of https://github.com/lwm-luminx/staff-kit at 507a8e36d7e683d2d993b7fba3a6eee1c486c465, taken by scripts/sdks.mjs on 2026-11-06. Refresh it by running the script with a checkout of the repository available.
+Snapshot of https://github.com/lwm-luminx/staff-kit at ad908e9520ebe4b4c9f016814a7337b5525a0086, taken by scripts/sdks.mjs on 2026-11-06. Refresh it by running the script with a checkout of the repository available.
