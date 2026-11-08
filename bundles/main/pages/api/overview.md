@@ -6,7 +6,7 @@ sidebar:
   label: Overview
 ---
 
-The AudienceKit API is a Rails application (`api/` in the repository). It speaks three protocols:
+The AudienceKit API is a Rails application (the `lwm-luminx/audience_kit_api` repository). It speaks three protocols:
 
 | Protocol | Where | Use it for |
 | --- | --- | --- |

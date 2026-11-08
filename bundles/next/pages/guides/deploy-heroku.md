@@ -5,7 +5,7 @@ sidebar:
   order: 5
 ---
 
-One Heroku app builds the whole repository and runs each component as its own process type, as defined in the root `Procfile`:
+One Heroku app builds the API's repository (`lwm-luminx/audience_kit_api`) and runs each component as its own process type, as defined in its `Procfile`:
 
 | Process | Runs |
 | --- | --- |
@@ -13,7 +13,7 @@ One Heroku app builds the whole repository and runs each component as its own pr
 | `web` | Puma: the API, plus the admin console for `admin.*` hosts and for browsers on any other host but `api.*` |
 | `worker` | Resque. Off by default; scale it with `heroku ps:scale worker=1`. |
 
-The build uses two buildpacks. `heroku/nodejs` builds the admin console into `admin/dist` from the root `package.json`, then `heroku/ruby` installs the API's gems through the root `Gemfile`, which links into `api/`.
+The build uses two buildpacks, as `app.json` lists them. `heroku/nodejs` builds the admin console (`app/frontend`, served through Vite Ruby) into `public/vite` with `package.json`'s `build` script, then `heroku/ruby` installs the gems. `VITE_RUBY_SKIP_ASSETS_PRECOMPILE_EXTENSION=true` keeps the Ruby buildpack's `assets:precompile` from building the console a second time.
 
 ## Set up the app
 
@@ -40,7 +40,7 @@ heroku addons:create -a audience-kit bucketeer:hobbyist
 
 The console fetches `/v1/admin/config` from its serving API before starting. API URL and Facebook login IDs come from runtime Rails credentials for `RAILS_ENV`; secrets are never returned. GraphiQL is enabled outside production. Promoting a bundle does not carry staging login settings into production.
 
-To build the encrypted credentials from `config/secrets.yml`, run this in `api/`:
+To build the encrypted credentials from `config/secrets.yml`, run this in the API checkout:
 
 ```sh
 SOURCE=production FORCE=1 FACEBOOK_SECRET=... GOOGLE_API_KEY=... bin/rails credentials:import_secrets
@@ -59,7 +59,7 @@ The Payments plugin card lists the URLs to give each provider:
 
 ## Deploy
 
-Deploy from the Heroku dashboard's Deploy tab (GitHub, branch `main`), or submit a committed source archive through the [Heroku Build API](https://devcenter.heroku.com/articles/build-and-release-using-the-api). The API/admin build does not require the app submodules; a direct Git push to Heroku attempts to clone them and can fail on private submodule access. `GET /up` is the health check. `/status` reports database connectivity and the minimum app versions; the apps also `POST` their device there, and `POST /` still answers for builds already shipped.
+Deploy from the Heroku dashboard's Deploy tab (GitHub, `lwm-luminx/audience_kit_api`, branch `main`), or submit a committed source archive through the [Heroku Build API](https://devcenter.heroku.com/articles/build-and-release-using-the-api). `GET /up` is the health check. `/status` reports database connectivity and the minimum app versions; the apps also `POST` their device there, and `POST /` still answers for builds already shipped.
 
 To serve an audience's admin console, add `admin.<audience domain>` as a custom domain on the app. See [Connect a domain](/guides/domains/).
 

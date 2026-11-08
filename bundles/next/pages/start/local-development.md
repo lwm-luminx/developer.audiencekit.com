@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Toolchains and tasks for every component are defined with [mise](https://mise.jdx.dev) in the repository's `mise.toml`.
+Toolchains and tasks for every component are defined with [mise](https://mise.jdx.dev) in the `mise.toml` of lwm-luminx/audience-kit, the workspace repository. Clone it and the component repositories side by side; it links them in (the API at `api/`).
 
 ## Prerequisites
 
@@ -15,10 +15,11 @@ Toolchains and tasks for every component are defined with [mise](https://mise.jd
 
 ## Set up
 
-From the repository root:
+From the audience-kit checkout:
 
 ```sh
-mise install     # Ruby 4.0.7, Node 22 and Bun
+mise run workspace:link   # clone the component repositories next to it if missing, and link them in
+mise install     # Ruby 4.0.7, Node 26, Yarn and Bun
 mise run setup   # install dependencies and create hotmess_development and hotmess_test
 ```
 
@@ -26,7 +27,7 @@ mise run setup   # install dependencies and create hotmess_development and hotme
 
 ```sh
 mise run api:dev     # Rails on http://localhost:3000
-mise run admin:dev   # the admin console on http://localhost:4000
+mise run admin:dev   # hot reload for the admin console, which the API serves on http://localhost:3000
 ```
 
 GraphQL is served at `http://localhost:3000/v1/audience/:audience_id/graphql`, tenant management at `http://localhost:3000/v1/tenants/graphql`, and the admin console calls the API at `http://localhost:3000` by default. To see the console as a specific audience would, set `VITE_TENANT_HOST`, for example `VITE_TENANT_HOST=admin.hotmess.social`.

@@ -3,7 +3,7 @@
 // fails in CI instead of at runtime. No client uses codegen: the Kotlin and Swift SDKs, the staff apps and the
 // web clients keep their operations as string literals, which nothing else reads.
 //
-//   node scripts/graphql-documents/check.mjs --schema api/schema.graphql [options] <files, directories or globs>
+//   node scripts/graphql-documents/check.mjs --schema contracts/schema/schema.graphql [options] <files, directories or globs>
 //
 //   --schema <path>       The schema dump to validate against (required). Run once per endpoint.
 //   --endpoint <name>     The endpoint the schema serves (consumer, staff, tenants). A document sent elsewhere says so

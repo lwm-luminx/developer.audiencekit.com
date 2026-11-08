@@ -110,7 +110,6 @@ and say why in the workflow.
 `.github/workflows/graphql-documents.yml` runs the same script on every push and pull request that touches a
 schema dump or a client: the Kotlin SDK against the consumer view (and its door documents against staffql), and
 StaffKit with Focus, Velvet and Backstage against staffql. The admin console isn't in that workflow: the Relay
-compiler validates it in `admin.yml`, against the copies of the staff and tenants dumps in `admin/data/`, and the
-workflow only checks that those copies match `api/`. Run the checks locally with `npm ci --prefix
+compiler validates it in `admin.yml`, against the staff and tenants dumps in `contracts/schema/`. Run the checks locally with `npm ci --prefix
 scripts/graphql-documents`, then the commands in the workflow; `node scripts/graphql-documents/test.mjs` runs the
 validator's own test, which includes deliberately broken documents.
