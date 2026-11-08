@@ -178,7 +178,7 @@ ${staffRow}
 
 ## AudienceKit
 
-[AudienceKit](/sdks/audiencekit/) is open source (MIT) at [lwm-luminx/audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk). It signs people in, then reads the audience as the [consumer view](/reference/graphql/) serves it: venues, people, locales, events, lineups, chat, cover, and the audience's branding. Swift ships as a package (\`AudienceCore\`, \`AudienceKit\`, \`AudienceKitUI\`) resolved by version tag; Kotlin as \`com.audiencekit:audiencekit\` and \`audiencekit-android\`, built from a checkout until it is published to Maven; and the [Kotlin Multiplatform core](/sdks/kotlin/core/) is the code both share.
+[AudienceKit](/sdks/audiencekit/) is source-available (see the license below) at [lwm-luminx/audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk). It signs people in, then reads the audience as the [consumer view](/reference/graphql/) serves it: venues, people, locales, events, lineups, chat, cover, and the audience's branding. Swift ships as a package (\`AudienceCore\`, \`AudienceKit\`, \`AudienceKitUI\`) resolved by version tag; Kotlin as \`com.audiencekit:audiencekit\` and \`audiencekit-android\`, built from a checkout until it is published to Maven; and the [Kotlin Multiplatform core](/sdks/kotlin/core/) is the code both share.
 
 ## StaffKit
 
