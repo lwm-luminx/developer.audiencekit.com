@@ -26,3 +26,7 @@ The site is built from four sources:
 
 Pushes to `main` (including each new bundle) and a daily run publish the build to the `gh-pages` branch (`.github/workflows/site.yml`).
 See [Contribute to these docs](src/content/docs/project/contributing-docs.md) for details and the writing guide.
+
+## License and copyright
+
+Copyright © 2026 Love Wins Media, Inc. All rights reserved; see [LICENSE](LICENSE), which grants no license of any kind. This code is public so it can be read and security-scanned, **not** so it can be reused. Copying this work beyond what [LICENSE](LICENSE) allows is copyright infringement, and willful copying can be a federal crime (17 U.S.C. §§ 501, 506). Removing, altering or faking copyright or attribution notices is unlawful under 17 U.S.C. § 1202, and a federal crime under § 1204 when done willfully for commercial advantage or private financial gain. See [NOTICE.md](NOTICE.md) for the details.
