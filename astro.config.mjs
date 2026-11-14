@@ -20,7 +20,7 @@ const page = (slug) => (existsSync(`src/content/docs/${slug}.md`) ? [{ slug }] :
 //
 // To update the agent, paste a fresh snippet over the file, put the NREUM.init line back as it was and replace the
 // application ID with __NR_APPLICATION_ID__ again.
-const NEW_RELIC_APPLICATION_ID = '';
+const NEW_RELIC_APPLICATION_ID = '601693111';
 
 function newRelicHead() {
 	if (!/^\d+$/.test(NEW_RELIC_APPLICATION_ID)) return [];
