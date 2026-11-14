@@ -1,0 +1,811 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Pair up | AudienceKit</title><link rel="canonical" href="https://developer.audiencekit.com/reference/staffql/pair_up/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Pair up"/><meta property="og:type" content="article"/><meta property="og:url" content="https://developer.audiencekit.com/reference/staffql/pair_up/"/><meta property="og:locale" content="en"/><meta property="og:description" content="The pair up module of the staff view: its root fields, operations and types."/><meta property="og:site_name" content="AudienceKit"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="The pair up module of the staff view: its root fields, operations and types."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.Ba7Mjohh.css"><style>@layer starlight.components{svg:where(.astro-hkc32dio){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><span class="astro-6rvad3va" translate="no">AudienceKit</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0yjvwpz" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start here</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/start/introduction/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Introduction</span></a></li><li class="astro-rmhv4bp6"><a href="/start/concepts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core concepts</span></a></li><li class="astro-rmhv4bp6"><a href="/start/local-development/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run AudienceKit locally</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">API</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/api/overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/api/authentication/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authentication</span></a></li><li class="astro-rmhv4bp6"><a href="/api/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GraphQL</span></a></li><li class="astro-rmhv4bp6"><a href="/api/validate-documents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Validate your documents</span></a></li><li class="astro-rmhv4bp6"><a href="/api/rest/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">REST endpoints</span></a></li><li class="astro-rmhv4bp6"><a href="/api/realtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Realtime</span></a></li><li class="astro-rmhv4bp6"><a href="/api/errors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Errors</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">GraphQL (consumer view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">StaffQL (staff view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/staffql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/evaluations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Evaluations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/locales/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Locales</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/maintenance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Maintenance</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/moderation/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Moderation</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/pair_up/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rooms/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rooms</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Guides</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/guides/theming/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theme an audience</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/domains/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Connect a domain</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/service-tokens/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Automate with service tokens</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/researcher/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run the researcher worker</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/deploy-heroku/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deploy to Heroku</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">SDKs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit SDK</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit SDK</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">iOS and macOS (Swift)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/swift/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit-binaries/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit binary package</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Android (Kotlin)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Kotlin Multiplatform core</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><a href="/sdks/ruby/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ruby</span></a></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Changelogs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/changelog/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/changelog/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Project</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/project/contributing-docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Contribute to these docs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupmatch" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpMatch</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairuppartner" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpPartner</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupstate" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpState</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairuptopic" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpTopic</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuepairupview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenuePairUpView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupacceptpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpAcceptPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcancelpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCancelPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodescanpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeScanPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodeshowpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeShowPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupjoinpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpJoinPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupleavepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpLeavePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupsharepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSharePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupskippayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSkipPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupacceptinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpAcceptInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcancelinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCancelInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodescaninput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeScanInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodeshowinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeShowInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupjoininput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpJoinInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupleaveinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpLeaveInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupshareinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpShareInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupskipinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSkipInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuepairup" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenuePairUp</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupendreason" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpEndReason</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupscanoutcome" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpScanOutcome</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupskip" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSkip</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpStatus</span></a></li></ul></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupmatch" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpMatch</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairuppartner" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpPartner</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupstate" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpState</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairuptopic" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpTopic</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuepairupview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenuePairUpView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupacceptpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpAcceptPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcancelpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCancelPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodescanpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeScanPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodeshowpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeShowPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupjoinpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpJoinPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupleavepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpLeavePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupsharepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSharePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupskippayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSkipPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupacceptinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpAcceptInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcancelinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCancelInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodescaninput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeScanInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupcodeshowinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpCodeShowInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupjoininput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpJoinInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupleaveinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpLeaveInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupshareinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpShareInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupskipinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSkipInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuepairup" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenuePairUp</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupendreason" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpEndReason</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupscanoutcome" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpScanOutcome</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupskip" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpSkip</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#pairupstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PairUpStatus</span></a></li></ul></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Pair up</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><!-- Generated by scripts/graphql-reference.mjs from graphql/staff_schema.graphql. Do not edit by hand. -->
+<p>Quickie at a venue: pairs two people there to talk about a shared topic. A facet
+projected from Venue.pairUpEnabled: every venue has it unless it opted out.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutations">Mutations</h2><a class="sl-anchor-link" href="#mutations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutations”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">acceptPairUp</code><br/><code dir="auto">input: PairUpAcceptInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupacceptpayload"><code dir="auto">PairUpAcceptPayload</code></a></td>
+<td>Accepts your pairing’s topic. Once both of you accept, each sees who to look for. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">cancelPairUp</code><br/><code dir="auto">input: PairUpCancelInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupcancelpayload"><code dir="auto">PairUpCancelPayload</code></a></td>
+<td>Cancels a pairing at any point: neither of you sees the other from then on. Cancelling your pairing takes you out of Quickie for tonight (your partner looks for someone new); a bonus topic just ends. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">joinPairUp</code><br/><code dir="auto">input: PairUpJoinInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupjoinpayload"><code dir="auto">PairUpJoinPayload</code></a></td>
+<td>Opts in to Quickie at a venue for tonight (only while the app places you there), or changes the hint your partner sees. After a meeting, looks for someone new. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">leavePairUp</code><br/><code dir="auto">input: PairUpLeaveInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupleavepayload"><code dir="auto">PairUpLeavePayload</code></a></td>
+<td>Leaves Quickie at a venue for tonight, cancelling your pairing if you have one. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">scanPairUpCode</code><br/><code dir="auto">input: PairUpCodeScanInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupcodescanpayload"><code dir="auto">PairUpCodeScanPayload</code></a></td>
+<td>Scans a Quickie code. Your partner’s confirms you met (both see You met!); someone else’s gives the two of you a fresh topic instead. Anything else says why, without changing anything. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">sharePairUp</code><br/><code dir="auto">input: PairUpShareInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupsharepayload"><code dir="auto">PairUpSharePayload</code></a></td>
+<td>Agrees to share your meeting in the venue’s chat. Once both of you have, the venue posts your names (first name and last initial) and your topic. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">showPairUpCode</code><br/><code dir="auto">input: PairUpCodeShowInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupcodeshowpayload"><code dir="auto">PairUpCodeShowPayload</code></a></td>
+<td>A fresh QR code to show your partner once you both accept. It works once, only for them, and replaces the one you showed before. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">skipPairUp</code><br/><code dir="auto">input: PairUpSkipInput!</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupskippayload"><code dir="auto">PairUpSkipPayload</code></a></td>
+<td>Skips the topic for a new one (both accept again), or the partner: both look for someone new and aren’t paired together again tonight. <small>requires <code dir="auto">pair_up:write:self</code></small></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="objects">Objects</h2><a class="sl-anchor-link" href="#objects"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Objects”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupmatch">PairUpMatch</h3><a class="sl-anchor-link" href="#pairupmatch"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpMatch”</span></a></div>
+<p><em>Object</em></p>
+<p>A Quickie pairing as one of its two people sees it.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">accepted</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the viewer accepted the topic.</td>
+</tr>
+<tr>
+<td><code dir="auto">bonus</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>A fresh topic from scanning someone else’s code: already accepted, no code needed.</td>
+</tr>
+<tr>
+<td><code dir="auto">endReason</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupendreason"><code dir="auto">PairUpEndReason</code></a></td>
+<td>Why it ended; null while it lasts.</td>
+</tr>
+<tr>
+<td><code dir="auto">endedAt</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it ended.</td>
+</tr>
+<tr>
+<td><code dir="auto">expiresAt</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime!</code></a></td>
+<td>When it expires with the night (or the venue’s chat window).</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its ID.</td>
+</tr>
+<tr>
+<td><code dir="auto">metAt</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When one scanned the other’s code.</td>
+</tr>
+<tr>
+<td><code dir="auto">partner</code></td>
+<td><a href="/reference/staffql/pair_up/#pairuppartner"><code dir="auto">PairUpPartner</code></a></td>
+<td>Who to look for, once both accepted and while it lasts. Null before, and as soon as either cancels.</td>
+</tr>
+<tr>
+<td><code dir="auto">partnerAccepted</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether their partner accepted the topic.</td>
+</tr>
+<tr>
+<td><code dir="auto">partnerShared</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether their partner agreed to share the meeting in the chat.</td>
+</tr>
+<tr>
+<td><code dir="auto">shared</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the viewer agreed to share the meeting in the venue’s chat (sharePairUp). It’s posted once both have.</td>
+</tr>
+<tr>
+<td><code dir="auto">topic</code></td>
+<td><a href="/reference/staffql/pair_up/#pairuptopic"><code dir="auto">PairUpTopic!</code></a></td>
+<td>What to talk about.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairuppartner">PairUpPartner</h3><a class="sl-anchor-link" href="#pairuppartner"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpPartner”</span></a></div>
+<p><em>Object</em></p>
+<p>Just enough to find a Quickie partner in the room, shown once both accept. Never where they are.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">avatarUrl</code></td>
+<td><a href="/reference/staffql/locales/#photourl"><code dir="auto">PhotoURL</code></a></td>
+<td>Their picture, tiny (96 pixels square), and only while the pairing lasts. Null when they have none.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Their user id, to block or report them (blockUser).</td>
+</tr>
+<tr>
+<td><code dir="auto">lookFor</code></td>
+<td><code dir="auto">String</code></td>
+<td>The hint they wrote, e.g. “red jacket by the bar”.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Their name: in full for friends, first name and last initial for anyone else.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupstate">PairUpState</h3><a class="sl-anchor-link" href="#pairupstate"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpState”</span></a></div>
+<p><em>Object</em></p>
+<p>The viewer’s Quickie at a venue tonight.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">bonus</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupmatch"><code dir="auto">PairUpMatch</code></a></td>
+<td>A fresh topic shared with someone whose code they scanned (or who scanned theirs) by mistake, while it lasts.</td>
+</tr>
+<tr>
+<td><code dir="auto">expiresAt</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime!</code></a></td>
+<td>When their opt-in expires.</td>
+</tr>
+<tr>
+<td><code dir="auto">lookFor</code></td>
+<td><code dir="auto">String</code></td>
+<td>The hint they wrote for their partner.</td>
+</tr>
+<tr>
+<td><code dir="auto">match</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupmatch"><code dir="auto">PairUpMatch</code></a></td>
+<td>Their pairing: the current one, or while SEARCHING the last one when it ended. Null before the first.</td>
+</tr>
+<tr>
+<td><code dir="auto">metCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many conversations they had tonight: meetings, counted again if they meet the same person twice. The night’s badge.</td>
+</tr>
+<tr>
+<td><code dir="auto">status</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstatus"><code dir="auto">PairUpStatus!</code></a></td>
+<td>Where they are.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairuptopic">PairUpTopic</h3><a class="sl-anchor-link" href="#pairuptopic"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpTopic”</span></a></div>
+<p><em>Object</em></p>
+<p>Something for a pair to talk about, from the hand-written list (config/pair_up_topics.yml).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">key</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its stable key.</td>
+</tr>
+<tr>
+<td><code dir="auto">text</code></td>
+<td><code dir="auto">String!</code></td>
+<td>The topic, as both of them see it.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="venuepairupview">VenuePairUpView</h3><a class="sl-anchor-link" href="#venuepairupview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “VenuePairUpView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/pair_up/#ivenuepairup"><code dir="auto">IVenuePairUp</code></a></p>
+<p>The local Quickie implementation of a venue’s pairing.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">here</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the viewer can opt in now: the app places them at the venue.</td>
+</tr>
+<tr>
+<td><code dir="auto">mine</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie here tonight; null until they opt in (joinPairUp), and once it expires.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutation-payloads">Mutation payloads</h2><a class="sl-anchor-link" href="#mutation-payloads"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutation payloads”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupacceptpayload">PairUpAcceptPayload</h3><a class="sl-anchor-link" href="#pairupacceptpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpAcceptPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpAccept.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupcancelpayload">PairUpCancelPayload</h3><a class="sl-anchor-link" href="#pairupcancelpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpCancelPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpCancel.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupcodescanpayload">PairUpCodeScanPayload</h3><a class="sl-anchor-link" href="#pairupcodescanpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpCodeScanPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpCodeScan.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">match</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupmatch"><code dir="auto">PairUpMatch</code></a></td>
+<td>The met pairing (MET) or the fresh topic (DIFFERENT).</td>
+</tr>
+<tr>
+<td><code dir="auto">outcome</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupscanoutcome"><code dir="auto">PairUpScanOutcome!</code></a></td>
+<td>What the scan did.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupcodeshowpayload">PairUpCodeShowPayload</h3><a class="sl-anchor-link" href="#pairupcodeshowpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpCodeShowPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpCodeShow.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">code</code></td>
+<td><code dir="auto">String!</code></td>
+<td>What the QR code carries.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupjoinpayload">PairUpJoinPayload</h3><a class="sl-anchor-link" href="#pairupjoinpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpJoinPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpJoin.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupleavepayload">PairUpLeavePayload</h3><a class="sl-anchor-link" href="#pairupleavepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpLeavePayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpLeave.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupsharepayload">PairUpSharePayload</h3><a class="sl-anchor-link" href="#pairupsharepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpSharePayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpShare.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupskippayload">PairUpSkipPayload</h3><a class="sl-anchor-link" href="#pairupskippayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpSkipPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of PairUpSkip.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">pairUp</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie at the venue as it now stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="inputs">Inputs</h2><a class="sl-anchor-link" href="#inputs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Inputs”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupacceptinput">PairUpAcceptInput</h3><a class="sl-anchor-link" href="#pairupacceptinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpAcceptInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpAccept</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">matchId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The pairing.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupcancelinput">PairUpCancelInput</h3><a class="sl-anchor-link" href="#pairupcancelinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpCancelInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpCancel</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">matchId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The pairing.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupcodescaninput">PairUpCodeScanInput</h3><a class="sl-anchor-link" href="#pairupcodescaninput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpCodeScanInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpCodeScan</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">code</code></td>
+<td><code dir="auto">String!</code></td>
+<td>What the QR code carries.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue you’re at.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupcodeshowinput">PairUpCodeShowInput</h3><a class="sl-anchor-link" href="#pairupcodeshowinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpCodeShowInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpCodeShow</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">matchId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The pairing.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupjoininput">PairUpJoinInput</h3><a class="sl-anchor-link" href="#pairupjoininput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpJoinInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpJoin</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">lookFor</code></td>
+<td><code dir="auto">String</code></td>
+<td>How your partner can spot you once you both accept, up to 60 characters (“red jacket by the bar”). Left out keeps the last one.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue you’re at.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupleaveinput">PairUpLeaveInput</h3><a class="sl-anchor-link" href="#pairupleaveinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpLeaveInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpLeave</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupshareinput">PairUpShareInput</h3><a class="sl-anchor-link" href="#pairupshareinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpShareInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpShare</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">matchId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The pairing you met in.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupskipinput">PairUpSkipInput</h3><a class="sl-anchor-link" href="#pairupskipinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpSkipInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of PairUpSkip</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">matchId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The pairing.</td>
+</tr>
+<tr>
+<td><code dir="auto">what</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupskip"><code dir="auto">PairUpSkip!</code></a></td>
+<td>The topic or the partner.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="interfaces">Interfaces</h2><a class="sl-anchor-link" href="#interfaces"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Interfaces”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="ivenuepairup">IVenuePairUp</h3><a class="sl-anchor-link" href="#ivenuepairup"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IVenuePairUp”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/pair_up/#venuepairupview"><code dir="auto">VenuePairUpView</code></a> · mixin edge <code dir="auto">pairUp</code> on <a href="/reference/staffql/venues/#venue"><code dir="auto">Venue</code></a> · facet tag <code dir="auto">pair_up</code></p>
+<p>Quickie at a venue: pairs two people there to talk about a shared topic. A facet
+projected from Venue.pairUpEnabled: every venue has it unless it opted out.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">here</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the viewer can opt in now: the app places them at the venue.</td>
+</tr>
+<tr>
+<td><code dir="auto">mine</code></td>
+<td><a href="/reference/staffql/pair_up/#pairupstate"><code dir="auto">PairUpState</code></a></td>
+<td>The viewer’s Quickie here tonight; null until they opt in (joinPairUp), and once it expires.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="enums">Enums</h2><a class="sl-anchor-link" href="#enums"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Enums”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupendreason">PairUpEndReason</h3><a class="sl-anchor-link" href="#pairupendreason"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpEndReason”</span></a></div>
+<p><em>Enum</em></p>
+<p>Why a pairing ended.</p>
+<ul>
+<li><code dir="auto">BLOCKED</code> A block now stands between them.</li>
+<li><code dir="auto">LEFT</code> One of them cancelled or left Quickie.</li>
+<li><code dir="auto">SKIPPED</code> One of them asked for a new partner.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupscanoutcome">PairUpScanOutcome</h3><a class="sl-anchor-link" href="#pairupscanoutcome"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpScanOutcome”</span></a></div>
+<p><em>Enum</em></p>
+<p>What scanning a Quickie code did. Only MET and DIFFERENT change anything; none
+is the scanner’s fault, so the apps word them gently.</p>
+<ul>
+<li><code dir="auto">DIFFERENT</code> Someone else’s code. The two of them get a fresh topic instead: <code dir="auto">match</code> (already accepted, no code needed).</li>
+<li><code dir="auto">ENDED</code> The pairing that code was for is over.</li>
+<li><code dir="auto">MET</code> Their partner’s code: they met. <code dir="auto">match</code> is the met pairing.</li>
+<li><code dir="auto">OWN</code> Their own code.</li>
+<li><code dir="auto">UNREADABLE</code> Not a Quickie code this account can use.</li>
+<li><code dir="auto">USED</code> Their partner’s code, but not the newest one: scan it again.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupskip">PairUpSkip</h3><a class="sl-anchor-link" href="#pairupskip"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpSkip”</span></a></div>
+<p><em>Enum</em></p>
+<p>What skipPairUp skips.</p>
+<ul>
+<li><code dir="auto">PARTNER</code> A new partner for both; they aren’t paired together again tonight.</li>
+<li><code dir="auto">TOPIC</code> A new topic for the same two people; both accept again.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="pairupstatus">PairUpStatus</h3><a class="sl-anchor-link" href="#pairupstatus"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PairUpStatus”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where someone is in Quickie at a venue tonight, as they see it.</p>
+<ul>
+<li><code dir="auto">LEFT</code> They left Quickie for tonight.</li>
+<li><code dir="auto">MET</code> One scanned the other’s code: they met.</li>
+<li><code dir="auto">PROPOSED</code> Paired: they see the topic and haven’t accepted it yet.</li>
+<li><code dir="auto">REVEALED</code> Both accepted: they see who to look for and can show or scan a code.</li>
+<li><code dir="auto">SEARCHING</code> Opted in and waiting to be paired. <code dir="auto">match</code> is the last pairing when one ended.</li>
+<li><code dir="auto">WAITING</code> They accepted the topic; their partner has not yet.</li>
+</ul>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

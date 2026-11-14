@@ -1,0 +1,2134 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Events | AudienceKit</title><link rel="canonical" href="https://developer.audiencekit.com/reference/staffql/events/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Events"/><meta property="og:type" content="article"/><meta property="og:url" content="https://developer.audiencekit.com/reference/staffql/events/"/><meta property="og:locale" content="en"/><meta property="og:description" content="The events module of the staff view: its root fields, operations and types."/><meta property="og:site_name" content="AudienceKit"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="The events module of the staff view: its root fields, operations and types."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.Ba7Mjohh.css"><style>@layer starlight.components{svg:where(.astro-hkc32dio){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><span class="astro-6rvad3va" translate="no">AudienceKit</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0yjvwpz" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start here</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/start/introduction/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Introduction</span></a></li><li class="astro-rmhv4bp6"><a href="/start/concepts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core concepts</span></a></li><li class="astro-rmhv4bp6"><a href="/start/local-development/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run AudienceKit locally</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">API</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/api/overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/api/authentication/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authentication</span></a></li><li class="astro-rmhv4bp6"><a href="/api/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GraphQL</span></a></li><li class="astro-rmhv4bp6"><a href="/api/validate-documents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Validate your documents</span></a></li><li class="astro-rmhv4bp6"><a href="/api/rest/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">REST endpoints</span></a></li><li class="astro-rmhv4bp6"><a href="/api/realtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Realtime</span></a></li><li class="astro-rmhv4bp6"><a href="/api/errors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Errors</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">GraphQL (consumer view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">StaffQL (staff view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/staffql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/evaluations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Evaluations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/events/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/locales/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Locales</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/maintenance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Maintenance</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/moderation/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Moderation</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rooms/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rooms</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Guides</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/guides/theming/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theme an audience</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/domains/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Connect a domain</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/service-tokens/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Automate with service tokens</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/researcher/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run the researcher worker</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/deploy-heroku/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deploy to Heroku</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">SDKs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit SDK</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit SDK</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">iOS and macOS (Swift)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/swift/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit-binaries/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit binary package</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Android (Kotlin)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Kotlin Multiplatform core</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><a href="/sdks/ruby/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ruby</span></a></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Changelogs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/changelog/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/changelog/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Project</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/project/contributing-docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Contribute to these docs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#root-fields" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Root fields</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#accessgrant" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AccessGrant</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#audienceeventsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AudienceEventsView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#event" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Event</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcounts" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCounts</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventlocalecounts" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventLocaleCounts</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseries" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeries</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventsView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventsView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptremovepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptRemovePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptshownextpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptShowNextPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptsimportpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptsImportPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessgrantpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessGrantPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessrevokepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessRevokePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventchatpromptssetpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventChatPromptsSetPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcreatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCreatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventdeletepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventDeletePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriescreatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesCreatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesdeletepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesDeletePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesupdatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesUpdatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventupdatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventUpdatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetdeletepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetDeletePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetimportpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetImportPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptremoveinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptRemoveInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptshownextinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptShowNextInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptsimportinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptsImportInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessgrantinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessGrantInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessrevokeinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessRevokeInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventchatpromptssetinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventChatPromptsSetInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcreateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCreateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventdeleteinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventDeleteInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriescreateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesCreateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesdeleteinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesDeleteInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesupdateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesUpdateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventupdateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventUpdateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetdeleteinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetDeleteInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetimportinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetImportInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#hastags" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">HasTags</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#hastasktemplates" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">HasTaskTemplates</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iaudienceevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IAudienceEvents</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ilocaleevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ILocaleEvents</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ipersonevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IPersonEvents</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenueevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenueEvents</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventwindow" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventWindow</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#listingvisibility" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ListingVisibility</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventrelationship" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventRelationship</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#unions" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Unions</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesowner" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesOwner</span></a></li></ul></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#root-fields" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Root fields</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#accessgrant" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AccessGrant</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#audienceeventsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AudienceEventsView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#event" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Event</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcounts" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCounts</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventlocalecounts" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventLocaleCounts</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseries" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeries</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventsView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventsView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptremovepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptRemovePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptshownextpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptShowNextPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptsimportpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptsImportPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessgrantpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessGrantPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessrevokepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessRevokePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventchatpromptssetpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventChatPromptsSetPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcreatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCreatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventdeletepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventDeletePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriescreatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesCreatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesdeletepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesDeletePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesupdatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesUpdatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventupdatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventUpdatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetdeletepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetDeletePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetimportpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetImportPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptremoveinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptRemoveInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptshownextinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptShowNextInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#chatpromptsimportinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ChatPromptsImportInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessgrantinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessGrantInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventaccessrevokeinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventAccessRevokeInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventchatpromptssetinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventChatPromptsSetInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcreateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCreateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventdeleteinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventDeleteInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriescreateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesCreateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesdeleteinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesDeleteInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesupdateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesUpdateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventupdateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventUpdateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetdeleteinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetDeleteInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviasetimportinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaSetImportInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#hastags" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">HasTags</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#hastasktemplates" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">HasTaskTemplates</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iaudienceevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IAudienceEvents</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ilocaleevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ILocaleEvents</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ipersonevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IPersonEvents</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenueevents" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenueEvents</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventwindow" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventWindow</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#listingvisibility" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ListingVisibility</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personeventrelationship" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEventRelationship</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#unions" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Unions</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriesowner" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesOwner</span></a></li></ul></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Events</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><!-- Generated by scripts/graphql-reference.mjs from graphql/staff_schema.graphql. Do not edit by hand. -->
+<p>An audience’s events and the recurring series they come from, and lookups of one by its UUID.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="root-fields">Root fields</h2><a class="sl-anchor-link" href="#root-fields"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Root fields”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">events</code></td>
+<td><a href="/reference/staffql/events/#iaudienceevents"><code dir="auto">IAudienceEvents!</code></a></td>
+<td>The instance’s IAudienceEvents mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutations">Mutations</h2><a class="sl-anchor-link" href="#mutations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutations”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">createEvent</code> <small>staffql only</small><br/><code dir="auto">input: EventCreateInput!</code></td>
+<td><a href="/reference/staffql/events/#eventcreatepayload"><code dir="auto">EventCreatePayload</code></a></td>
+<td>Adds an event at one of the audience’s venues. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">createEventSeries</code> <small>staffql only</small><br/><code dir="auto">input: EventSeriesCreateInput!</code></td>
+<td><a href="/reference/staffql/events/#eventseriescreatepayload"><code dir="auto">EventSeriesCreatePayload</code></a></td>
+<td>Adds a recurring series run by one of the audience’s venues or people, and puts its occurrences on the calendar. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">deleteEvent</code> <small>staffql only</small><br/><code dir="auto">input: EventDeleteInput!</code></td>
+<td><a href="/reference/staffql/events/#eventdeletepayload"><code dir="auto">EventDeletePayload</code></a></td>
+<td>Deletes one of the audience’s events, with its RSVPs. Canceling it keeps it listed instead. Deleting an occurrence of a series skips its date. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">deleteEventSeries</code> <small>staffql only</small><br/><code dir="auto">input: EventSeriesDeleteInput!</code></td>
+<td><a href="/reference/staffql/events/#eventseriesdeletepayload"><code dir="auto">EventSeriesDeletePayload</code></a></td>
+<td>Deletes one of the audience’s recurring series with its upcoming occurrences, except ones edited on their own or that people have RSVPed to. Past occurrences stay as ordinary events. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">deleteTriviaSet</code> <small>staffql only</small><br/><code dir="auto">input: TriviaSetDeleteInput!</code></td>
+<td><a href="/reference/staffql/events/#triviasetdeletepayload"><code dir="auto">TriviaSetDeletePayload</code></a></td>
+<td>Deletes one of the audience’s own trivia sets. Segments set to it pick one by their tags again; rounds that ran keep their tallies. <small>requires <code dir="auto">events:write:venue</code> or <code dir="auto">people:write:mine</code> or <code dir="auto">people:write:my_troupes</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">grantEventAccess</code> <small>staffql only</small><br/><code dir="auto">input: EventAccessGrantInput!</code></td>
+<td><a href="/reference/staffql/events/#eventaccessgrantpayload"><code dir="auto">EventAccessGrantPayload</code></a></td>
+<td>Grants an event to a talent listing that isn’t hosting it or on its lineup, like crew or a photographer: it’s among the listing’s events in Backstage, and its managers edit the event’s lineup and are in its back-of-house room. Its venue’s managers, the talent who listed it, its hosts’ managers and the audience’s admins grant it. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">importChatPrompts</code> <small>staffql only</small><br/><code dir="auto">input: ChatPromptsImportInput!</code></td>
+<td><a href="/reference/staffql/events/#chatpromptsimportpayload"><code dir="auto">ChatPromptsImportPayload</code></a></td>
+<td>Imports an audiencekit.chatPrompts file (doc/IMPORT_EXPORT.md) onto an event: its prompts replace the event’s that haven’t shown yet, and its settings (unless settings is false) replace the event’s. A file from Event.chat.file or a starter set’s (Event.chat.starterSets.file) both work. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">importTriviaSet</code> <small>staffql only</small><br/><code dir="auto">input: TriviaSetImportInput!</code></td>
+<td><a href="/reference/staffql/events/#triviasetimportpayload"><code dir="auto">TriviaSetImportPayload</code></a></td>
+<td>Uploads an audiencekit.triviaSet file (doc/IMPORT_EXPORT.md; Venue.trivia.setFile) as one of the audience’s trivia sets, for Venue.trivia.sets. A key the audience already has is replaced; a built-in set’s key is saved as &lt;key&gt;_custom. <small>requires <code dir="auto">events:write:venue</code> or <code dir="auto">people:write:mine</code> or <code dir="auto">people:write:my_troupes</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">removeChatPrompt</code> <small>staffql only</small><br/><code dir="auto">input: ChatPromptRemoveInput!</code></td>
+<td><a href="/reference/staffql/events/#chatpromptremovepayload"><code dir="auto">ChatPromptRemovePayload</code></a></td>
+<td>Removes one of an event’s chat prompts, for whoever runs the night: one still to show comes off the list (skipping it); one that’s up is taken out of the room for everyone, and stays in the list as shown (takenDown), so it never goes up again. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">revokeEventAccess</code> <small>staffql only</small><br/><code dir="auto">input: EventAccessRevokeInput!</code></td>
+<td><a href="/reference/staffql/events/#eventaccessrevokepayload"><code dir="auto">EventAccessRevokePayload</code></a></td>
+<td>Takes back an event granted to a talent listing (grantEventAccess). Whoever may grant it revokes it. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">setEventChatPrompts</code> <small>staffql only</small><br/><code dir="auto">input: EventChatPromptsSetInput!</code></td>
+<td><a href="/reference/staffql/events/#eventchatpromptssetpayload"><code dir="auto">EventChatPromptsSetPayload</code></a></td>
+<td>Changes an event’s chat prompts (Event.chat): whether and when its room shows them, and the list itself. A list replaces the one it has, in its order; prompts already shown tonight stay as they were, whatever the list says. starterSet starts the list from one of Event.chat.starterSets. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">showNextChatPrompt</code> <small>staffql only</small><br/><code dir="auto">input: ChatPromptShowNextInput!</code></td>
+<td><a href="/reference/staffql/events/#chatpromptshownextpayload"><code dir="auto">ChatPromptShowNextPayload</code></a></td>
+<td>Puts an event’s next chat prompt up in its venue’s room now, pinned under the title, without waiting for the rotation: for whoever runs the night (Velvet, Backstage, Focus). It goes up even past the nightly cap, while an act is on, or with prompts off; the rotation counts on from it. Name the event (id), which must be on now, or the venue (venueId) for the latest event on there now with prompts left. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">updateEvent</code> <small>staffql only</small><br/><code dir="auto">input: EventUpdateInput!</code></td>
+<td><a href="/reference/staffql/events/#eventupdatepayload"><code dir="auto">EventUpdatePayload</code></a></td>
+<td>Changes one of the audience’s events. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">updateEventSeries</code> <small>staffql only</small><br/><code dir="auto">input: EventSeriesUpdateInput!</code></td>
+<td><a href="/reference/staffql/events/#eventseriesupdatepayload"><code dir="auto">EventSeriesUpdatePayload</code></a></td>
+<td>Changes one of the audience’s recurring series. Its upcoming occurrences follow, except ones edited on their own. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="objects">Objects</h2><a class="sl-anchor-link" href="#objects"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Objects”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="accessgrant">AccessGrant</h3><a class="sl-anchor-link" href="#accessgrant"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AccessGrant”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>A generic subject:principal:action access grant.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">action</code> <small>staffql only</small></td>
+<td><code dir="auto">String!</code></td>
+<td>The granted action, e.g. admin, write, read.</td>
+</tr>
+<tr>
+<td><code dir="auto">createdAt</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime!</code></a></td>
+<td>When the grant was created.</td>
+</tr>
+<tr>
+<td><code dir="auto">createdBy</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/core/#user"><code dir="auto">User</code></a></td>
+<td>The user who created this grant.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The grant identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/people/#person"><code dir="auto">Person</code></a></td>
+<td>The talent listing if the principal is one: an event grant (grantEventAccess).</td>
+</tr>
+<tr>
+<td><code dir="auto">principalId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the principal.</td>
+</tr>
+<tr>
+<td><code dir="auto">principalType</code> <small>staffql only</small></td>
+<td><code dir="auto">String!</code></td>
+<td>The type of principal (User, or Person for an event grant).</td>
+</tr>
+<tr>
+<td><code dir="auto">subjectId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the subject.</td>
+</tr>
+<tr>
+<td><code dir="auto">subjectName</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>The display name of the subject.</td>
+</tr>
+<tr>
+<td><code dir="auto">subjectType</code> <small>staffql only</small></td>
+<td><code dir="auto">String!</code></td>
+<td>The type of subject (Venue, Person, Locale, Event).</td>
+</tr>
+<tr>
+<td><code dir="auto">user</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/core/#user"><code dir="auto">User</code></a></td>
+<td>The user if principal is a user.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="audienceeventsview">AudienceEventsView</h3><a class="sl-anchor-link" href="#audienceeventsview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AudienceEventsView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/events/#iaudienceevents"><code dir="auto">IAudienceEvents</code></a></p>
+<p>The local Events implementation of an audience’s events.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">counts</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">mine: Boolean</code><br/><code dir="auto">tagId: ID</code><br/><code dir="auto">venueId: ID</code></td>
+<td><a href="/reference/staffql/events/#eventcounts"><code dir="auto">EventCounts!</code></a></td>
+<td>How many upcoming events it has (canceled ones included, as in <code dir="auto">list</code>): from a series, one-off, and in all.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event</code></a></td>
+<td>An event in the audience by its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries</code></a></td>
+<td>A recurring series in the audience by its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">mine: Boolean</code><br/><code dir="auto">search: String</code><br/><code dir="auto">startsBefore: ISO8601DateTime</code><br/><code dir="auto">tagId: ID</code><br/><code dir="auto">venueId: ID</code><br/><code dir="auto">window: EventWindow</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Its events, canceled ones included.</td>
+</tr>
+<tr>
+<td><code dir="auto">series</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">mine: Boolean</code><br/><code dir="auto">ownerId: ID</code><br/><code dir="auto">personId: ID</code><br/><code dir="auto">venueId: ID</code></td>
+<td><a href="/reference/staffql/events/#eventseriesconnection"><code dir="auto">EventSeriesConnection!</code></a></td>
+<td>Its recurring series, by name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="event">Event</h3><a class="sl-anchor-link" href="#event"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Event”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/locales/#hasbanner"><code dir="auto">HasBanner</code></a>, <a href="/reference/staffql/events/#hastags"><code dir="auto">HasTags</code></a>, <a href="/reference/staffql/events/#hastasktemplates"><code dir="auto">HasTaskTemplates</code></a>, <a href="/reference/staffql/core/#node"><code dir="auto">Node</code></a></p>
+<p>An event hosted at a venue or awaiting a venue.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">accessGrants</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#accessgrant"><code dir="auto">[AccessGrant!]</code></a></td>
+<td>The talent listings granted it without being on it, oldest first (grantEventAccess). Null for anyone who may not manage them: only its venue’s managers, the talent who listed it, its hosts and the audience’s admins see them.</td>
+</tr>
+<tr>
+<td><code dir="auto">bannerPhotoId</code></td>
+<td><code dir="auto">ID</code></td>
+<td>Identifier of the event’s banner photo.</td>
+</tr>
+<tr>
+<td><code dir="auto">bannerUrl</code></td>
+<td><a href="/reference/staffql/locales/#photourl"><code dir="auto">PhotoURL</code></a></td>
+<td>Its event or series photo, else a host photo, else its venue hero photo.</td>
+</tr>
+<tr>
+<td><code dir="auto">chat</code></td>
+<td><a href="/reference/staffql/chat/#ieventchat"><code dir="auto">IEventChat</code></a></td>
+<td>The instance’s IEventChat mixin, when available to the viewer. <small>requires <code dir="auto">events:write:mine</code> or <code dir="auto">events:write:my_troupes</code> or <code dir="auto">events:write:venue</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">description</code></td>
+<td><code dir="auto">String</code></td>
+<td>Description of the event.</td>
+</tr>
+<tr>
+<td><code dir="auto">endAt</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When the event ends.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries</code></a></td>
+<td>The recurring series it is an occurrence of.</td>
+</tr>
+<tr>
+<td><code dir="auto">facebookId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Its Facebook event’s ID. A string: Facebook IDs don’t fit GraphQL’s Int.</td>
+</tr>
+<tr>
+<td><code dir="auto">facets</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>The keys of the facets switched on for it, e.g. karaoke, in key order: each is a tag the system keeps (Tag.facet) and turns on the edges of the mixins declaring it (@mixin(tag:)). Only those whose module is installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">isCanceled</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the event has been canceled.</td>
+</tr>
+<tr>
+<td><code dir="auto">isFeatured</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the event is featured.</td>
+</tr>
+<tr>
+<td><code dir="auto">karaoke</code></td>
+<td><a href="/reference/staffql/karaoke/#ikaraokenight"><code dir="auto">IKaraokeNight</code></a></td>
+<td>The instance’s IKaraokeNight mixin, when available. Null unless it has the karaoke facet (its facets).</td>
+</tr>
+<tr>
+<td><code dir="auto">locale</code></td>
+<td><a href="/reference/staffql/locales/#locale"><code dir="auto">Locale</code></a></td>
+<td>Its venue’s locale, or its series’ while its venue is still to be announced.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String</code></td>
+<td>The display name: the override when one is set, otherwise the name.</td>
+</tr>
+<tr>
+<td><code dir="auto">nameOverride</code></td>
+<td><code dir="auto">String</code></td>
+<td>Display name set for this occurrence only.</td>
+</tr>
+<tr>
+<td><code dir="auto">occurrenceOn</code></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">ISO8601Date</code></a></td>
+<td>The series date it stands for, even when it’s been moved.</td>
+</tr>
+<tr>
+<td><code dir="auto">order</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Display ordering value.</td>
+</tr>
+<tr>
+<td><code dir="auto">people</code></td>
+<td><a href="/reference/staffql/people/#ieventpeople"><code dir="auto">IEventPeople!</code></a></td>
+<td>The instance’s IEventPeople mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">photography</code></td>
+<td><a href="/reference/staffql/photography/#ieventphotos"><code dir="auto">IEventPhotos</code></a></td>
+<td>The instance’s IEventPhotos mixin, when available.</td>
+</tr>
+<tr>
+<td><code dir="auto">ping</code></td>
+<td><a href="/reference/staffql/ping/#ipingfeed"><code dir="auto">IPingFeed</code></a></td>
+<td>The instance’s IPingFeed mixin, when available.</td>
+</tr>
+<tr>
+<td><code dir="auto">posterArt</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/venues/#posterart"><code dir="auto">[PosterArt!]!</code></a></td>
+<td>Its generated backgrounds and commissioned posters, newest first. Whoever may change it sees them all; everyone else, the READY ones, which are made to be shared (Backstage).</td>
+</tr>
+<tr>
+<td><code dir="auto">posts</code></td>
+<td><a href="/reference/staffql/posts/#iposts"><code dir="auto">IPosts!</code></a></td>
+<td>The instance’s IPosts mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">roomEnabled</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether it has a back-of-house chat by its own setting; null follows its series’ (EventSeries.roomEnabled), on without one.</td>
+</tr>
+<tr>
+<td><code dir="auto">roomOn</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it has a back-of-house chat, its own setting or its series’.</td>
+</tr>
+<tr>
+<td><code dir="auto">rooms</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/rooms/#irooms"><code dir="auto">IRooms</code></a></td>
+<td>The instance’s IRooms mixin, when available to the viewer. <small>requires <code dir="auto">rooms:read:member</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">rsvp</code></td>
+<td><a href="/reference/staffql/rsvp/#ieventrsvp"><code dir="auto">IEventRSVP!</code></a></td>
+<td>The instance’s IEventRSVP mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">seriesOverride</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>An occurrence edited on its own: changes to its series leave it alone.</td>
+</tr>
+<tr>
+<td><code dir="auto">sourceUrl</code></td>
+<td><code dir="auto">String</code></td>
+<td>Where it was found, for imported events.</td>
+</tr>
+<tr>
+<td><code dir="auto">startAt</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When the event starts.</td>
+</tr>
+<tr>
+<td><code dir="auto">tags</code></td>
+<td><a href="/reference/staffql/core/#tag"><code dir="auto">[Tag!]!</code></a></td>
+<td>Its audience tags, including tags connected to module facets, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">taskTemplates</code></td>
+<td><a href="/reference/staffql/people/#tasktemplate"><code dir="auto">[TaskTemplate!]!</code></a></td>
+<td>Its lineup task templates, in order. Empty for anyone but whoever keeps them (its managers; an event’s hosts too).</td>
+</tr>
+<tr>
+<td><code dir="auto">tickets</code></td>
+<td><a href="/reference/staffql/ticketing/#ieventtickets"><code dir="auto">IEventTickets!</code></a></td>
+<td>The instance’s IEventTickets mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/staffql/venues/#ieventvenue"><code dir="auto">IEventVenue!</code></a></td>
+<td>The instance’s IEventVenue mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueOpenOn</code></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">ISO8601Date</code></a></td>
+<td>The local date when it starts at venue opening, or null for an explicit time.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerRsvp</code></td>
+<td><a href="/reference/staffql/rsvp/#rsvpstate"><code dir="auto">RSVPState!</code></a></td>
+<td>The signed-in user’s RSVP. Shipped Hot Mess apps still read it; the rsvp module answers it.</td>
+</tr>
+<tr>
+<td><code dir="auto">visibility</code></td>
+<td><a href="/reference/staffql/events/#listingvisibility"><code dir="auto">ListingVisibility!</code></a></td>
+<td>Whether full listing details are public on the web.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventconnection">EventConnection</h3><a class="sl-anchor-link" href="#eventconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for Event.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/staffql/events/#eventedge"><code dir="auto">[EventEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">[Event]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/staffql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventcounts">EventCounts</h3><a class="sl-anchor-link" href="#eventcounts"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventCounts”</span></a></div>
+<p><em>Object</em></p>
+<p>How many upcoming events there are (Audience.events.counts), by whether a series made them.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">locales</code></td>
+<td><a href="/reference/staffql/events/#eventlocalecounts"><code dir="auto">[EventLocaleCounts!]!</code></a></td>
+<td>The same counts for each locale with upcoming events, so a console can show its working locale’s without asking again.</td>
+</tr>
+<tr>
+<td><code dir="auto">oneOff</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Events on their own, not from a recurring series.</td>
+</tr>
+<tr>
+<td><code dir="auto">series</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Nights of a recurring series.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Both together.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventedge">EventEdge</h3><a class="sl-anchor-link" href="#eventedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventlocalecounts">EventLocaleCounts</h3><a class="sl-anchor-link" href="#eventlocalecounts"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventLocaleCounts”</span></a></div>
+<p><em>Object</em></p>
+<p>One locale’s upcoming events, counted (EventCounts.locales).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">localeId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The locale.</td>
+</tr>
+<tr>
+<td><code dir="auto">oneOff</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Events on their own, not from a recurring series.</td>
+</tr>
+<tr>
+<td><code dir="auto">series</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Nights of a recurring series.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Both together.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseries">EventSeries</h3><a class="sl-anchor-link" href="#eventseries"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeries”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/locales/#hasbanner"><code dir="auto">HasBanner</code></a>, <a href="/reference/staffql/events/#hastags"><code dir="auto">HasTags</code></a>, <a href="/reference/staffql/events/#hastasktemplates"><code dir="auto">HasTaskTemplates</code></a>, <a href="/reference/staffql/core/#node"><code dir="auto">Node</code></a></p>
+<p>A recurring event, such as “first Friday of the month”. Its occurrences are
+ordinary events, put on the calendar 90 days ahead.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">bannerUrl</code></td>
+<td><a href="/reference/staffql/locales/#photourl"><code dir="auto">PhotoURL</code></a></td>
+<td>Its banner, which its occurrences show until one has its own.</td>
+</tr>
+<tr>
+<td><code dir="auto">description</code></td>
+<td><code dir="auto">String</code></td>
+<td>What it is, copied to each occurrence.</td>
+</tr>
+<tr>
+<td><code dir="auto">durationMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>How long each occurrence runs. Null: until close.</td>
+</tr>
+<tr>
+<td><code dir="auto">events</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">[Event!]!</code></a></td>
+<td>Its upcoming occurrences, soonest first.</td>
+</tr>
+<tr>
+<td><code dir="auto">facets</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>The keys of the facets switched on for it, e.g. karaoke, in key order: each is a tag the system keeps (Tag.facet) and turns on the edges of the mixins declaring it (@mixin(tag:)). Only those whose module is installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">generatedThrough</code></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">ISO8601Date</code></a></td>
+<td>The last day occurrences were put on the calendar through.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">karaoke</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether its occurrences are karaoke nights.</td>
+</tr>
+<tr>
+<td><code dir="auto">karaokeSessionCode</code></td>
+<td><code dir="auto">String</code></td>
+<td>Its session code. Null means venue controlled.</td>
+</tr>
+<tr>
+<td><code dir="auto">locale</code></td>
+<td><a href="/reference/staffql/locales/#locale"><code dir="auto">Locale</code></a></td>
+<td>Where it happens: its venue’s locale, or the one chosen while its venue is to be announced.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its name, copied to each occurrence.</td>
+</tr>
+<tr>
+<td><code dir="auto">owner</code></td>
+<td><a href="/reference/staffql/events/#eventseriesowner"><code dir="auto">EventSeriesOwner!</code></a></td>
+<td>The venue or person who runs it.</td>
+</tr>
+<tr>
+<td><code dir="auto">people</code></td>
+<td><a href="/reference/staffql/people/#ieventseriespeople"><code dir="auto">IEventSeriesPeople!</code></a></td>
+<td>The instance’s IEventSeriesPeople mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">posts</code></td>
+<td><a href="/reference/staffql/posts/#iposts"><code dir="auto">IPosts!</code></a></td>
+<td>The instance’s IPosts mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">recurrenceText</code></td>
+<td><code dir="auto">String</code></td>
+<td>Its rule in words, e.g. “Every month on the 1st Friday”.</td>
+</tr>
+<tr>
+<td><code dir="auto">roomEnabled</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether its occurrences have a back-of-house chat. An occurrence can say otherwise (Event.roomEnabled).</td>
+</tr>
+<tr>
+<td><code dir="auto">roomsAhead</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many of its upcoming occurrences have their back-of-house chat listed among the rooms people are in (Audience.rooms), 2 unless changed. One further ahead opens when asked for.</td>
+</tr>
+<tr>
+<td><code dir="auto">rrule</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its RFC 5545 recurrence rule, e.g. FREQ=MONTHLY;BYDAY=1FR.</td>
+</tr>
+<tr>
+<td><code dir="auto">skippedDates</code></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">[ISO8601Date!]!</code></a></td>
+<td>Dates the rule produces that it skips.</td>
+</tr>
+<tr>
+<td><code dir="auto">startTime</code></td>
+<td><a href="/reference/staffql/cover/#timeofday"><code dir="auto">TimeOfDay!</code></a></td>
+<td>When each occurrence starts, local time.</td>
+</tr>
+<tr>
+<td><code dir="auto">startsOn</code></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The first date the rule counts from.</td>
+</tr>
+<tr>
+<td><code dir="auto">tags</code></td>
+<td><a href="/reference/staffql/core/#tag"><code dir="auto">[Tag!]!</code></a></td>
+<td>Its audience tags, including tags connected to module facets, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">taskTemplates</code></td>
+<td><a href="/reference/staffql/people/#tasktemplate"><code dir="auto">[TaskTemplate!]!</code></a></td>
+<td>Its lineup task templates, in order. Empty for anyone but whoever keeps them (its managers; an event’s hosts too).</td>
+</tr>
+<tr>
+<td><code dir="auto">tickets</code></td>
+<td><a href="/reference/staffql/ticketing/#ieventseriestickets"><code dir="auto">IEventSeriesTickets!</code></a></td>
+<td>The instance’s IEventSeriesTickets mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">timeZone</code></td>
+<td><code dir="auto">String!</code></td>
+<td>The IANA time zone start_time is in.</td>
+</tr>
+<tr>
+<td><code dir="auto">upcomingStarts</code><br/><code dir="auto">count: Int</code></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">[ISO8601DateTime!]!</code></a></td>
+<td>When the next occurrences start, skipped dates left out.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/staffql/venues/#ieventseriesvenue"><code dir="auto">IEventSeriesVenue!</code></a></td>
+<td>The instance’s IEventSeriesVenue mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesconnection">EventSeriesConnection</h3><a class="sl-anchor-link" href="#eventseriesconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for EventSeries.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/staffql/events/#eventseriesedge"><code dir="auto">[EventSeriesEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">[EventSeries]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/staffql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesedge">EventSeriesEdge</h3><a class="sl-anchor-link" href="#eventseriesedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventsview">EventsView</h3><a class="sl-anchor-link" href="#eventsview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventsView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/events/#ilocaleevents"><code dir="auto">ILocaleEvents</code></a>, <a href="/reference/staffql/events/#ivenueevents"><code dir="auto">IVenueEvents</code></a></p>
+<p>The local Events implementation of a venue or locale’s events.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">upcoming</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Its upcoming events, soonest first.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="personeventconnection">PersonEventConnection</h3><a class="sl-anchor-link" href="#personeventconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonEventConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>A person’s events, their troupes’ included, with how they’re on each.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/staffql/events/#personeventedge"><code dir="auto">[PersonEventEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">[Event]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/staffql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="personeventedge">PersonEventEdge</h3><a class="sl-anchor-link" href="#personeventedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonEventEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>One of a person’s events, and how they’re on it: themselves, or through a troupe they’re in.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td><code dir="auto">relationship</code></td>
+<td><a href="/reference/staffql/events/#personeventrelationship"><code dir="auto">PersonEventRelationship!</code></a></td>
+<td>Whether they host or play it themselves or through a troupe.</td>
+</tr>
+<tr>
+<td><code dir="auto">role</code></td>
+<td><code dir="auto">String</code></td>
+<td>Their role on it, like host or performer (as billed, else their act on its lineup), or granted when they were only granted it: the troupe’s when it’s through one.</td>
+</tr>
+<tr>
+<td><code dir="auto">troupes</code></td>
+<td><a href="/reference/staffql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>All of the troupes they’re in that host or play it, ordered like groups, even when they do too.</td>
+</tr>
+<tr>
+<td><code dir="auto">via</code></td>
+<td><a href="/reference/staffql/people/#person"><code dir="auto">Person</code></a></td>
+<td>The troupe it comes through, for showing “with &lt;troupe&gt;”. Null when they host or play it themselves.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="personeventsview">PersonEventsView</h3><a class="sl-anchor-link" href="#personeventsview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonEventsView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/events/#ipersonevents"><code dir="auto">IPersonEvents</code></a></p>
+<p>The local Events implementation of a person’s events.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">involvements</code></td>
+<td><a href="/reference/staffql/events/#personeventconnection"><code dir="auto">PersonEventConnection!</code></a></td>
+<td>The same events as upcoming, with how they’re on each: themselves, or through a troupe they’re in.</td>
+</tr>
+<tr>
+<td><code dir="auto">upcoming</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Upcoming events they host, play (on its lineup too) or were granted, and those of the troupes they’re in (their groups, not their groups’ groups), each once, soonest first. involvements says how.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutation-payloads">Mutation payloads</h2><a class="sl-anchor-link" href="#mutation-payloads"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutation payloads”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptremovepayload">ChatPromptRemovePayload</h3><a class="sl-anchor-link" href="#chatpromptremovepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptRemovePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of ChatPromptRemove.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, after the change.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptshownextpayload">ChatPromptShowNextPayload</h3><a class="sl-anchor-link" href="#chatpromptshownextpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptShowNextPayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of ChatPromptShowNext.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, after the prompt went up.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptsimportpayload">ChatPromptsImportPayload</h3><a class="sl-anchor-link" href="#chatpromptsimportpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptsImportPayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of ChatPromptsImport.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, after the import.</td>
+</tr>
+<tr>
+<td><code dir="auto">warnings</code> <small>staffql only</small></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>What the import left out.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventaccessgrantpayload">EventAccessGrantPayload</h3><a class="sl-anchor-link" href="#eventaccessgrantpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventAccessGrantPayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventAccessGrant.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, with its grants.</td>
+</tr>
+<tr>
+<td><code dir="auto">grant</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#accessgrant"><code dir="auto">AccessGrant!</code></a></td>
+<td>The grant; the existing one if they had it.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventaccessrevokepayload">EventAccessRevokePayload</h3><a class="sl-anchor-link" href="#eventaccessrevokepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventAccessRevokePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventAccessRevoke.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, with its grants.</td>
+</tr>
+<tr>
+<td><code dir="auto">revokedGrantId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The revoked grant.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventchatpromptssetpayload">EventChatPromptsSetPayload</h3><a class="sl-anchor-link" href="#eventchatpromptssetpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventChatPromptsSetPayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventChatPromptsSet.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, after the change.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventcreatepayload">EventCreatePayload</h3><a class="sl-anchor-link" href="#eventcreatepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventCreatePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventCreate.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event that was added.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventdeletepayload">EventDeletePayload</h3><a class="sl-anchor-link" href="#eventdeletepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventDeletePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventDelete.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">deletedId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>ID of the event that was deleted.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriescreatepayload">EventSeriesCreatePayload</h3><a class="sl-anchor-link" href="#eventseriescreatepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesCreatePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventSeriesCreate.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries!</code></a></td>
+<td>The series that was added.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesdeletepayload">EventSeriesDeletePayload</h3><a class="sl-anchor-link" href="#eventseriesdeletepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesDeletePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventSeriesDelete.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">deletedId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>ID of the series that was deleted.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesupdatepayload">EventSeriesUpdatePayload</h3><a class="sl-anchor-link" href="#eventseriesupdatepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesUpdatePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventSeriesUpdate.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries!</code></a></td>
+<td>The series, after the change.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventupdatepayload">EventUpdatePayload</h3><a class="sl-anchor-link" href="#eventupdatepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventUpdatePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of EventUpdate.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event!</code></a></td>
+<td>The event, after the change.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="triviasetdeletepayload">TriviaSetDeletePayload</h3><a class="sl-anchor-link" href="#triviasetdeletepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TriviaSetDeletePayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of TriviaSetDelete.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">key</code> <small>staffql only</small></td>
+<td><code dir="auto">String!</code></td>
+<td>The key of the set deleted.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="triviasetimportpayload">TriviaSetImportPayload</h3><a class="sl-anchor-link" href="#triviasetimportpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TriviaSetImportPayload”</span></a></div>
+<p><em>Object</em> · <small>staffql only</small></p>
+<p>Autogenerated return type of TriviaSetImport.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">set</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/trivia/#triviaset"><code dir="auto">TriviaSet!</code></a></td>
+<td>The set, as Trivia reads it.</td>
+</tr>
+<tr>
+<td><code dir="auto">warnings</code> <small>staffql only</small></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>What it changed.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="inputs">Inputs</h2><a class="sl-anchor-link" href="#inputs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Inputs”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptinput">ChatPromptInput</h3><a class="sl-anchor-link" href="#chatpromptinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>One of an event’s chat prompts, in setEventChatPrompts.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">answer</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A trivia question’s answer, up to 120 characters.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>The ID of a prompt it already has; omitted for a new one.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/chat/#chatpromptkind"><code dir="auto">ChatPromptKind</code></a></td>
+<td>What it asks.</td>
+</tr>
+<tr>
+<td><code dir="auto">text</code> <small>staffql only</small></td>
+<td><code dir="auto">String!</code></td>
+<td>The question, up to 200 characters.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptremoveinput">ChatPromptRemoveInput</h3><a class="sl-anchor-link" href="#chatpromptremoveinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptRemoveInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of ChatPromptRemove</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the prompt.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptshownextinput">ChatPromptShowNextInput</h3><a class="sl-anchor-link" href="#chatpromptshownextinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptShowNextInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of ChatPromptShowNext</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>The ID of the event.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>The ID of the venue whose room’s event to move on.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="chatpromptsimportinput">ChatPromptsImportInput</h3><a class="sl-anchor-link" href="#chatpromptsimportinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChatPromptsImportInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of ChatPromptsImport</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">data</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/core/#json"><code dir="auto">JSON!</code></a></td>
+<td>The file.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the event.</td>
+</tr>
+<tr>
+<td><code dir="auto">settings</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether to take the file’s settings too, when it has them.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventaccessgrantinput">EventAccessGrantInput</h3><a class="sl-anchor-link" href="#eventaccessgrantinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventAccessGrantInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventAccessGrant</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The event.</td>
+</tr>
+<tr>
+<td><code dir="auto">personId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The talent listing granted it.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventaccessrevokeinput">EventAccessRevokeInput</h3><a class="sl-anchor-link" href="#eventaccessrevokeinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventAccessRevokeInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventAccessRevoke</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The grant (Event.accessGrants).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventchatpromptssetinput">EventChatPromptsSetInput</h3><a class="sl-anchor-link" href="#eventchatpromptssetinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventChatPromptsSetInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventChatPromptsSet</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the event.</td>
+</tr>
+<tr>
+<td><code dir="auto">idleMinutes</code> <small>staffql only</small></td>
+<td><code dir="auto">Int</code></td>
+<td>How quiet the room is before a prompt card (5 to 120); null for never.</td>
+</tr>
+<tr>
+<td><code dir="auto">nightlyCap</code> <small>staffql only</small></td>
+<td><code dir="auto">Int</code></td>
+<td>At most this many prompts a night (1 to 20).</td>
+</tr>
+<tr>
+<td><code dir="auto">pauseDuringActs</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether prompts wait while an act is on.</td>
+</tr>
+<tr>
+<td><code dir="auto">prompts</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#chatpromptinput"><code dir="auto">[ChatPromptInput!]</code></a></td>
+<td>The list, in order, up to 30.</td>
+</tr>
+<tr>
+<td><code dir="auto">promptsEnabled</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether its room shows its prompts.</td>
+</tr>
+<tr>
+<td><code dir="auto">rotateMinutes</code> <small>staffql only</small></td>
+<td><code dir="auto">Int</code></td>
+<td>How often the pinned prompt changes (15 to 240); null to not rotate.</td>
+</tr>
+<tr>
+<td><code dir="auto">starterSet</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A starter set to replace the list with.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventcreateinput">EventCreateInput</h3><a class="sl-anchor-link" href="#eventcreateinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventCreateInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventCreate</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#eventinput"><code dir="auto">EventInput!</code></a></td>
+<td>Its details. Needs a name, a start, and a venue unless a talent listing adds it (ownerPersonId).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventdeleteinput">EventDeleteInput</h3><a class="sl-anchor-link" href="#eventdeleteinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventDeleteInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventDelete</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the event.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventinput">EventInput</h3><a class="sl-anchor-link" href="#eventinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>An event’s details. Fields left out are not changed.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">bannerPhotoId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>One of its venue’s photographers’ photos to use as its banner, instead of uploading a photo.</td>
+</tr>
+<tr>
+<td><code dir="auto">coverCents</code> <small>staffql only</small></td>
+<td><code dir="auto">Int</code></td>
+<td>The cover that night instead of the venue’s, in cents: 0 for none, null for the venue’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">description</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>What it is, for its page in the apps.</td>
+</tr>
+<tr>
+<td><code dir="auto">endAt</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it ends.</td>
+</tr>
+<tr>
+<td><code dir="auto">hostIds</code> <small>staffql only</small></td>
+<td><code dir="auto">[ID!]</code></td>
+<td>The people hosting it, replacing any before. On a series occurrence this sets it apart from the series.</td>
+</tr>
+<tr>
+<td><code dir="auto">isCanceled</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Canceled events stay listed, marked canceled.</td>
+</tr>
+<tr>
+<td><code dir="auto">isFeatured</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Featured events are shown first.</td>
+</tr>
+<tr>
+<td><code dir="auto">localeId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>Where it happens while it has no venue (“to be announced”). Its venue’s locale otherwise.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Its name. Required to create one.</td>
+</tr>
+<tr>
+<td><code dir="auto">organizerIds</code> <small>staffql only</small></td>
+<td><code dir="auto">[ID!]</code></td>
+<td>The organizations presenting it (Person.kind organization), billed as ‘Presented by’ and not on its lineup, replacing any before.</td>
+</tr>
+<tr>
+<td><code dir="auto">ownerPersonId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>On create: the talent listing adding it as its own. They host it unless hostIds says otherwise; it’s at their home venue unless venueId says otherwise, else to be announced. Its managers can change it later.</td>
+</tr>
+<tr>
+<td><code dir="auto">photo</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Its banner image: an image URL, or an image uploaded as a data: URI (10 MB at most). An empty string removes it; an occurrence then shows its series’ image.</td>
+</tr>
+<tr>
+<td><code dir="auto">roomEnabled</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether it has a back-of-house chat; null follows its series’ setting. Doesn’t set an occurrence apart from its series.</td>
+</tr>
+<tr>
+<td><code dir="auto">seriesOverride</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>False puts an occurrence edited on its own back in step with its series.</td>
+</tr>
+<tr>
+<td><code dir="auto">startAt</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it starts, unless venueOpenOn is set.</td>
+</tr>
+<tr>
+<td><code dir="auto">tagIds</code> <small>staffql only</small></td>
+<td><code dir="auto">[ID!]</code></td>
+<td>The audience’s tags on it, all of them: tags left out are taken off. Admins only.</td>
+</tr>
+<tr>
+<td><code dir="auto">ticketUrl</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Where to buy tickets.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>Where it happens. Required to create one, except a talent listing’s own (ownerPersonId).</td>
+</tr>
+<tr>
+<td><code dir="auto">venueOpenOn</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">ISO8601Date</code></a></td>
+<td>Start at venue opening on this local date. Null selects an explicit startAt.</td>
+</tr>
+<tr>
+<td><code dir="auto">visibility</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#listingvisibility"><code dir="auto">ListingVisibility</code></a></td>
+<td>Public: full details. Community: basics.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriescreateinput">EventSeriesCreateInput</h3><a class="sl-anchor-link" href="#eventseriescreateinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesCreateInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventSeriesCreate</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#eventseriesinput"><code dir="auto">EventSeriesInput!</code></a></td>
+<td>Its details. Needs an owner, a name, a rule, a first date, a start time and a time zone.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesdeleteinput">EventSeriesDeleteInput</h3><a class="sl-anchor-link" href="#eventseriesdeleteinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesDeleteInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventSeriesDelete</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the series.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesinput">EventSeriesInput</h3><a class="sl-anchor-link" href="#eventseriesinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>A recurring series’ details. Fields left out are not changed.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">bannerPhotoId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>One of its venue’s photographers’ photos to use as its banner, instead of uploading a photo.</td>
+</tr>
+<tr>
+<td><code dir="auto">description</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>What it is, copied to each occurrence.</td>
+</tr>
+<tr>
+<td><code dir="auto">durationMinutes</code> <small>staffql only</small></td>
+<td><code dir="auto">Int</code></td>
+<td>How long each occurrence runs.</td>
+</tr>
+<tr>
+<td><code dir="auto">hostIds</code> <small>staffql only</small></td>
+<td><code dir="auto">[ID!]</code></td>
+<td>Its default hosts, people in the audience.</td>
+</tr>
+<tr>
+<td><code dir="auto">karaoke</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether each occurrence is a karaoke night.</td>
+</tr>
+<tr>
+<td><code dir="auto">karaokeSessionCode</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A session code or join link for each occurrence. Null or empty uses the venue session.</td>
+</tr>
+<tr>
+<td><code dir="auto">localeId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>Where it happens while its venue is to be announced. A venue sets it.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Its name. Required to create one.</td>
+</tr>
+<tr>
+<td><code dir="auto">ownerPersonId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>The person (talent) who runs it.</td>
+</tr>
+<tr>
+<td><code dir="auto">ownerVenueId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>The venue that runs it. A new series needs an owner, a venue or a person.</td>
+</tr>
+<tr>
+<td><code dir="auto">photo</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Its image: an image URL, or an image uploaded as a data: URI (10 MB at most). An empty string removes it.</td>
+</tr>
+<tr>
+<td><code dir="auto">roomEnabled</code> <small>staffql only</small></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Whether its occurrences have a back-of-house chat, e.g. off for a weekly karaoke night.</td>
+</tr>
+<tr>
+<td><code dir="auto">roomsAhead</code> <small>staffql only</small></td>
+<td><code dir="auto">Int</code></td>
+<td>How many upcoming occurrences have their back-of-house chat listed, 1 to 10.</td>
+</tr>
+<tr>
+<td><code dir="auto">rrule</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Its RFC 5545 recurrence rule, e.g. FREQ=WEEKLY;BYDAY=TU,TH. Required to create one.</td>
+</tr>
+<tr>
+<td><code dir="auto">skippedDates</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">[ISO8601Date!]</code></a></td>
+<td>Dates to skip. Deleting an occurrence adds its date.</td>
+</tr>
+<tr>
+<td><code dir="auto">startTime</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When each occurrence starts, local time.</td>
+</tr>
+<tr>
+<td><code dir="auto">startsOn</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/cover/#iso8601date"><code dir="auto">ISO8601Date</code></a></td>
+<td>The first date it counts from.</td>
+</tr>
+<tr>
+<td><code dir="auto">tagIds</code> <small>staffql only</small></td>
+<td><code dir="auto">[ID!]</code></td>
+<td>The audience tags copied to each occurrence.</td>
+</tr>
+<tr>
+<td><code dir="auto">ticketUrl</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>Where to buy tickets.</td>
+</tr>
+<tr>
+<td><code dir="auto">timeZone</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>An IANA time zone, e.g. America/Los_Angeles.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID</code></td>
+<td>Its default venue. Null holds a venue-owned series at its owner.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesupdateinput">EventSeriesUpdateInput</h3><a class="sl-anchor-link" href="#eventseriesupdateinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesUpdateInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventSeriesUpdate</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#eventseriesinput"><code dir="auto">EventSeriesInput!</code></a></td>
+<td>The fields to change.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the series.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventupdateinput">EventUpdateInput</h3><a class="sl-anchor-link" href="#eventupdateinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventUpdateInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of EventUpdate</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/events/#eventinput"><code dir="auto">EventInput!</code></a></td>
+<td>The fields to change.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The ID of the event.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="triviasetdeleteinput">TriviaSetDeleteInput</h3><a class="sl-anchor-link" href="#triviasetdeleteinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TriviaSetDeleteInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of TriviaSetDelete</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">key</code> <small>staffql only</small></td>
+<td><code dir="auto">String!</code></td>
+<td>The set, as Venue.trivia.sets keys it.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue it is deleted from.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="triviasetimportinput">TriviaSetImportInput</h3><a class="sl-anchor-link" href="#triviasetimportinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TriviaSetImportInput”</span></a></div>
+<p><em>Input</em> · <small>staffql only</small></p>
+<p>Autogenerated input type of TriviaSetImport</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code> <small>staffql only</small></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">data</code> <small>staffql only</small></td>
+<td><a href="/reference/staffql/core/#json"><code dir="auto">JSON!</code></a></td>
+<td>The file.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code> <small>staffql only</small></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue it is uploaded from.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="interfaces">Interfaces</h2><a class="sl-anchor-link" href="#interfaces"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Interfaces”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="hastags">HasTags</h3><a class="sl-anchor-link" href="#hastags"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “HasTags”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/events/#event"><code dir="auto">Event</code></a>, <a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries</code></a>, <a href="/reference/staffql/people/#person"><code dir="auto">Person</code></a>, <a href="/reference/staffql/venues/#venue"><code dir="auto">Venue</code></a></p>
+<p>Something its audience can tag: a person, event, series or venue.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">facets</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>The keys of the facets switched on for it, e.g. karaoke, in key order: each is a tag the system keeps (Tag.facet) and turns on the edges of the mixins declaring it (@mixin(tag:)). Only those whose module is installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">tags</code></td>
+<td><a href="/reference/staffql/core/#tag"><code dir="auto">[Tag!]!</code></a></td>
+<td>Its audience tags, including tags connected to module facets, by name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="hastasktemplates">HasTaskTemplates</h3><a class="sl-anchor-link" href="#hastasktemplates"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “HasTaskTemplates”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/events/#event"><code dir="auto">Event</code></a>, <a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries</code></a>, <a href="/reference/staffql/people/#person"><code dir="auto">Person</code></a>, <a href="/reference/staffql/venues/#venue"><code dir="auto">Venue</code></a></p>
+<p>A venue, event series, event or performer that keeps lineup task templates: tasks every lineup entry they apply to gets.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">taskTemplates</code></td>
+<td><a href="/reference/staffql/people/#tasktemplate"><code dir="auto">[TaskTemplate!]!</code></a></td>
+<td>Its lineup task templates, in order. Empty for anyone but whoever keeps them (its managers; an event’s hosts too).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="iaudienceevents">IAudienceEvents</h3><a class="sl-anchor-link" href="#iaudienceevents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IAudienceEvents”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/events/#audienceeventsview"><code dir="auto">AudienceEventsView</code></a> · mixin edge <code dir="auto">events</code> on <a href="/reference/staffql/#audience"><code dir="auto">Audience</code></a></p>
+<p>An audience’s events and the recurring series they come from, and lookups of one by its UUID.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">counts</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">mine: Boolean</code><br/><code dir="auto">tagId: ID</code><br/><code dir="auto">venueId: ID</code></td>
+<td><a href="/reference/staffql/events/#eventcounts"><code dir="auto">EventCounts!</code></a></td>
+<td>How many upcoming events it has (canceled ones included, as in <code dir="auto">list</code>): from a series, one-off, and in all.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/staffql/events/#event"><code dir="auto">Event</code></a></td>
+<td>An event in the audience by its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">eventSeries</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/staffql/events/#eventseries"><code dir="auto">EventSeries</code></a></td>
+<td>A recurring series in the audience by its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">mine: Boolean</code><br/><code dir="auto">search: String</code><br/><code dir="auto">startsBefore: ISO8601DateTime</code><br/><code dir="auto">tagId: ID</code><br/><code dir="auto">venueId: ID</code><br/><code dir="auto">window: EventWindow</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Its events, canceled ones included.</td>
+</tr>
+<tr>
+<td><code dir="auto">series</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">mine: Boolean</code><br/><code dir="auto">ownerId: ID</code><br/><code dir="auto">personId: ID</code><br/><code dir="auto">venueId: ID</code></td>
+<td><a href="/reference/staffql/events/#eventseriesconnection"><code dir="auto">EventSeriesConnection!</code></a></td>
+<td>Its recurring series, by name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ilocaleevents">ILocaleEvents</h3><a class="sl-anchor-link" href="#ilocaleevents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ILocaleEvents”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/events/#eventsview"><code dir="auto">EventsView</code></a> · mixin edge <code dir="auto">events</code> on <a href="/reference/staffql/locales/#locale"><code dir="auto">Locale</code></a></p>
+<p>A locale’s events: those at its venues, and those still waiting for a venue there.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">upcoming</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Its upcoming events, soonest first.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ipersonevents">IPersonEvents</h3><a class="sl-anchor-link" href="#ipersonevents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IPersonEvents”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/events/#personeventsview"><code dir="auto">PersonEventsView</code></a> · mixin edge <code dir="auto">events</code> on <a href="/reference/staffql/people/#person"><code dir="auto">Person</code></a></p>
+<p>The events a person hosts, plays (its lineup included) or was granted, and those of the troupes they’re in.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">involvements</code></td>
+<td><a href="/reference/staffql/events/#personeventconnection"><code dir="auto">PersonEventConnection!</code></a></td>
+<td>The same events as upcoming, with how they’re on each: themselves, or through a troupe they’re in.</td>
+</tr>
+<tr>
+<td><code dir="auto">upcoming</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Upcoming events they host, play (on its lineup too) or were granted, and those of the troupes they’re in (their groups, not their groups’ groups), each once, soonest first. involvements says how.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ivenueevents">IVenueEvents</h3><a class="sl-anchor-link" href="#ivenueevents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IVenueEvents”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/events/#eventsview"><code dir="auto">EventsView</code></a> · mixin edge <code dir="auto">events</code> on <a href="/reference/staffql/venues/#venue"><code dir="auto">Venue</code></a></p>
+<p>A venue’s events.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">upcoming</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/events/#eventconnection"><code dir="auto">EventConnection!</code></a></td>
+<td>Its upcoming events, soonest first.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="enums">Enums</h2><a class="sl-anchor-link" href="#enums"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Enums”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventwindow">EventWindow</h3><a class="sl-anchor-link" href="#eventwindow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventWindow”</span></a></div>
+<p><em>Enum</em></p>
+<p>Which events to list, by when they happen.</p>
+<ul>
+<li><code dir="auto">PAST</code> Over, most recent first.</li>
+<li><code dir="auto">UPCOMING</code> Not over yet, soonest first.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="listingvisibility">ListingVisibility</h3><a class="sl-anchor-link" href="#listingvisibility"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ListingVisibility”</span></a></div>
+<p><em>Enum</em></p>
+<p>How much of an event or venue listing is visible to the internet. Chat is never public.</p>
+<ul>
+<li><code dir="auto">COMMUNITY</code> Automatic basic listing; sign in for full details. The default.</li>
+<li><code dir="auto">PUBLIC</code> Full editorial listing details, including event time and place.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="personeventrelationship">PersonEventRelationship</h3><a class="sl-anchor-link" href="#personeventrelationship"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonEventRelationship”</span></a></div>
+<p><em>Enum</em></p>
+<p>How a person is on one of their events.</p>
+<ul>
+<li><code dir="auto">DIRECT</code> They host or play it themselves.</li>
+<li><code dir="auto">TROUPE</code> Through a troupe they’re in, which hosts or plays it.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="unions">Unions</h2><a class="sl-anchor-link" href="#unions"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Unions”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriesowner">EventSeriesOwner</h3><a class="sl-anchor-link" href="#eventseriesowner"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesOwner”</span></a></div>
+<p><em>Union</em></p>
+<p>Who runs a recurring series: a venue or a person (talent).</p>
+<ul>
+<li><a href="/reference/staffql/people/#person"><code dir="auto">Person</code></a></li>
+<li><a href="/reference/staffql/venues/#venue"><code dir="auto">Venue</code></a></li>
+</ul>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>GraphQL reference | AudienceKit</title><link rel="canonical" href="https://developer.audiencekit.com/reference/graphql/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="GraphQL reference"/><meta property="og:type" content="article"/><meta property="og:url" content="https://developer.audiencekit.com/reference/graphql/"/><meta property="og:locale" content="en"/><meta property="og:description" content="GraphQL reference: every query, mutation, subscription and type of the consumer view, by module."/><meta property="og:site_name" content="AudienceKit"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="GraphQL reference: every query, mutation, subscription and type of the consumer view, by module."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.Ba7Mjohh.css"><style>@layer starlight.components{svg:where(.astro-hkc32dio){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><span class="astro-6rvad3va" translate="no">AudienceKit</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0yjvwpz" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start here</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/start/introduction/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Introduction</span></a></li><li class="astro-rmhv4bp6"><a href="/start/concepts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core concepts</span></a></li><li class="astro-rmhv4bp6"><a href="/start/local-development/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run AudienceKit locally</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">API</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/api/overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/api/authentication/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authentication</span></a></li><li class="astro-rmhv4bp6"><a href="/api/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GraphQL</span></a></li><li class="astro-rmhv4bp6"><a href="/api/validate-documents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Validate your documents</span></a></li><li class="astro-rmhv4bp6"><a href="/api/rest/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">REST endpoints</span></a></li><li class="astro-rmhv4bp6"><a href="/api/realtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Realtime</span></a></li><li class="astro-rmhv4bp6"><a href="/api/errors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Errors</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">GraphQL (consumer view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/graphql/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">StaffQL (staff view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/staffql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/evaluations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Evaluations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/locales/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Locales</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/maintenance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Maintenance</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/moderation/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Moderation</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rooms/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rooms</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Guides</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/guides/theming/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theme an audience</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/domains/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Connect a domain</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/service-tokens/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Automate with service tokens</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/researcher/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run the researcher worker</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/deploy-heroku/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deploy to Heroku</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">SDKs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit SDK</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit SDK</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">iOS and macOS (Swift)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/swift/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit-binaries/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit binary package</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Android (Kotlin)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Kotlin Multiplatform core</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><a href="/sdks/ruby/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ruby</span></a></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Changelogs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/changelog/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/changelog/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Project</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/project/contributing-docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Contribute to these docs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#modules" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Modules</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#audience" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Audience</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#modules" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Modules</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#audience" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Audience</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">GraphQL reference</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><!-- Generated by scripts/graphql-reference.mjs from graphql/schema.graphql. Do not edit by hand. -->
+<p>The <strong>consumer view</strong> is the audience graph as <code dir="auto">POST /v1/audience/:audience_id/graphql</code> serves it to an audience’s own apps: a signed-in member gets their own records and the audience’s public ones, whatever their role. Fields no member could use aren’t in this schema at all. Staff tools use <a href="/reference/staffql/">StaffQL</a> instead; <a href="/api/graphql/">GraphQL</a> explains the two endpoints.</p>
+<p>The <a href="/sdks/swift/audiencekit/">Swift</a> and <a href="/sdks/kotlin/audiencekit/">Kotlin</a> SDKs wrap the common queries of this view.</p>
+<p>Download the dumps: <a href="/graphql/schema.graphql">SDL</a> and <a href="/graphql/schema.json">introspection</a> (main-20261106T194756-c4c448c), or the <code dir="auto">next</code> branch’s: <a href="/graphql/next/schema.graphql">SDL</a> and <a href="/graphql/next/schema.json">introspection</a>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="modules">Modules</h2><a class="sl-anchor-link" href="#modules"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Modules”</span></a></div>
+<p>A module adds its edge to the root and to the records it extends. An audience that hasn’t installed a module has no edge for it, so its fields aren’t refused, they don’t exist; ask the schema (<code dir="auto">__type</code>) before relying on one, or let the SDKs do it.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Root fields</th>
+<th>Types</th>
+<th>Mutations</th>
+<th>Subscriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/reference/graphql/core/">Core</a></td>
+<td><code dir="auto">appReview</code>, <code dir="auto">cardCategories</code>, <code dir="auto">closestLocale</code>, <code dir="auto">disabledPluginKeys</code>, <code dir="auto">domains</code>, <code dir="auto">extensionMixins</code>, <code dir="auto">extensions</code>, <code dir="auto">fieldEndpoints</code>, <code dir="auto">fieldPermissions</code>, <code dir="auto">id</code>, <code dir="auto">inviteUrl</code>, <code dir="auto">layout</code>, <code dir="auto">listingImports</code>, <code dir="auto">locale</code>, <code dir="auto">locales</code>, <code dir="auto">map</code>, <code dir="auto">me</code>, <code dir="auto">members</code>, <code dir="auto">mobileApps</code>, <code dir="auto">name</code>, <code dir="auto">node</code>, <code dir="auto">nodes</code>, <code dir="auto">publicTribes</code>, <code dir="auto">shareLink</code>, <code dir="auto">signInMethods</code>, <code dir="auto">signInWarnings</code>, <code dir="auto">subdomain</code>, <code dir="auto">supportResources</code>, <code dir="auto">tags</code>, <code dir="auto">theme</code>, <code dir="auto">tribeCap</code>, <code dir="auto">tribeCatalog</code>, <code dir="auto">tribesFile</code>, <code dir="auto">webUrl</code></td>
+<td>165</td>
+<td>29</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/chat/">Chat</a></td>
+<td><code dir="auto">chat</code></td>
+<td>77</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/cover/">Cover</a></td>
+<td></td>
+<td>42</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/events/">Events</a></td>
+<td><code dir="auto">events</code></td>
+<td>24</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/facebook/">Facebook</a></td>
+<td><code dir="auto">facebook</code></td>
+<td>9</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/friends/">Friends</a></td>
+<td></td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/karaoke/">Karaoke</a></td>
+<td><code dir="auto">karaoke</code></td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/liquor/">Liquor</a></td>
+<td></td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/listings/">Listings</a></td>
+<td></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/music/">Music</a></td>
+<td></td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/ordering/">Ordering</a></td>
+<td></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/pair_up/">Pair up</a></td>
+<td></td>
+<td>26</td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/payments/">Payments</a></td>
+<td><code dir="auto">payments</code></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/people/">People</a></td>
+<td><code dir="auto">people</code></td>
+<td>54</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/photography/">Photography</a></td>
+<td><code dir="auto">photography</code></td>
+<td>18</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/ping/">Ping</a></td>
+<td><code dir="auto">ping</code></td>
+<td>18</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/places/">Places</a></td>
+<td></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/posts/">Posts</a></td>
+<td><code dir="auto">posts</code></td>
+<td>24</td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/push/">Push</a></td>
+<td><code dir="auto">push</code></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/requests/">Requests</a></td>
+<td></td>
+<td>12</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/rsvp/">Rsvp</a></td>
+<td></td>
+<td>12</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/ticketing/">Ticketing</a></td>
+<td><code dir="auto">ticketing</code></td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/tipping/">Tipping</a></td>
+<td><code dir="auto">tipping</code></td>
+<td>18</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/trivia/">Trivia</a></td>
+<td></td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/reference/graphql/venues/">Venues</a></td>
+<td><code dir="auto">venues</code></td>
+<td>22</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="audience">Audience</h2><a class="sl-anchor-link" href="#audience"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Audience”</span></a></div>
+<p>The query root is the audience itself. An audience: its listings, members and configuration. On an audience’s endpoints it is the query root.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">appReview</code></td>
+<td><a href="/reference/graphql/core/#audienceappreview"><code dir="auto">AudienceAppReview!</code></a></td>
+<td>App Review settings: period end time and reusable review code.</td>
+</tr>
+<tr>
+<td><code dir="auto">cardCategories</code></td>
+<td><a href="/reference/graphql/core/#cardcategory"><code dir="auto">[CardCategory!]!</code></a></td>
+<td>The published categories of promoted card, for “Cards you see”. What a viewer turns off stays on their device and is never sent here.</td>
+</tr>
+<tr>
+<td><code dir="auto">chat</code></td>
+<td><a href="/reference/graphql/chat/#iaudiencechat"><code dir="auto">IAudienceChat!</code></a></td>
+<td>The instance’s IAudienceChat mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">closestLocale</code><br/><code dir="auto">near: CoordinatesInput!</code></td>
+<td><a href="/reference/graphql/core/#locale"><code dir="auto">Locale</code></a></td>
+<td>The locale nearest a position.</td>
+</tr>
+<tr>
+<td><code dir="auto">disabledPluginKeys</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>Plugins marked disabled in the admin console. Configuration and runtime behavior are preserved.</td>
+</tr>
+<tr>
+<td><code dir="auto">domains</code></td>
+<td><a href="/reference/graphql/core/#audiencedomain"><code dir="auto">[AudienceDomain!]!</code></a></td>
+<td>Domains connected to this audience. They change on /v1/tenants/graphql only.</td>
+</tr>
+<tr>
+<td><code dir="auto">events</code></td>
+<td><a href="/reference/graphql/events/#iaudienceevents"><code dir="auto">IAudienceEvents!</code></a></td>
+<td>The instance’s IAudienceEvents mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">extensionMixins</code></td>
+<td><a href="/reference/graphql/core/#extensionmixin"><code dir="auto">[ExtensionMixin!]!</code></a></td>
+<td>Declared mixins and viewer access gates.</td>
+</tr>
+<tr>
+<td><code dir="auto">extensions</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/core/#extensionconnection"><code dir="auto">ExtensionConnection!</code></a></td>
+<td>Capabilities available to this audience. Configured remotes are excluded.</td>
+</tr>
+<tr>
+<td><code dir="auto">facebook</code></td>
+<td><a href="/reference/graphql/facebook/#iaudiencefacebook"><code dir="auto">IAudienceFacebook!</code></a></td>
+<td>The instance’s IAudienceFacebook mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">fieldEndpoints</code></td>
+<td><a href="/reference/graphql/core/#fieldendpoint"><code dir="auto">[FieldEndpoint!]!</code></a></td>
+<td>Every field in this endpoint’s schema that declares the endpoints it is on (its @endpoint, which introspection does not carry).</td>
+</tr>
+<tr>
+<td><code dir="auto">fieldPermissions</code></td>
+<td><a href="/reference/graphql/core/#fieldpermission"><code dir="auto">[FieldPermission!]!</code></a></td>
+<td>Every field in this endpoint’s schema that requires a permission, with the permissions (its @requires, which introspection does not carry).</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">inviteUrl</code></td>
+<td><code dir="auto">String</code></td>
+<td>The link venue and talent Page managers open to join. Admins only; null for everyone else. <small>requires <code dir="auto">audience:admin:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">karaoke</code></td>
+<td><a href="/reference/graphql/karaoke/#iaudiencekaraoke"><code dir="auto">IAudienceKaraoke!</code></a></td>
+<td>The instance’s IAudienceKaraoke mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">layout</code><br/><code dir="auto">client: LayoutClientInput!</code><br/><code dir="auto">localeId: ID</code><br/><code dir="auto">position: CoordinatesInput</code><br/><code dir="auto">screen: LayoutScreen!</code></td>
+<td><a href="/reference/graphql/core/#layout"><code dir="auto">Layout!</code></a></td>
+<td>A screen’s cards, ranked by the server for this moment: what is on, where the viewer is, their check-in. Ranking never uses tribes or anything else about who they are. Not cached; ask again after refreshAfter.</td>
+</tr>
+<tr>
+<td><code dir="auto">listingImports</code></td>
+<td><a href="/reference/graphql/core/#listingimport"><code dir="auto">[ListingImport!]!</code></a></td>
+<td>Listings files admins uploaded (uploadListings): calendar sites’ and researched lists, newest first, at most 10. Admins only; empty for everyone else. <small>requires <code dir="auto">audience:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">locale</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/graphql/core/#locale"><code dir="auto">Locale</code></a></td>
+<td>A locale in the audience by its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">locales</code></td>
+<td><a href="/reference/graphql/core/#locale"><code dir="auto">[Locale!]!</code></a></td>
+<td>Locales belonging to this audience.</td>
+</tr>
+<tr>
+<td><code dir="auto">map</code><br/><code dir="auto">localeId: ID</code></td>
+<td><a href="/reference/graphql/core/#json"><code dir="auto">JSON!</code></a></td>
+<td>Its locale envelopes and venue envelopes and points, as a GeoJSON FeatureCollection. Admins only; empty for everyone else. <small>requires <code dir="auto">audience:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">me</code></td>
+<td><a href="/reference/graphql/core/#userstate"><code dir="auto">UserState</code></a></td>
+<td>The signed-in viewer and their state here: their profile (<code dir="auto">self</code>), what they block, the listings they manage and the modules’ viewer state. Null when nobody is signed in.</td>
+</tr>
+<tr>
+<td><code dir="auto">members</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">search: String</code></td>
+<td><a href="/reference/graphql/core/#audiencememberconnection"><code dir="auto">AudienceMemberConnection!</code></a></td>
+<td>People who have signed in on the audience’s console or apps, with their latest activity and whether they’re banned, oldest member first. Admins only; empty for everyone else. <small>requires <code dir="auto">audience:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">mobileApps</code></td>
+<td><a href="/reference/graphql/core/#audiencemobileapp"><code dir="auto">[AudienceMobileApp!]!</code></a></td>
+<td>The apps its share links open, which its verified domains list in /.well-known. They change on /v1/tenants/graphql only.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Display name.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></td>
+<td>Fetches a record by its <code dir="auto">id</code>, the UUID every Node carries; null when nothing visible to this request has it.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code><br/><code dir="auto">ids: [ID!]!</code></td>
+<td><a href="/reference/graphql/core/#node"><code dir="auto">[Node]!</code></a></td>
+<td>Fetches records by their <code dir="auto">id</code>s, in the order asked; a missing one is null.</td>
+</tr>
+<tr>
+<td><code dir="auto">payments</code></td>
+<td><a href="/reference/graphql/payments/#iaudiencepayments"><code dir="auto">IAudiencePayments</code></a></td>
+<td>The instance’s IAudiencePayments mixin, when available to the viewer. <small>requires <code dir="auto">payments:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">people</code></td>
+<td><a href="/reference/graphql/people/#iaudiencepeople"><code dir="auto">IAudiencePeople!</code></a></td>
+<td>The instance’s IAudiencePeople mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">photography</code></td>
+<td><a href="/reference/graphql/photography/#iphotography"><code dir="auto">IPhotography</code></a></td>
+<td>The instance’s IPhotography mixin, when available to the viewer. <small>requires <code dir="auto">photography:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">ping</code></td>
+<td><a href="/reference/graphql/ping/#iaudienceping"><code dir="auto">IAudiencePing</code></a></td>
+<td>The instance’s IAudiencePing mixin, when available.</td>
+</tr>
+<tr>
+<td><code dir="auto">posts</code></td>
+<td><a href="/reference/graphql/posts/#iaudienceposts"><code dir="auto">IAudiencePosts!</code></a></td>
+<td>The instance’s IAudiencePosts mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">publicTribes</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether people may show a tribe to everyone. Off (the default), a tribe shows only to the people who share it and apps offer no public choice.</td>
+</tr>
+<tr>
+<td><code dir="auto">push</code></td>
+<td><a href="/reference/graphql/push/#iaudiencepush"><code dir="auto">IAudiencePush</code></a></td>
+<td>The instance’s IAudiencePush mixin, when available to the viewer. <small>requires <code dir="auto">push:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">shareLink</code><br/><code dir="auto">lifetime: ShareLinkLifetime</code><br/><code dir="auto">path: String!</code></td>
+<td><a href="/reference/graphql/core/#sharelink"><code dir="auto">ShareLink</code></a></td>
+<td>A signed, expiring link to one of its venues, events or people or visible Pings; null for unavailable paths.</td>
+</tr>
+<tr>
+<td><code dir="auto">signInMethods</code></td>
+<td><a href="/reference/graphql/core/#signinmethod"><code dir="auto">[SignInMethod!]!</code></a></td>
+<td>How people can sign in to its apps and website. Its admin consoles and the staff apps always sign in as before.</td>
+</tr>
+<tr>
+<td><code dir="auto">signInWarnings</code></td>
+<td><a href="/reference/graphql/core/#signinwarning"><code dir="auto">[SignInWarning!]!</code></a></td>
+<td>What its apps and website say before each sign-in method that has a warning, with Cancel and Continue.</td>
+</tr>
+<tr>
+<td><code dir="auto">subdomain</code></td>
+<td><code dir="auto">String!</code></td>
+<td>The unique audience subdomain.</td>
+</tr>
+<tr>
+<td><code dir="auto">supportResources</code><br/><code dir="auto">region: String</code></td>
+<td><a href="/reference/graphql/core/#supportresources"><code dir="auto">SupportResources!</code></a></td>
+<td>“Need support?”: the emergency number and crisis and support lines for a region.</td>
+</tr>
+<tr>
+<td><code dir="auto">tags</code><br/><code dir="auto">facets: Boolean</code><br/><code dir="auto">tribes: Boolean</code></td>
+<td><a href="/reference/graphql/core/#tag"><code dir="auto">[Tag!]!</code></a></td>
+<td>Its tags for people, events and venues, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">theme</code></td>
+<td><a href="/reference/graphql/core/#audiencetheme"><code dir="auto">AudienceTheme!</code></a></td>
+<td>The audience’s look: preset, tagline and colors.</td>
+</tr>
+<tr>
+<td><code dir="auto">ticketing</code></td>
+<td><a href="/reference/graphql/ticketing/#iaudienceticketing"><code dir="auto">IAudienceTicketing!</code></a></td>
+<td>The instance’s IAudienceTicketing mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">tipping</code></td>
+<td><a href="/reference/graphql/tipping/#iaudiencetipping"><code dir="auto">IAudienceTipping!</code></a></td>
+<td>The instance’s IAudienceTipping mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">tribeCap</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>The most tribes one person may identify with here: a quarter of its tribes, and at least one.</td>
+</tr>
+<tr>
+<td><code dir="auto">tribeCatalog</code></td>
+<td><a href="/reference/graphql/core/#tribecategory"><code dir="auto">[TribeCategory!]!</code></a></td>
+<td>Its tribes grouped for the picker: curated categories in their order, then any it made itself under “More”.</td>
+</tr>
+<tr>
+<td><code dir="auto">tribesFile</code><br/><code dir="auto">curated: Boolean</code></td>
+<td><a href="/reference/graphql/core/#json"><code dir="auto">JSON</code></a></td>
+<td>Its tribes, by category with their phrases, as an audiencekit.tribes file (doc/IMPORT_EXPORT.md) for importTribes. Admins only; null for everyone else. <small>requires <code dir="auto">audience:read:*</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">venues</code></td>
+<td><a href="/reference/graphql/venues/#iaudiencevenues"><code dir="auto">IAudienceVenues!</code></a></td>
+<td>The instance’s IAudienceVenues mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">webUrl</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Where the audience’s web app lives (<a href="https://hotmess.social">https://hotmess.social</a>): its first verified domain, else its console’s. Share links are /venues/&lt;id&gt;, /events/&lt;id&gt; and /people/&lt;id&gt; under it, which its app opens when installed.</td>
+</tr>
+</tbody>
+</table>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

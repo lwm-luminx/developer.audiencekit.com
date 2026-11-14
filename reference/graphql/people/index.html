@@ -1,0 +1,2208 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>People | AudienceKit</title><link rel="canonical" href="https://developer.audiencekit.com/reference/graphql/people/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="People"/><meta property="og:type" content="article"/><meta property="og:url" content="https://developer.audiencekit.com/reference/graphql/people/"/><meta property="og:locale" content="en"/><meta property="og:description" content="The people module of the consumer view: its root fields, operations and types."/><meta property="og:site_name" content="AudienceKit"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="The people module of the consumer view: its root fields, operations and types."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.Ba7Mjohh.css"><style>@layer starlight.components{svg:where(.astro-hkc32dio){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><span class="astro-6rvad3va" translate="no">AudienceKit</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0yjvwpz" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start here</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/start/introduction/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Introduction</span></a></li><li class="astro-rmhv4bp6"><a href="/start/concepts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core concepts</span></a></li><li class="astro-rmhv4bp6"><a href="/start/local-development/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run AudienceKit locally</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">API</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/api/overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/api/authentication/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authentication</span></a></li><li class="astro-rmhv4bp6"><a href="/api/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GraphQL</span></a></li><li class="astro-rmhv4bp6"><a href="/api/validate-documents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Validate your documents</span></a></li><li class="astro-rmhv4bp6"><a href="/api/rest/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">REST endpoints</span></a></li><li class="astro-rmhv4bp6"><a href="/api/realtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Realtime</span></a></li><li class="astro-rmhv4bp6"><a href="/api/errors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Errors</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">GraphQL (consumer view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/people/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">StaffQL (staff view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/staffql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/evaluations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Evaluations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/locales/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Locales</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/maintenance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Maintenance</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/moderation/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Moderation</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rooms/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rooms</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Guides</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/guides/theming/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theme an audience</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/domains/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Connect a domain</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/service-tokens/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Automate with service tokens</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/researcher/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run the researcher worker</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/deploy-heroku/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deploy to Heroku</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">SDKs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit SDK</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit SDK</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">iOS and macOS (Swift)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/swift/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit-binaries/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit binary package</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Android (Kotlin)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Kotlin Multiplatform core</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><a href="/sdks/ruby/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ruby</span></a></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Changelogs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/changelog/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/changelog/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Project</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/project/contributing-docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Contribute to these docs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#root-fields" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Root fields</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearance" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Appearance</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#audiencepeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AudiencePeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#curtainreadiness" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CurtainReadiness</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventpeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventPeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriespeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesPeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#gonogo" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GoNoGo</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineup" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Lineup</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineupstep" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupStep</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptask" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTask</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#localepeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LocalePeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#person" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Person</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinesscount" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessCount</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinessitem" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessItem</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfile" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFile</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scene" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scene</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#showstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ShowStatus</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#staffassignment" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">StaffAssignment</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#stagezone" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">StageZone</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuepeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenuePeopleView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptaskupdatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskUpdatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinesssetpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessSetPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptaskupdateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskUpdateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinesssetinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessSetInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iaudiencepeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IAudiencePeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ieventpeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IEventPeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ieventseriespeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IEventSeriesPeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ilocalepeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ILocalePeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuepeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenuePeople</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceactivity" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceActivity</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceendtiming" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceEndTiming</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancekind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancerole" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceRole</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancestarttiming" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceStartTiming</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancestate" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceState</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#gonogoverdict" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GoNoGoVerdict</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineupphase" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupPhase</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineupstepkind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupStepKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptaskauto" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskAuto</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptasksource" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskSource</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personkind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personvisibility" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonVisibility</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinessarea" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessArea</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinessstate" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessState</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfileaudiostatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFileAudioStatus</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfilekind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFileKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfilelabel" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFileLabel</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#showendsto" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ShowEndsTo</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#staffrole" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">StaffRole</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviareveal" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaReveal</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#scalars" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Scalars</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#bigint" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">BigInt</span></a></li></ul></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#root-fields" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Root fields</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearance" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Appearance</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#audiencepeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AudiencePeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#curtainreadiness" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CurtainReadiness</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventpeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventPeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventseriespeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventSeriesPeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#gonogo" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GoNoGo</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineup" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Lineup</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineupstep" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupStep</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptask" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTask</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#localepeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LocalePeopleView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#person" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Person</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinesscount" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessCount</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinessitem" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessItem</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfile" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFile</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scene" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scene</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#showstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ShowStatus</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#staffassignment" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">StaffAssignment</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#stagezone" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">StageZone</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuepeopleview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenuePeopleView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptaskupdatepayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskUpdatePayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinesssetpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessSetPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptaskupdateinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskUpdateInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinesssetinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessSetInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iaudiencepeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IAudiencePeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ieventpeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IEventPeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ieventseriespeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IEventSeriesPeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ilocalepeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ILocalePeople</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuepeople" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenuePeople</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceactivity" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceActivity</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearanceendtiming" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceEndTiming</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancekind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancerole" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceRole</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancestarttiming" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceStartTiming</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#appearancestate" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AppearanceState</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#gonogoverdict" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GoNoGoVerdict</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineupphase" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupPhase</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineupstepkind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupStepKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptaskauto" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskAuto</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#lineuptasksource" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LineupTaskSource</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personkind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#personvisibility" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PersonVisibility</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinessarea" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessArea</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#readinessstate" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ReadinessState</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfileaudiostatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFileAudioStatus</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfilekind" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFileKind</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#roomfilelabel" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">RoomFileLabel</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#showendsto" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ShowEndsTo</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#staffrole" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">StaffRole</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#triviareveal" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TriviaReveal</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#scalars" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Scalars</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#bigint" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">BigInt</span></a></li></ul></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">People</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><!-- Generated by scripts/graphql-reference.mjs from graphql/schema.graphql. Do not edit by hand. -->
+<p>The people featured in an audience, and a lookup of one by their UUID.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="root-fields">Root fields</h2><a class="sl-anchor-link" href="#root-fields"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Root fields”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">people</code></td>
+<td><a href="/reference/graphql/people/#iaudiencepeople"><code dir="auto">IAudiencePeople!</code></a></td>
+<td>The instance’s IAudiencePeople mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutations">Mutations</h2><a class="sl-anchor-link" href="#mutations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutations”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">setReadiness</code><br/><code dir="auto">input: ReadinessSetInput!</code></td>
+<td><a href="/reference/graphql/people/#readinesssetpayload"><code dir="auto">ReadinessSetPayload</code></a></td>
+<td>Says who is ready for a curtain call: the venue, a performer or someone on the support staff. The show runs on GO (advanceLineup waits for it unless forced). <small>requires <code dir="auto">people:write:mine</code> or <code dir="auto">people:write:my_troupes</code> or <code dir="auto">events:write:venue</code> or <code dir="auto">users:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">updateLineupTask</code><br/><code dir="auto">input: LineupTaskUpdateInput!</code></td>
+<td><a href="/reference/graphql/people/#lineuptaskupdatepayload"><code dir="auto">LineupTaskUpdatePayload</code></a></td>
+<td>Ticks, unticks, removes, puts back or rewords a lineup entry’s task. Fields left out aren’t changed. Anyone working the show ticks; whoever may change the lineup removes, puts back and rewords (only an entry’s own task has words of its own). <small>requires <code dir="auto">people:write:mine</code> or <code dir="auto">people:write:my_troupes</code> or <code dir="auto">events:write:venue</code> or <code dir="auto">users:write:self</code></small></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="objects">Objects</h2><a class="sl-anchor-link" href="#objects"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Objects”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearance">Appearance</h3><a class="sl-anchor-link" href="#appearance"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Appearance”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>An entry in a lineup: someone (or several people) on, or an intermission. A
+lineup is a venue night’s own, built as the night goes, or an event’s, built
+ahead. Each runs in <code dir="auto">position</code> order and can be advanced like a slide deck
+(advanceLineup).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">activity</code></td>
+<td><a href="/reference/graphql/people/#appearanceactivity"><code dir="auto">AppearanceActivity</code></a></td>
+<td>A segment or intermission: what runs in the venue’s chat while it’s on; null for nothing.</td>
+</tr>
+<tr>
+<td><code dir="auto">afterScene</code></td>
+<td><a href="/reference/graphql/people/#scene"><code dir="auto">Scene</code></a></td>
+<td>A break inside an act: the scene it follows.</td>
+</tr>
+<tr>
+<td><code dir="auto">cameOffAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When advancing (or finishing it) took it off.</td>
+</tr>
+<tr>
+<td><code dir="auto">curtainCallMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>An act the curtain rises on: places is called this many minutes before it (or once it is up next), and it goes on only on a go (goNoGo). Null: no curtain call.</td>
+</tr>
+<tr>
+<td><code dir="auto">durationMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>endTiming DURATION: how long it runs once on.</td>
+</tr>
+<tr>
+<td><code dir="auto">endTiming</code></td>
+<td><a href="/reference/graphql/people/#appearanceendtiming"><code dir="auto">AppearanceEndTiming!</code></a></td>
+<td>How it ends.</td>
+</tr>
+<tr>
+<td><code dir="auto">endsAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>Its set end time; null until close or advanced.</td>
+</tr>
+<tr>
+<td><code dir="auto">endsTo</code></td>
+<td><a href="/reference/graphql/people/#showendsto"><code dir="auto">ShowEndsTo</code></a></td>
+<td>What ending it goes to, as set: an act’s scenes unless they say, or a break.</td>
+</tr>
+<tr>
+<td><code dir="auto">entryKind</code></td>
+<td><a href="/reference/graphql/people/#appearancekind"><code dir="auto">AppearanceKind!</code></a></td>
+<td>What it is: an act, an intermission or a segment.</td>
+</tr>
+<tr>
+<td><code dir="auto">estimatedMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>How long it is expected to run: its set length, else an act’s scenes or tracks plus other time; null when nothing says.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The event whose lineup it’s on, built ahead; null for one on the venue night’s own lineup.</td>
+</tr>
+<tr>
+<td><code dir="auto">extraMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>An act: time beyond its scenes or tracks, as set; null for the default (10 minutes).</td>
+</tr>
+<tr>
+<td><code dir="auto">flexible</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it stretches or shrinks to bring the show back on time.</td>
+</tr>
+<tr>
+<td><code dir="auto">goNoGo</code></td>
+<td><a href="/reference/graphql/people/#gonogo"><code dir="auto">GoNoGo</code></a></td>
+<td>An act’s curtain call go/no-go: who is ready. Null without a curtain call, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code></td>
+<td><a href="/reference/graphql/people/#appearancekind"><code dir="auto">AppearanceKind!</code></a></td>
+<td>An act or an intermission. Segments read as INTERMISSION here, for apps built before them (they fail on values they do not know); entryKind has the full kind.</td>
+</tr>
+<tr>
+<td><code dir="auto">lateMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>How many minutes after its set time it starts, as projected (negative: early); null without a set time.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">Lineup</code></a></td>
+<td>The lineup it’s on (doc/LINEUP_MODEL.md): a zone’s night or an event’s in a zone.</td>
+</tr>
+<tr>
+<td><code dir="auto">maxMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>The longest it runs when it flexes, as set.</td>
+</tr>
+<tr>
+<td><code dir="auto">minMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>The shortest it runs when it flexes, as set.</td>
+</tr>
+<tr>
+<td><code dir="auto">missingTracks</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many of an act’s scenes have no length or track (each counted as 4 minutes in the estimate).</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The venue night it is on.</td>
+</tr>
+<tr>
+<td><code dir="auto">notes</code></td>
+<td><code dir="auto">String</code></td>
+<td>Notes for the crew, in Markdown.</td>
+</tr>
+<tr>
+<td><code dir="auto">people</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>Who’s on it, in billing order: two for a duet.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>Who, or the first of them; null for an intermission.</td>
+</tr>
+<tr>
+<td><code dir="auto">position</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Its place in its lineup’s running order, from 0.</td>
+</tr>
+<tr>
+<td><code dir="auto">preshowMinutes</code></td>
+<td><code dir="auto">Int</code></td>
+<td>An act: its own preshow before it, from doors to the host, in minutes.</td>
+</tr>
+<tr>
+<td><code dir="auto">projectedEndsAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it is expected off: when it came off, its hard end, else its projected start plus its estimate.</td>
+</tr>
+<tr>
+<td><code dir="auto">projectedStartsAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it is expected on: when it went on, its hard time, else moved out behind what runs late.</td>
+</tr>
+<tr>
+<td><code dir="auto">role</code></td>
+<td><a href="/reference/graphql/people/#appearancerole"><code dir="auto">AppearanceRole</code></a></td>
+<td>What they are doing; null for an intermission.</td>
+</tr>
+<tr>
+<td><code dir="auto">scenes</code></td>
+<td><a href="/reference/graphql/people/#scene"><code dir="auto">[Scene!]!</code></a></td>
+<td>An act’s numbers, in order.</td>
+</tr>
+<tr>
+<td><code dir="auto">songRequest</code></td>
+<td><a href="/reference/graphql/requests/#songrequest"><code dir="auto">SongRequest</code></a></td>
+<td>A singer’s karaoke signup: the song, artist and who is singing it; null for everything else.</td>
+</tr>
+<tr>
+<td><code dir="auto">startTiming</code></td>
+<td><a href="/reference/graphql/people/#appearancestarttiming"><code dir="auto">AppearanceStartTiming!</code></a></td>
+<td>How it starts.</td>
+</tr>
+<tr>
+<td><code dir="auto">startsAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>Its set (hard or soft) time, or when an entry with no set time went on; null until then.</td>
+</tr>
+<tr>
+<td><code dir="auto">state</code></td>
+<td><a href="/reference/graphql/people/#appearancestate"><code dir="auto">AppearanceState!</code></a></td>
+<td>Upcoming, on now or done.</td>
+</tr>
+<tr>
+<td><code dir="auto">tasks</code><br/><code dir="auto">includeRemoved: Boolean</code></td>
+<td><a href="/reference/graphql/people/#lineuptask"><code dir="auto">[LineupTask!]</code></a></td>
+<td>What has to happen for it: its venue’s, event series’, event’s and talent’s task templates, then its own. Null for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String</code></td>
+<td>An act’s billing (a duet’s name) or an intermission’s label, if it has one.</td>
+</tr>
+<tr>
+<td><code dir="auto">triviaDriver</code></td>
+<td><a href="/reference/graphql/trivia/#triviadriver"><code dir="auto">TriviaDriver</code></a></td>
+<td>Who moves its trivia along; null unless it runs trivia.</td>
+</tr>
+<tr>
+<td><code dir="auto">triviaReveal</code></td>
+<td><a href="/reference/graphql/people/#triviareveal"><code dir="auto">TriviaReveal</code></a></td>
+<td>When its trivia answers show; null unless it runs trivia.</td>
+</tr>
+<tr>
+<td><code dir="auto">triviaSet</code></td>
+<td><a href="/reference/graphql/trivia/#triviaset"><code dir="auto">TriviaSet</code></a></td>
+<td>The trivia set it runs: its own, else the best match for its event or venue tags. Null unless it runs trivia.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/graphql/venues/#venue"><code dir="auto">Venue!</code></a></td>
+<td>Where.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueWide</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>A break with an activity: whether it runs for the whole venue, every zone, not just its own.</td>
+</tr>
+<tr>
+<td><code dir="auto">wentOnAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When advancing put it on.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearanceconnection">AppearanceConnection</h3><a class="sl-anchor-link" href="#appearanceconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for Appearance.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/graphql/people/#appearanceedge"><code dir="auto">[AppearanceEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">[Appearance]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/graphql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearanceedge">AppearanceEdge</h3><a class="sl-anchor-link" href="#appearanceedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="audiencepeopleview">AudiencePeopleView</h3><a class="sl-anchor-link" href="#audiencepeopleview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AudiencePeopleView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/people/#iaudiencepeople"><code dir="auto">IAudiencePeople</code></a></p>
+<p>The local People implementation of an audience’s people.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">tagId: ID</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The people featured in it. Guests (see IVenuePeople.guests) are left out.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>A person in the audience by their UUID.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="curtainreadiness">CurtainReadiness</h3><a class="sl-anchor-link" href="#curtainreadiness"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CurtainReadiness”</span></a></div>
+<p><em>Object</em></p>
+<p>The next curtain call’s readiness for anyone to see: counts per area, never who.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">act</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance!</code></a></td>
+<td>The act the curtain rises on.</td>
+</tr>
+<tr>
+<td><code dir="auto">counts</code></td>
+<td><a href="/reference/graphql/people/#readinesscount"><code dir="auto">[ReadinessCount!]!</code></a></td>
+<td>Venue, then talent, then support staff.</td>
+</tr>
+<tr>
+<td><code dir="auto">verdict</code></td>
+<td><a href="/reference/graphql/people/#gonogoverdict"><code dir="auto">GoNoGoVerdict!</code></a></td>
+<td>Where it stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventpeopleview">EventPeopleView</h3><a class="sl-anchor-link" href="#eventpeopleview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventPeopleView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/people/#ieventpeople"><code dir="auto">IEventPeople</code></a></p>
+<p>The local People implementation of an event’s lineup.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">hiddenPerformerCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many of its people you can’t see until you sign in, as ‘plus other performers’: the Community ones, to someone signed out. 0 when signed in.</td>
+</tr>
+<tr>
+<td><code dir="auto">hosts</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The people hosting it.</td>
+</tr>
+<tr>
+<td><code dir="auto">lastLineup</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The latest earlier event at its venue with a lineup to copy (its lineupFile): one of its series, else one with its name. Null when there’s none, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>Who is hosting or playing it, its running order included.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineupFile</code></td>
+<td><a href="/reference/graphql/core/#json"><code dir="auto">JSON</code></a></td>
+<td>Its lineup as an audiencekit.lineup file (doc/IMPORT_EXPORT.md), for importLineup. Null without a venue, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineups</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">[Lineup!]!</code></a></td>
+<td>Its lineups (doc/LINEUP_MODEL.md), one in each venue zone it uses: its default zone’s until it has one. Empty without a venue or start.</td>
+</tr>
+<tr>
+<td><code dir="auto">organizers</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The organizations presenting it, billed as ‘Presented by’ (doc/ORGANIZERS.md). Not on its lineup or hosts.</td>
+</tr>
+<tr>
+<td><code dir="auto">runningOrder</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>Its lineup built ahead, in order: acts and intermissions.</td>
+</tr>
+<tr>
+<td><code dir="auto">show</code></td>
+<td><a href="/reference/graphql/people/#showstatus"><code dir="auto">ShowStatus</code></a></td>
+<td>Its show (its lineup): who covers the stage, whether it can be ended, when it ends on its own. Null without a venue.</td>
+</tr>
+<tr>
+<td><code dir="auto">supportStaff</code></td>
+<td><a href="/reference/graphql/people/#staffassignment"><code dir="auto">[StaffAssignment!]!</code></a></td>
+<td>Its support staff, e.g. who is on photography. Empty for anyone not working the show.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventseriespeopleview">EventSeriesPeopleView</h3><a class="sl-anchor-link" href="#eventseriespeopleview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventSeriesPeopleView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/people/#ieventseriespeople"><code dir="auto">IEventSeriesPeople</code></a></p>
+<p>The local People implementation of a series’ hosts.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">hosts</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>Its default hosts.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="gonogo">GoNoGo</h3><a class="sl-anchor-link" href="#gonogo"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “GoNoGo”</span></a></div>
+<p><em>Object</em></p>
+<p>An act’s curtain call go/no-go: the venue, the talent the curtain rises on and
+the required support staff each say they are ready (setReadiness). Advancing
+onto the act waits for GO unless forced.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">counts</code></td>
+<td><a href="/reference/graphql/people/#readinesscount"><code dir="auto">[ReadinessCount!]!</code></a></td>
+<td>How many are ready, per area.</td>
+</tr>
+<tr>
+<td><code dir="auto">curtainCall</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance!</code></a></td>
+<td>The act the curtain rises on.</td>
+</tr>
+<tr>
+<td><code dir="auto">items</code></td>
+<td><a href="/reference/graphql/people/#readinessitem"><code dir="auto">[ReadinessItem!]!</code></a></td>
+<td>What it waits on: the venue, then the talent in running order, then the support staff.</td>
+</tr>
+<tr>
+<td><code dir="auto">verdict</code></td>
+<td><a href="/reference/graphql/people/#gonogoverdict"><code dir="auto">GoNoGoVerdict!</code></a></td>
+<td>Where it stands.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineup">Lineup</h3><a class="sl-anchor-link" href="#lineup"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Lineup”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>One show (doc/LINEUP_MODEL.md): a venue zone’s night, open to close, with its
+own acts and breaks and each event in the zone as one step; or an event’s in a
+zone, a child of that night. It has hosts; its acts are scenes of performers.
+The show goes from preshow to the host to each scene (back to the host, by
+setting) to postshow.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">children</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">[Lineup!]!</code></a></td>
+<td>A zone’s night: its events’ lineups in this zone, as they start.</td>
+</tr>
+<tr>
+<td><code dir="auto">closesAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it closes: a zone night’s close, an event’s end.</td>
+</tr>
+<tr>
+<td><code dir="auto">current</code></td>
+<td><a href="/reference/graphql/people/#lineupstep"><code dir="auto">LineupStep</code></a></td>
+<td>The step on now; null while the host has it.</td>
+</tr>
+<tr>
+<td><code dir="auto">endedAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When the show ended, if it has.</td>
+</tr>
+<tr>
+<td><code dir="auto">entries</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">[Appearance!]!</code></a></td>
+<td>Its entries in order: acts, breaks, and the host and clock-run entries made before lineups.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The event whose lineup it is; null for a zone’s night.</td>
+</tr>
+<tr>
+<td><code dir="auto">goNoGo</code></td>
+<td><a href="/reference/graphql/people/#gonogo"><code dir="auto">GoNoGo</code></a></td>
+<td>The go/no-go of the act whose curtain the next advance raises. Null otherwise, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">hosts</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>Its hosts, in billing order.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>What it’s billed as: its title, the event’s name or the zone’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The venue night it runs on.</td>
+</tr>
+<tr>
+<td><code dir="auto">opensAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it opens: a zone night’s open, an event’s start.</td>
+</tr>
+<tr>
+<td><code dir="auto">parent</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">Lineup</code></a></td>
+<td>An event’s: the zone night it is a step of.</td>
+</tr>
+<tr>
+<td><code dir="auto">phase</code></td>
+<td><a href="/reference/graphql/people/#lineupphase"><code dir="auto">LineupPhase!</code></a></td>
+<td>Where the show stands.</td>
+</tr>
+<tr>
+<td><code dir="auto">postshow</code></td>
+<td><a href="/reference/graphql/people/#lineupstep"><code dir="auto">[LineupStep!]!</code></a></td>
+<td>An event’s breaks after its last scene: on in postshow.</td>
+</tr>
+<tr>
+<td><code dir="auto">preshow</code></td>
+<td><a href="/reference/graphql/people/#lineupstep"><code dir="auto">[LineupStep!]!</code></a></td>
+<td>An event’s breaks before its first scene: on in preshow.</td>
+</tr>
+<tr>
+<td><code dir="auto">sceneEndsTo</code></td>
+<td><a href="/reference/graphql/people/#showendsto"><code dir="auto">ShowEndsTo</code></a></td>
+<td>What ending a scene goes to unless the scene or its act says; null: the host.</td>
+</tr>
+<tr>
+<td><code dir="auto">startedAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When the show started, if it has.</td>
+</tr>
+<tr>
+<td><code dir="auto">steps</code></td>
+<td><a href="/reference/graphql/people/#lineupstep"><code dir="auto">[LineupStep!]!</code></a></td>
+<td>What advancing steps through, in order: scenes, breaks between them, and in a zone’s night its events.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String</code></td>
+<td>Its billing, as set.</td>
+</tr>
+<tr>
+<td><code dir="auto">upNext</code></td>
+<td><a href="/reference/graphql/people/#lineupstep"><code dir="auto">LineupStep</code></a></td>
+<td>What advancing from the host puts on next.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/graphql/venues/#venue"><code dir="auto">Venue!</code></a></td>
+<td>Where.</td>
+</tr>
+<tr>
+<td><code dir="auto">zone</code></td>
+<td><a href="/reference/graphql/people/#stagezone"><code dir="auto">StageZone</code></a></td>
+<td>Its zone; null for the venue’s default zone.</td>
+</tr>
+<tr>
+<td><code dir="auto">zoneName</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its zone’s name: Stage for an unnamed default zone.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineupstep">LineupStep</h3><a class="sl-anchor-link" href="#lineupstep"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupStep”</span></a></div>
+<p><em>Object</em></p>
+<p>One step of a show, in order: a scene of an act, a break, or (in a zone night) an event.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">act</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>A scene: its act.</td>
+</tr>
+<tr>
+<td><code dir="auto">cameOffAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it came off, if it has.</td>
+</tr>
+<tr>
+<td><code dir="auto">endsTo</code></td>
+<td><a href="/reference/graphql/people/#showendsto"><code dir="auto">ShowEndsTo</code></a></td>
+<td>What ending it goes to: as set on it, its act or its lineup. Null for an event.</td>
+</tr>
+<tr>
+<td><code dir="auto">entry</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>A break: the intermission or segment.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its own ID, step:&lt;kind&gt;:&lt;targetId&gt;, so a normalizing cache never merges it into the record it steps through.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code></td>
+<td><a href="/reference/graphql/people/#lineupstepkind"><code dir="auto">LineupStepKind!</code></a></td>
+<td>What it is.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">Lineup</code></a></td>
+<td>An event: its lineup in this zone.</td>
+</tr>
+<tr>
+<td><code dir="auto">performers</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>Who performs it, in billing order.</td>
+</tr>
+<tr>
+<td><code dir="auto">scene</code></td>
+<td><a href="/reference/graphql/people/#scene"><code dir="auto">Scene</code></a></td>
+<td>A scene: the scene, null for an act with no scenes.</td>
+</tr>
+<tr>
+<td><code dir="auto">state</code></td>
+<td><a href="/reference/graphql/people/#appearancestate"><code dir="auto">AppearanceState!</code></a></td>
+<td>Upcoming, on now or done.</td>
+</tr>
+<tr>
+<td><code dir="auto">targetId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The record it steps through: the scene’s ID (the act’s for an act with no scenes), the break’s or the event lineup’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String</code></td>
+<td>What it’s billed as.</td>
+</tr>
+<tr>
+<td><code dir="auto">wentOnAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it went on, if it has.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineuptask">LineupTask</h3><a class="sl-anchor-link" href="#lineuptask"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupTask”</span></a></div>
+<p><em>Object</em></p>
+<p>Something to get done for a lineup entry: from its venue’s, event series’,
+event’s or talent’s task templates, or added to the entry alone. Any can be
+removed from the entry. Shown only to the people working the show.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">auto</code></td>
+<td><a href="/reference/graphql/people/#lineuptaskauto"><code dir="auto">LineupTaskAuto</code></a></td>
+<td>What ticks it by itself; null when someone ticks it.</td>
+</tr>
+<tr>
+<td><code dir="auto">done</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it is done.</td>
+</tr>
+<tr>
+<td><code dir="auto">doneAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When someone ticked it.</td>
+</tr>
+<tr>
+<td><code dir="auto">doneByName</code></td>
+<td><code dir="auto">String</code></td>
+<td>Who ticked it: their full name.</td>
+</tr>
+<tr>
+<td><code dir="auto">dueAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it’s due: its template’s lead time before the entry’s set time (else its event’s start), or as set on the entry.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID for the entry’s own, else template:&lt;template id&gt;. Pass it with the entry to updateLineupTask.</td>
+</tr>
+<tr>
+<td><code dir="auto">note</code></td>
+<td><code dir="auto">String</code></td>
+<td>More about it.</td>
+</tr>
+<tr>
+<td><code dir="auto">removed</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it was taken off the entry (listed only with includeRemoved).</td>
+</tr>
+<tr>
+<td><code dir="auto">source</code></td>
+<td><a href="/reference/graphql/people/#lineuptasksource"><code dir="auto">LineupTaskSource!</code></a></td>
+<td>Where it comes from.</td>
+</tr>
+<tr>
+<td><code dir="auto">template</code></td>
+<td><a href="/reference/graphql/events/#tasktemplate"><code dir="auto">TaskTemplate</code></a></td>
+<td>The template it’s from; null for the entry’s own.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String!</code></td>
+<td>What to do.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="localepeopleview">LocalePeopleView</h3><a class="sl-anchor-link" href="#localepeopleview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LocalePeopleView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/people/#ilocalepeople"><code dir="auto">ILocalePeople</code></a></p>
+<p>The local People implementation of a locale’s people.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The people featured in it.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="person">Person</h3><a class="sl-anchor-link" href="#person"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Person”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/core/#hasbanner"><code dir="auto">HasBanner</code></a>, <a href="/reference/graphql/events/#hastags"><code dir="auto">HasTags</code></a>, <a href="/reference/graphql/events/#hastasktemplates"><code dir="auto">HasTaskTemplates</code></a>, <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>A performer, host or group featured in an audience.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">audience</code></td>
+<td><a href="/reference/graphql/#audience"><code dir="auto">Audience!</code></a></td>
+<td>The audience this record belongs to.</td>
+</tr>
+<tr>
+<td><code dir="auto">avatarUrl</code></td>
+<td><a href="/reference/graphql/core/#photourl"><code dir="auto">PhotoURL</code></a></td>
+<td>Their Instagram profile picture, else their Facebook Page’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">bannerUrl</code></td>
+<td><a href="/reference/graphql/core/#photourl"><code dir="auto">PhotoURL</code></a></td>
+<td>Their banner: their latest Instagram post, else their Facebook Page’s cover photo.</td>
+</tr>
+<tr>
+<td><code dir="auto">chat</code></td>
+<td><a href="/reference/graphql/chat/#ipersonchat"><code dir="auto">IPersonChat!</code></a></td>
+<td>The instance’s IPersonChat mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">events</code></td>
+<td><a href="/reference/graphql/events/#ipersonevents"><code dir="auto">IPersonEvents!</code></a></td>
+<td>The instance’s IPersonEvents mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">facets</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>The keys of the facets switched on for it, e.g. karaoke, in key order: each is a tag the system keeps (Tag.facet) and turns on the edges of the mixins declaring it (@mixin(tag:)). Only those whose module is installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">global</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether this person is featured in all locales.</td>
+</tr>
+<tr>
+<td><code dir="auto">groups</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>The people they’re part of, like their troupes.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code></td>
+<td><a href="/reference/graphql/people/#personkind"><code dir="auto">PersonKind!</code></a></td>
+<td>Talent, or an organization that presents events (not on People).</td>
+</tr>
+<tr>
+<td><code dir="auto">likeRequired</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether a Facebook Page like is required for visibility.</td>
+</tr>
+<tr>
+<td><code dir="auto">locales</code></td>
+<td><a href="/reference/graphql/core/#locale"><code dir="auto">[Locale!]!</code></a></td>
+<td>The locales they’re featured in.</td>
+</tr>
+<tr>
+<td><code dir="auto">members</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>The people they’re made of, like a troupe’s performers.</td>
+</tr>
+<tr>
+<td><code dir="auto">music</code></td>
+<td><a href="/reference/graphql/music/#ipersonmusic"><code dir="auto">IPersonMusic!</code></a></td>
+<td>The instance’s IPersonMusic mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String</code></td>
+<td>Display name.</td>
+</tr>
+<tr>
+<td><code dir="auto">order</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Display ordering value.</td>
+</tr>
+<tr>
+<td><code dir="auto">posts</code></td>
+<td><a href="/reference/graphql/posts/#iposts"><code dir="auto">IPosts!</code></a></td>
+<td>The instance’s IPosts mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">profile</code></td>
+<td><a href="/reference/graphql/listings/#ilistingprofile"><code dir="auto">IListingProfile!</code></a></td>
+<td>The instance’s IListingProfile mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">tags</code></td>
+<td><a href="/reference/graphql/core/#tag"><code dir="auto">[Tag!]!</code></a></td>
+<td>Its audience tags, including tags connected to module facets, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">taskTemplates</code></td>
+<td><a href="/reference/graphql/events/#tasktemplate"><code dir="auto">[TaskTemplate!]!</code></a></td>
+<td>Its lineup task templates, in order. Empty for anyone but whoever keeps them (its managers; an event’s hosts too).</td>
+</tr>
+<tr>
+<td><code dir="auto">tipping</code></td>
+<td><a href="/reference/graphql/tipping/#itipping"><code dir="auto">ITipping</code></a></td>
+<td>The instance’s ITipping mixin, when available.</td>
+</tr>
+<tr>
+<td><code dir="auto">venues</code></td>
+<td><a href="/reference/graphql/venues/#ipersonvenues"><code dir="auto">IPersonVenues!</code></a></td>
+<td>The instance’s IPersonVenues mixin. Left out of the schema where its module isn’t installed.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerCanMakePublic</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether you may make them Public: only the performer themselves, from the account linked to their listing.</td>
+</tr>
+<tr>
+<td><code dir="auto">visibility</code></td>
+<td><a href="/reference/graphql/people/#personvisibility"><code dir="auto">PersonVisibility!</code></a></td>
+<td>Who sees them wherever an event doesn’t say otherwise: Community (signed in) unless they opted in to Public.</td>
+</tr>
+<tr>
+<td><code dir="auto">visibilityOn</code><br/><code dir="auto">eventId: ID!</code></td>
+<td><a href="/reference/graphql/people/#personvisibility"><code dir="auto">PersonVisibility!</code></a></td>
+<td>Who sees them on one of their events: their override for it, else their own visibility.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="personconnection">PersonConnection</h3><a class="sl-anchor-link" href="#personconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for Person.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/graphql/people/#personedge"><code dir="auto">[PersonEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/graphql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="personedge">PersonEdge</h3><a class="sl-anchor-link" href="#personedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="readinesscount">ReadinessCount</h3><a class="sl-anchor-link" href="#readinesscount"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ReadinessCount”</span></a></div>
+<p><em>Object</em></p>
+<p>How many of one area are ready for a curtain call. No names.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">area</code></td>
+<td><a href="/reference/graphql/people/#readinessarea"><code dir="auto">ReadinessArea!</code></a></td>
+<td>Which area.</td>
+</tr>
+<tr>
+<td><code dir="auto">ready</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many are ready (or overridden).</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many it waits on.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="readinessitem">ReadinessItem</h3><a class="sl-anchor-link" href="#readinessitem"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ReadinessItem”</span></a></div>
+<p><em>Object</em></p>
+<p>One answer a curtain call’s go/no-go waits on: the venue, a performer or someone on the support staff.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">area</code></td>
+<td><a href="/reference/graphql/people/#readinessarea"><code dir="auto">ReadinessArea!</code></a></td>
+<td>Who it is about.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Stable within the curtain call: area, then who.</td>
+</tr>
+<tr>
+<td><code dir="auto">note</code></td>
+<td><code dir="auto">String</code></td>
+<td>Why not, or anything to know.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>Talent: who.</td>
+</tr>
+<tr>
+<td><code dir="auto">setAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it was last answered.</td>
+</tr>
+<tr>
+<td><code dir="auto">staffAssignment</code></td>
+<td><a href="/reference/graphql/people/#staffassignment"><code dir="auto">StaffAssignment</code></a></td>
+<td>Support staff: who.</td>
+</tr>
+<tr>
+<td><code dir="auto">state</code></td>
+<td><a href="/reference/graphql/people/#readinessstate"><code dir="auto">ReadinessState!</code></a></td>
+<td>Ready, not ready or not answered yet.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="roomfile">RoomFile</h3><a class="sl-anchor-link" href="#roomfile"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RoomFile”</span></a></div>
+<p><em>Object</em></p>
+<p>A file shared in a room. Only its members can download it, through a link that works for an hour.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">appearance</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>The lineup slot it’s for, if any.</td>
+</tr>
+<tr>
+<td><code dir="auto">audioCodec</code></td>
+<td><code dir="auto">String</code></td>
+<td>A sound file’s codec, as the server read it, such as mp3, aac or pcm_s16le; null until it is READY.</td>
+</tr>
+<tr>
+<td><code dir="auto">audioError</code></td>
+<td><code dir="auto">String</code></td>
+<td>Why a sound file was REJECTED, to show its uploader.</td>
+</tr>
+<tr>
+<td><code dir="auto">audioStatus</code></td>
+<td><a href="/reference/graphql/people/#roomfileaudiostatus"><code dir="auto">RoomFileAudioStatus</code></a></td>
+<td>Where the server’s check of a sound file has got to; null for files that aren’t sound.</td>
+</tr>
+<tr>
+<td><code dir="auto">byteSize</code></td>
+<td><a href="/reference/graphql/people/#bigint"><code dir="auto">BigInt!</code></a></td>
+<td>Its size in bytes.</td>
+</tr>
+<tr>
+<td><code dir="auto">channels</code></td>
+<td><code dir="auto">Int</code></td>
+<td>A sound file’s channels (1 mono, 2 stereo); null until READY.</td>
+</tr>
+<tr>
+<td><code dir="auto">contentType</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its MIME type.</td>
+</tr>
+<tr>
+<td><code dir="auto">createdAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime!</code></a></td>
+<td>When it was uploaded.</td>
+</tr>
+<tr>
+<td><code dir="auto">durationMs</code></td>
+<td><code dir="auto">Int</code></td>
+<td>A sound file’s length in milliseconds, as the server decoded it; null until it is READY.</td>
+</tr>
+<tr>
+<td><code dir="auto">durationSeconds</code></td>
+<td><code dir="auto">Int</code></td>
+<td>A sound file’s length: once it’s READY, as the server decoded it; until then, as the uploading app said; null if neither knows or it was REJECTED.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code></td>
+<td><a href="/reference/graphql/people/#roomfilekind"><code dir="auto">RoomFileKind!</code></a></td>
+<td>What kind of file it is.</td>
+</tr>
+<tr>
+<td><code dir="auto">label</code></td>
+<td><a href="/reference/graphql/people/#roomfilelabel"><code dir="auto">RoomFileLabel</code></a></td>
+<td>What a document is, if its uploader said.</td>
+</tr>
+<tr>
+<td><code dir="auto">messageId</code></td>
+<td><code dir="auto">ID</code></td>
+<td>The message it was shared with; null until it’s shared.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its file name, as uploaded.</td>
+</tr>
+<tr>
+<td><code dir="auto">promotedAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When a picture was posted to the public chat (promoteRoomFile); null if it never was.</td>
+</tr>
+<tr>
+<td><code dir="auto">sampleRate</code></td>
+<td><code dir="auto">Int</code></td>
+<td>A sound file’s samples a second, such as 44100; null until READY.</td>
+</tr>
+<tr>
+<td><code dir="auto">uploaded</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the upload was confirmed (finishRoomUpload).</td>
+</tr>
+<tr>
+<td><code dir="auto">uploaderName</code></td>
+<td><code dir="auto">String</code></td>
+<td>Who uploaded it: their full name.</td>
+</tr>
+<tr>
+<td><code dir="auto">url</code></td>
+<td><code dir="auto">String</code></td>
+<td>A link that downloads it, working for an hour; null until it is uploaded.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerCanPromote</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the signed-in user may post it to the public chat: a picture not posted yet, by the venue and admins, or by the talent who shared it.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerCanRemove</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the signed-in user may delete it (removeRoomFile): its uploader, the venue’s managers and admins.</td>
+</tr>
+<tr>
+<td><code dir="auto">waveform</code></td>
+<td><code dir="auto">[Int!]</code></td>
+<td>A sound file’s waveform: 120 peaks evenly over its length, each from 0 to 100, the loudest 100 (all 0 for silence). To draw fewer bars, take the loudest of each run of neighbours. Null until READY.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="scene">Scene</h3><a class="sl-anchor-link" href="#scene"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scene”</span></a></div>
+<p><em>Object</em></p>
+<p>One number in an act: drag sets are an act of N performances, each maybe by one
+of its performers and on a track from the back-of-house room.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cameOffAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When advancing took it off.</td>
+</tr>
+<tr>
+<td><code dir="auto">endsTo</code></td>
+<td><a href="/reference/graphql/people/#showendsto"><code dir="auto">ShowEndsTo</code></a></td>
+<td>What ending it goes to, as set; null: its act’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">gapNote</code></td>
+<td><code dir="auto">String</code></td>
+<td>What the time after it is for, e.g. “tear the castle down”.</td>
+</tr>
+<tr>
+<td><code dir="auto">gapSeconds</code></td>
+<td><code dir="auto">Int</code></td>
+<td>Time after it before the next, e.g. a costume change; null for the default (2 minutes).</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">lengthSeconds</code></td>
+<td><code dir="auto">Int</code></td>
+<td>How long it runs: as set, else its track’s length; null when neither is known (the estimate counts 4 minutes).</td>
+</tr>
+<tr>
+<td><code dir="auto">note</code></td>
+<td><code dir="auto">String</code></td>
+<td>Notes for the booth, e.g. a haze cue.</td>
+</tr>
+<tr>
+<td><code dir="auto">performer</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>Who performs it, if one of the set.</td>
+</tr>
+<tr>
+<td><code dir="auto">performers</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>Its performers in billing order: as set, else its performer, else its act’s people.</td>
+</tr>
+<tr>
+<td><code dir="auto">position</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Its place in the act, from 0.</td>
+</tr>
+<tr>
+<td><code dir="auto">seconds</code></td>
+<td><code dir="auto">Int</code></td>
+<td>How long it runs, when set rather than read from its track.</td>
+</tr>
+<tr>
+<td><code dir="auto">setupNote</code></td>
+<td><code dir="auto">String</code></td>
+<td>What the setup is, e.g. “bring out the cardboard castle”.</td>
+</tr>
+<tr>
+<td><code dir="auto">setupSeconds</code></td>
+<td><code dir="auto">Int</code></td>
+<td>Time before it to set the stage (a reset); null for none.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String</code></td>
+<td>The number, e.g. a song name.</td>
+</tr>
+<tr>
+<td><code dir="auto">track</code></td>
+<td><a href="/reference/graphql/people/#roomfile"><code dir="auto">RoomFile</code></a></td>
+<td>Its track, for the back-of-house room’s members; null for everyone else, or without one.</td>
+</tr>
+<tr>
+<td><code dir="auto">wentOnAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When advancing put it on.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="showstatus">ShowStatus</h3><a class="sl-anchor-link" href="#showstatus"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ShowStatus”</span></a></div>
+<p><em>Object</em></p>
+<p>Where one show stands: a venue night’s own lineup or an event’s. Who covers the
+stage, whether it can be ended, when it ends on its own, and until when its cast
+moderate the venue chat.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">autoEndsAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it ends on its own if nobody ends it: an hour after its scheduled end, or after the last advance when running later. Null before it begins, once it has ended, and when nothing says when it ends.</td>
+</tr>
+<tr>
+<td><code dir="auto">begun</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether something has gone on.</td>
+</tr>
+<tr>
+<td><code dir="auto">castModeratesUntil</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>Until when the cast (whoever manages the talent on its acts) may remove messages from and kick people out of the venue chat: an hour after it ends. While it runs, an estimate. Null before it begins.</td>
+</tr>
+<tr>
+<td><code dir="auto">covering</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>Who covers the stage while nothing advancing steps through is on it: the host, between acts, and before the first and after the last when alone. Null before it begins, during an intermission or segment, and once it has ended.</td>
+</tr>
+<tr>
+<td><code dir="auto">endable</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether “End the show” is on (endShow): it has begun, has not ended, and something is on stage or the host covers it. A host alone on the lineup can end it.</td>
+</tr>
+<tr>
+<td><code dir="auto">endedAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it ended, if it has.</td>
+</tr>
+<tr>
+<td><code dir="auto">endedAutomatically</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it ended on its own (autoEndsAt).</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The event whose show it is; null for the venue’s own.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The venue night it is on.</td>
+</tr>
+<tr>
+<td><code dir="auto">scheduledEndsAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it was scheduled to end: its event’s end, else when its last entry is expected off.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerModeratesAsCast</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether you moderate the venue chat now as its cast (castModeratesUntil).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="staffassignment">StaffAssignment</h3><a class="sl-anchor-link" href="#staffassignment"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “StaffAssignment”</span></a></div>
+<p><em>Object</em></p>
+<p>Someone working a show who isn’t on the lineup: person X in role Y, e.g. Rick
+Mark on photography. Shown only to the venue, the hosts, the talent and the
+support staff themselves.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">callAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When they are called for.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The event whose show they work; null for the venue night’s own.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">label</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Their role to show: title, else the role.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">Lineup</code></a></td>
+<td>The zone lineup they work; null: every zone of the venue night or event.</td>
+</tr>
+<tr>
+<td><code dir="auto">mine</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it is the signed-in user.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String</code></td>
+<td>Who: their listing, their name on the app, or the name given.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The venue night they work.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>Their listing, if they have one.</td>
+</tr>
+<tr>
+<td><code dir="auto">required</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether a curtain call waits for them to be ready.</td>
+</tr>
+<tr>
+<td><code dir="auto">role</code></td>
+<td><a href="/reference/graphql/people/#staffrole"><code dir="auto">StaffRole!</code></a></td>
+<td>What they do.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String</code></td>
+<td>Their role in their own words, e.g. Second shooter.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="stagezone">StageZone</h3><a class="sl-anchor-link" href="#stagezone"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “StageZone”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>A venue’s stage area (doc/LINEUP_MODEL.md): a named one like the patio, or the
+row naming its default zone (isDefault). Lineups with no zone are in the default
+zone, called Stage unless named.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Its UUID.</td>
+</tr>
+<tr>
+<td><code dir="auto">isDefault</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it names the venue’s default zone.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>What staff call it, e.g. Patio.</td>
+</tr>
+<tr>
+<td><code dir="auto">position</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Its place among the venue’s zones, from 0.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/graphql/venues/#venue"><code dir="auto">Venue!</code></a></td>
+<td>Its venue.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="venuepeopleview">VenuePeopleView</h3><a class="sl-anchor-link" href="#venuepeopleview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “VenuePeopleView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/people/#ivenuepeople"><code dir="auto">IVenuePeople</code></a></p>
+<p>The local People implementation of who is on at a venue.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">curtainReadiness</code></td>
+<td><a href="/reference/graphql/people/#curtainreadiness"><code dir="auto">CurtainReadiness</code></a></td>
+<td>The next curtain call’s readiness as counts, for anyone (guests too). Null unless the act up next has a curtain call.</td>
+</tr>
+<tr>
+<td><code dir="auto">goNoGo</code></td>
+<td><a href="/reference/graphql/people/#gonogo"><code dir="auto">GoNoGo</code></a></td>
+<td>The go/no-go of the act up next in tonight’s running order, when it has a curtain call. Null otherwise, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">guests</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>People added here without a People page, like a one-off host, by name: to put on its lineups again (createGuestPerson). Empty for anyone not working its shows.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>The acts on a night that have a time (or have gone on), in running order.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineupFile</code><br/><code dir="auto">eventId: ID</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/core/#json"><code dir="auto">JSON</code></a></td>
+<td>A lineup as an audiencekit.lineup file (doc/IMPORT_EXPORT.md), for importLineup: the venue night’s own, or an event’s. Null for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineups</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">[Lineup!]!</code></a></td>
+<td>A night’s zone lineups (doc/LINEUP_MODEL.md): the default zone’s (Stage), then each named zone’s. Each holds its events as steps, and their lineups as children.</td>
+</tr>
+<tr>
+<td><code dir="auto">onNow</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>The acts on there right now.</td>
+</tr>
+<tr>
+<td><code dir="auto">onStage</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>What tonight’s lineup is on now, an act or an intermission: what advancing takes off. Null before the show starts and after it ends. The lineup is the one with something on stage, else the started event’s, else the venue’s own.</td>
+</tr>
+<tr>
+<td><code dir="auto">runningOrder</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>Everything on a night’s lineups in order: the venue’s own, then its events’ as they start; intermissions and entries with no set time too.</td>
+</tr>
+<tr>
+<td><code dir="auto">show</code></td>
+<td><a href="/reference/graphql/people/#showstatus"><code dir="auto">ShowStatus!</code></a></td>
+<td>Tonight’s show, the lineup advancing moves (see onStage): who covers the stage, whether it can be ended, when it ends on its own.</td>
+</tr>
+<tr>
+<td><code dir="auto">shows</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#showstatus"><code dir="auto">[ShowStatus!]!</code></a></td>
+<td>A night’s shows: the venue’s own lineup, then its events’ as they start.</td>
+</tr>
+<tr>
+<td><code dir="auto">stage</code><br/><code dir="auto">zoneId: ID</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">Lineup!</code></a></td>
+<td>The show on now in a zone (the default zone without zoneId): an event’s lineup from its preshow to its end, else the zone’s night. What cueLineup on the zone’s night moves.</td>
+</tr>
+<tr>
+<td><code dir="auto">stageZones</code></td>
+<td><a href="/reference/graphql/people/#stagezone"><code dir="auto">[StageZone!]!</code></a></td>
+<td>Its zones, in order. The default zone (Stage) is listed only when the venue has named it.</td>
+</tr>
+<tr>
+<td><code dir="auto">supportStaff</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#staffassignment"><code dir="auto">[StaffAssignment!]!</code></a></td>
+<td>A night’s support staff on the venue’s own show, then its events’. Empty for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">upNext</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>What advancing tonight’s running order puts on next.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutation-payloads">Mutation payloads</h2><a class="sl-anchor-link" href="#mutation-payloads"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutation payloads”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineuptaskupdatepayload">LineupTaskUpdatePayload</h3><a class="sl-anchor-link" href="#lineuptaskupdatepayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupTaskUpdatePayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of LineupTaskUpdate.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">task</code></td>
+<td><a href="/reference/graphql/people/#lineuptask"><code dir="auto">LineupTask</code></a></td>
+<td>The task, after the change; null once an entry’s own is removed.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="readinesssetpayload">ReadinessSetPayload</h3><a class="sl-anchor-link" href="#readinesssetpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ReadinessSetPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of ReadinessSet.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">goNoGo</code></td>
+<td><a href="/reference/graphql/people/#gonogo"><code dir="auto">GoNoGo!</code></a></td>
+<td>The go/no-go, after the answer.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="inputs">Inputs</h2><a class="sl-anchor-link" href="#inputs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Inputs”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineuptaskupdateinput">LineupTaskUpdateInput</h3><a class="sl-anchor-link" href="#lineuptaskupdateinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupTaskUpdateInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of LineupTaskUpdate</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">appearanceId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The lineup entry.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">done</code></td>
+<td><code dir="auto">Boolean</code></td>
+<td>Tick it, or untick it.</td>
+</tr>
+<tr>
+<td><code dir="auto">dueAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>An entry’s own: when it’s due.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The task: LineupTask.id.</td>
+</tr>
+<tr>
+<td><code dir="auto">note</code></td>
+<td><code dir="auto">String</code></td>
+<td>An entry’s own: more about it; empty to clear.</td>
+</tr>
+<tr>
+<td><code dir="auto">removed</code></td>
+<td><code dir="auto">Boolean</code></td>
+<td>True takes it off the entry (deleting an entry’s own); false puts a template’s back.</td>
+</tr>
+<tr>
+<td><code dir="auto">title</code></td>
+<td><code dir="auto">String</code></td>
+<td>An entry’s own: what to do.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="readinesssetinput">ReadinessSetInput</h3><a class="sl-anchor-link" href="#readinesssetinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ReadinessSetInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of ReadinessSet</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">area</code></td>
+<td><a href="/reference/graphql/people/#readinessarea"><code dir="auto">ReadinessArea!</code></a></td>
+<td>Who it is about.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">curtainCallId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The act with the curtain call.</td>
+</tr>
+<tr>
+<td><code dir="auto">note</code></td>
+<td><code dir="auto">String</code></td>
+<td>Why not, or anything to know.</td>
+</tr>
+<tr>
+<td><code dir="auto">personId</code></td>
+<td><code dir="auto">ID</code></td>
+<td>TALENT: who.</td>
+</tr>
+<tr>
+<td><code dir="auto">staffAssignmentId</code></td>
+<td><code dir="auto">ID</code></td>
+<td>STAFF: who.</td>
+</tr>
+<tr>
+<td><code dir="auto">state</code></td>
+<td><a href="/reference/graphql/people/#readinessstate"><code dir="auto">ReadinessState!</code></a></td>
+<td>READY, NOT_READY, or OVERRIDDEN (the venue or hosts only).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="interfaces">Interfaces</h2><a class="sl-anchor-link" href="#interfaces"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Interfaces”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="iaudiencepeople">IAudiencePeople</h3><a class="sl-anchor-link" href="#iaudiencepeople"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IAudiencePeople”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/people/#audiencepeopleview"><code dir="auto">AudiencePeopleView</code></a> · mixin edge <code dir="auto">people</code> on <a href="/reference/graphql/#audience"><code dir="auto">Audience</code></a></p>
+<p>The people featured in an audience, and a lookup of one by their UUID.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">tagId: ID</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The people featured in it. Guests (see IVenuePeople.guests) are left out.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code><br/><code dir="auto">id: ID!</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person</code></a></td>
+<td>A person in the audience by their UUID.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ieventpeople">IEventPeople</h3><a class="sl-anchor-link" href="#ieventpeople"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IEventPeople”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/people/#eventpeopleview"><code dir="auto">EventPeopleView</code></a> · mixin edge <code dir="auto">people</code> on <a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></p>
+<p>Who is hosting or playing an event.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">hiddenPerformerCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many of its people you can’t see until you sign in, as ‘plus other performers’: the Community ones, to someone signed out. 0 when signed in.</td>
+</tr>
+<tr>
+<td><code dir="auto">hosts</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The people hosting it.</td>
+</tr>
+<tr>
+<td><code dir="auto">lastLineup</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The latest earlier event at its venue with a lineup to copy (its lineupFile): one of its series, else one with its name. Null when there’s none, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>Who is hosting or playing it, its running order included.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineupFile</code></td>
+<td><a href="/reference/graphql/core/#json"><code dir="auto">JSON</code></a></td>
+<td>Its lineup as an audiencekit.lineup file (doc/IMPORT_EXPORT.md), for importLineup. Null without a venue, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineups</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">[Lineup!]!</code></a></td>
+<td>Its lineups (doc/LINEUP_MODEL.md), one in each venue zone it uses: its default zone’s until it has one. Empty without a venue or start.</td>
+</tr>
+<tr>
+<td><code dir="auto">organizers</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The organizations presenting it, billed as ‘Presented by’ (doc/ORGANIZERS.md). Not on its lineup or hosts.</td>
+</tr>
+<tr>
+<td><code dir="auto">runningOrder</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>Its lineup built ahead, in order: acts and intermissions.</td>
+</tr>
+<tr>
+<td><code dir="auto">show</code></td>
+<td><a href="/reference/graphql/people/#showstatus"><code dir="auto">ShowStatus</code></a></td>
+<td>Its show (its lineup): who covers the stage, whether it can be ended, when it ends on its own. Null without a venue.</td>
+</tr>
+<tr>
+<td><code dir="auto">supportStaff</code></td>
+<td><a href="/reference/graphql/people/#staffassignment"><code dir="auto">[StaffAssignment!]!</code></a></td>
+<td>Its support staff, e.g. who is on photography. Empty for anyone not working the show.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ieventseriespeople">IEventSeriesPeople</h3><a class="sl-anchor-link" href="#ieventseriespeople"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IEventSeriesPeople”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/people/#eventseriespeopleview"><code dir="auto">EventSeriesPeopleView</code></a> · mixin edge <code dir="auto">people</code> on <a href="/reference/graphql/events/#eventseries"><code dir="auto">EventSeries</code></a></p>
+<p>Who hosts a series’ occurrences.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">hosts</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>Its default hosts.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ilocalepeople">ILocalePeople</h3><a class="sl-anchor-link" href="#ilocalepeople"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ILocalePeople”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/people/#localepeopleview"><code dir="auto">LocalePeopleView</code></a> · mixin edge <code dir="auto">people</code> on <a href="/reference/graphql/core/#locale"><code dir="auto">Locale</code></a></p>
+<p>The people featured in a locale.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#personconnection"><code dir="auto">PersonConnection!</code></a></td>
+<td>The people featured in it.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ivenuepeople">IVenuePeople</h3><a class="sl-anchor-link" href="#ivenuepeople"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IVenuePeople”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/people/#venuepeopleview"><code dir="auto">VenuePeopleView</code></a> · mixin edge <code dir="auto">people</code> on <a href="/reference/graphql/venues/#venue"><code dir="auto">Venue</code></a></p>
+<p>Who is on at a venue (Appearance), with or without an event: its lineup, running order and who’s on now.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">curtainReadiness</code></td>
+<td><a href="/reference/graphql/people/#curtainreadiness"><code dir="auto">CurtainReadiness</code></a></td>
+<td>The next curtain call’s readiness as counts, for anyone (guests too). Null unless the act up next has a curtain call.</td>
+</tr>
+<tr>
+<td><code dir="auto">goNoGo</code></td>
+<td><a href="/reference/graphql/people/#gonogo"><code dir="auto">GoNoGo</code></a></td>
+<td>The go/no-go of the act up next in tonight’s running order, when it has a curtain call. Null otherwise, and for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">guests</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">[Person!]!</code></a></td>
+<td>People added here without a People page, like a one-off host, by name: to put on its lineups again (createGuestPerson). Empty for anyone not working its shows.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineup</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>The acts on a night that have a time (or have gone on), in running order.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineupFile</code><br/><code dir="auto">eventId: ID</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/core/#json"><code dir="auto">JSON</code></a></td>
+<td>A lineup as an audiencekit.lineup file (doc/IMPORT_EXPORT.md), for importLineup: the venue night’s own, or an event’s. Null for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">lineups</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">[Lineup!]!</code></a></td>
+<td>A night’s zone lineups (doc/LINEUP_MODEL.md): the default zone’s (Stage), then each named zone’s. Each holds its events as steps, and their lineups as children.</td>
+</tr>
+<tr>
+<td><code dir="auto">onNow</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>The acts on there right now.</td>
+</tr>
+<tr>
+<td><code dir="auto">onStage</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>What tonight’s lineup is on now, an act or an intermission: what advancing takes off. Null before the show starts and after it ends. The lineup is the one with something on stage, else the started event’s, else the venue’s own.</td>
+</tr>
+<tr>
+<td><code dir="auto">runningOrder</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#appearanceconnection"><code dir="auto">AppearanceConnection!</code></a></td>
+<td>Everything on a night’s lineups in order: the venue’s own, then its events’ as they start; intermissions and entries with no set time too.</td>
+</tr>
+<tr>
+<td><code dir="auto">show</code></td>
+<td><a href="/reference/graphql/people/#showstatus"><code dir="auto">ShowStatus!</code></a></td>
+<td>Tonight’s show, the lineup advancing moves (see onStage): who covers the stage, whether it can be ended, when it ends on its own.</td>
+</tr>
+<tr>
+<td><code dir="auto">shows</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#showstatus"><code dir="auto">[ShowStatus!]!</code></a></td>
+<td>A night’s shows: the venue’s own lineup, then its events’ as they start.</td>
+</tr>
+<tr>
+<td><code dir="auto">stage</code><br/><code dir="auto">zoneId: ID</code></td>
+<td><a href="/reference/graphql/people/#lineup"><code dir="auto">Lineup!</code></a></td>
+<td>The show on now in a zone (the default zone without zoneId): an event’s lineup from its preshow to its end, else the zone’s night. What cueLineup on the zone’s night moves.</td>
+</tr>
+<tr>
+<td><code dir="auto">stageZones</code></td>
+<td><a href="/reference/graphql/people/#stagezone"><code dir="auto">[StageZone!]!</code></a></td>
+<td>Its zones, in order. The default zone (Stage) is listed only when the venue has named it.</td>
+</tr>
+<tr>
+<td><code dir="auto">supportStaff</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/people/#staffassignment"><code dir="auto">[StaffAssignment!]!</code></a></td>
+<td>A night’s support staff on the venue’s own show, then its events’. Empty for anyone not working the show.</td>
+</tr>
+<tr>
+<td><code dir="auto">upNext</code></td>
+<td><a href="/reference/graphql/people/#appearance"><code dir="auto">Appearance</code></a></td>
+<td>What advancing tonight’s running order puts on next.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="enums">Enums</h2><a class="sl-anchor-link" href="#enums"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Enums”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearanceactivity">AppearanceActivity</h3><a class="sl-anchor-link" href="#appearanceactivity"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceActivity”</span></a></div>
+<p><em>Enum</em></p>
+<p>What runs by itself in the venue’s chat while a segment or intermission is on.</p>
+<ul>
+<li><code dir="auto">PROMPTS</code> The event’s chat prompts carry on.</li>
+<li><code dir="auto">TRIVIA</code> Group trivia: the room talks each round over in the chat and votes together (Venue.trivia). No scores.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearanceendtiming">AppearanceEndTiming</h3><a class="sl-anchor-link" href="#appearanceendtiming"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceEndTiming”</span></a></div>
+<p><em>Enum</em></p>
+<p>How a lineup entry ends.</p>
+<ul>
+<li><code dir="auto">ADVANCE</code> When the venue advances to what is next.</li>
+<li><code dir="auto">CLOSE</code> When the night ends.</li>
+<li><code dir="auto">DURATION</code> durationMinutes after it goes on, or when the venue advances, whichever is first.</li>
+<li><code dir="auto">TIME</code> At its end time.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearancekind">AppearanceKind</h3><a class="sl-anchor-link" href="#appearancekind"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceKind”</span></a></div>
+<p><em>Enum</em></p>
+<p>What a lineup entry is.</p>
+<ul>
+<li><code dir="auto">ACT</code> Someone (or several people) on: hosting, DJing, performing or MCing.</li>
+<li><code dir="auto">INTERMISSION</code> A break in the show.</li>
+<li><code dir="auto">SEGMENT</code> A generic time block with a title, e.g. “Photos with cast” for 10 minutes after an act (endTiming DURATION). It and an intermission can run an activity.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearancerole">AppearanceRole</h3><a class="sl-anchor-link" href="#appearancerole"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceRole”</span></a></div>
+<p><em>Enum</em></p>
+<p>What someone is doing at a venue.</p>
+<ul>
+<li><code dir="auto">DJ</code> DJing.</li>
+<li><code dir="auto">HOST</code> Hosting.</li>
+<li><code dir="auto">MC</code> MCing.</li>
+<li><code dir="auto">PERFORMER</code> Performing, e.g. a drag or live act.</li>
+<li><code dir="auto">SINGER</code> Singing karaoke: a signup, with its song as songRequest.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearancestarttiming">AppearanceStartTiming</h3><a class="sl-anchor-link" href="#appearancestarttiming"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceStartTiming”</span></a></div>
+<p><em>Enum</em></p>
+<p>How a lineup entry starts.</p>
+<ul>
+<li><code dir="auto">HARD</code> At its time, by the clock (or earlier, if advanced to).</li>
+<li><code dir="auto">NONE</code> No set time: when the venue advances to it.</li>
+<li><code dir="auto">SOFT</code> Around its time: when the venue advances to it.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="appearancestate">AppearanceState</h3><a class="sl-anchor-link" href="#appearancestate"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AppearanceState”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where a lineup entry is in its night.</p>
+<ul>
+<li><code dir="auto">DONE</code> Finished, or its night is over.</li>
+<li><code dir="auto">ON</code> On now.</li>
+<li><code dir="auto">UPCOMING</code> Hasn’t gone on yet.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="gonogoverdict">GoNoGoVerdict</h3><a class="sl-anchor-link" href="#gonogoverdict"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “GoNoGoVerdict”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where a curtain call’s go/no-go stands.</p>
+<ul>
+<li><code dir="auto">GO</code> Everyone is ready: advancing raises the curtain.</li>
+<li><code dir="auto">NO_GO</code> Someone said not ready.</li>
+<li><code dir="auto">PENDING</code> Some haven’t answered yet.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineupphase">LineupPhase</h3><a class="sl-anchor-link" href="#lineupphase"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupPhase”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where a lineup’s show stands (doc/LINEUP_MODEL.md).</p>
+<ul>
+<li><code dir="auto">BREAK</code> An intermission or segment is on.</li>
+<li><code dir="auto">ENDED</code> Over: an event’s has ended, a zone’s night has closed.</li>
+<li><code dir="auto">EVENT</code> A zone’s night: one of its events is on (see its lineup).</li>
+<li><code dir="auto">HOST</code> The host has the stage: between scenes, and at the start and end.</li>
+<li><code dir="auto">POSTSHOW</code> An event’s, after the show ends until the event does. Breaks after the last scene run now.</li>
+<li><code dir="auto">PRESHOW</code> Before “Start the show” (an event’s, from its start; a zone’s night, before it opens). Breaks before the first scene run now.</li>
+<li><code dir="auto">SCENE</code> A scene is on.</li>
+<li><code dir="auto">SCHEDULED</code> An event’s: its event hasn’t started; the zone’s night is on.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineupstepkind">LineupStepKind</h3><a class="sl-anchor-link" href="#lineupstepkind"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupStepKind”</span></a></div>
+<p><em>Enum</em></p>
+<p>What a step of a show is.</p>
+<ul>
+<li><code dir="auto">EVENT</code> In a zone’s night: an event’s lineup, as one element.</li>
+<li><code dir="auto">INTERMISSION</code> An intermission: a break between scenes.</li>
+<li><code dir="auto">SCENE</code> A scene of an act: one or more performers.</li>
+<li><code dir="auto">SEGMENT</code> A segment, e.g. trivia or photos with the cast.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineuptaskauto">LineupTaskAuto</h3><a class="sl-anchor-link" href="#lineuptaskauto"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupTaskAuto”</span></a></div>
+<p><em>Enum</em></p>
+<p>What ticks a task by itself.</p>
+<ul>
+<li><code dir="auto">TRACK</code> A track is in for the act: a sound file shared for it in a back-of-house room, or one on each of its scenes. Applies only to acts that need a track.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="lineuptasksource">LineupTaskSource</h3><a class="sl-anchor-link" href="#lineuptasksource"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LineupTaskSource”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where a lineup entry’s task comes from (LineupTasks).</p>
+<ul>
+<li><code dir="auto">ENTRY</code> Added to this entry alone.</li>
+<li><code dir="auto">EVENT</code> The event’s task templates.</li>
+<li><code dir="auto">SERIES</code> The event series’ task templates.</li>
+<li><code dir="auto">TALENT</code> A performer’s on it, or their troupe’s billed on the event.</li>
+<li><code dir="auto">VENUE</code> The venue’s task templates.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="personkind">PersonKind</h3><a class="sl-anchor-link" href="#personkind"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonKind”</span></a></div>
+<p><em>Enum</em></p>
+<p>What a listing is (doc/ORGANIZERS.md).</p>
+<ul>
+<li><code dir="auto">ORGANIZATION</code> An organization that presents events, like a pride center: on its events as ‘Presented by’ (Event.people.organizers), not on People, and always Public.</li>
+<li><code dir="auto">TALENT</code> A performer, host or troupe: on People. The default.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="personvisibility">PersonVisibility</h3><a class="sl-anchor-link" href="#personvisibility"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PersonVisibility”</span></a></div>
+<p><em>Enum</em></p>
+<p>Who sees a performer (PerformerVisibility). Places are public; people are Community unless they opt in.</p>
+<ul>
+<li><code dir="auto">COMMUNITY</code> Anyone signed in to the app (free). The default.</li>
+<li><code dir="auto">PUBLIC</code> The whole internet: share cards, App Clips and the web included.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="readinessarea">ReadinessArea</h3><a class="sl-anchor-link" href="#readinessarea"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ReadinessArea”</span></a></div>
+<p><em>Enum</em></p>
+<p>Who a go/no-go answer is about.</p>
+<ul>
+<li><code dir="auto">STAFF</code> Someone on the support staff.</li>
+<li><code dir="auto">TALENT</code> A person on the acts the curtain rises on.</li>
+<li><code dir="auto">VENUE</code> The venue.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="readinessstate">ReadinessState</h3><a class="sl-anchor-link" href="#readinessstate"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ReadinessState”</span></a></div>
+<p><em>Enum</em></p>
+<p>Whether someone is ready for the curtain.</p>
+<ul>
+<li><code dir="auto">NOT_READY</code> Not ready: the show waits.</li>
+<li><code dir="auto">OVERRIDDEN</code> The venue said go for them (Velvet “Override: go”): counts as ready, but is not their own answer. Only the venue or the hosts set it.</li>
+<li><code dir="auto">PENDING</code> Not answered yet. Read only.</li>
+<li><code dir="auto">READY</code> Ready.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="roomfileaudiostatus">RoomFileAudioStatus</h3><a class="sl-anchor-link" href="#roomfileaudiostatus"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RoomFileAudioStatus”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where the server’s check of a sound file shared in a room has got to.</p>
+<ul>
+<li><code dir="auto">PENDING</code> Uploaded; the server is checking it. Its length is what the uploading app said, and it has no waveform yet.</li>
+<li><code dir="auto">READY</code> It plays. Its length, format and waveform are what the server read.</li>
+<li><code dir="auto">REJECTED</code> It isn’t sound that plays: audioError says why.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="roomfilekind">RoomFileKind</h3><a class="sl-anchor-link" href="#roomfilekind"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RoomFileKind”</span></a></div>
+<p><em>Enum</em></p>
+<p>What kind of file was shared in a room, by its content type.</p>
+<ul>
+<li><code dir="auto">AUDIO</code> Music or sound.</li>
+<li><code dir="auto">DOCUMENT</code> A PDF, text, spreadsheet or other document.</li>
+<li><code dir="auto">IMAGE</code> A picture, such as a poster.</li>
+<li><code dir="auto">VIDEO</code> A video.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="roomfilelabel">RoomFileLabel</h3><a class="sl-anchor-link" href="#roomfilelabel"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RoomFileLabel”</span></a></div>
+<p><em>Enum</em></p>
+<p>What a document shared in a room is, for the files shelf.</p>
+<ul>
+<li><code dir="auto">LOAD_IN</code> Load-in and arrival notes.</li>
+<li><code dir="auto">OTHER</code> Anything else.</li>
+<li><code dir="auto">RUN_OF_SHOW</code> The running order and cues.</li>
+<li><code dir="auto">TECH_RIDER</code> What the act needs: sound, lights, stage.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="showendsto">ShowEndsTo</h3><a class="sl-anchor-link" href="#showendsto"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ShowEndsTo”</span></a></div>
+<p><em>Enum</em></p>
+<p>What ending a scene (or break) goes to.</p>
+<ul>
+<li><code dir="auto">HOST</code> Back to the host, who brings on what is next.</li>
+<li><code dir="auto">NEXT</code> Straight on to the next scene of the same act, or the break after it. An act always starts from the host.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="staffrole">StaffRole</h3><a class="sl-anchor-link" href="#staffrole"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “StaffRole”</span></a></div>
+<p><em>Enum</em></p>
+<p>What someone on the support staff does at a show.</p>
+<ul>
+<li><code dir="auto">BAR</code> Behind the bar.</li>
+<li><code dir="auto">DOOR</code> Working the door.</li>
+<li><code dir="auto">LIGHTING</code> Running lights.</li>
+<li><code dir="auto">OTHER</code> Anything else; say what as title.</li>
+<li><code dir="auto">PHOTOGRAPHY</code> Taking photos.</li>
+<li><code dir="auto">RUNNER</code> Running for the talent: tips, props, water.</li>
+<li><code dir="auto">SECURITY</code> Security.</li>
+<li><code dir="auto">SOUND</code> Running sound.</li>
+<li><code dir="auto">STAGE_MANAGER</code> Stage managing.</li>
+<li><code dir="auto">VIDEO</code> Filming.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="triviareveal">TriviaReveal</h3><a class="sl-anchor-link" href="#triviareveal"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TriviaReveal”</span></a></div>
+<p><em>Enum</em></p>
+<p>When trivia answers show.</p>
+<ul>
+<li><code dir="auto">EACH</code> After each round, once its voting closes.</li>
+<li><code dir="auto">END</code> All at the end of the segment: each round’s answer waits until it ends.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="scalars">Scalars</h2><a class="sl-anchor-link" href="#scalars"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scalars”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="bigint">BigInt</h3><a class="sl-anchor-link" href="#bigint"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “BigInt”</span></a></div>
+<p><em>Scalar</em></p>
+<p>Represents non-fractional signed whole numeric values. Since the value may
+exceed the size of a 32-bit integer, it’s encoded as a string.</p>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

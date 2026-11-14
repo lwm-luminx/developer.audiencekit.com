@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Friends | AudienceKit</title><link rel="canonical" href="https://developer.audiencekit.com/reference/staffql/friends/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Friends"/><meta property="og:type" content="article"/><meta property="og:url" content="https://developer.audiencekit.com/reference/staffql/friends/"/><meta property="og:locale" content="en"/><meta property="og:description" content="The friends module of the staff view: its root fields, operations and types."/><meta property="og:site_name" content="AudienceKit"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="The friends module of the staff view: its root fields, operations and types."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.Ba7Mjohh.css"><style>@layer starlight.components{svg:where(.astro-hkc32dio){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><span class="astro-6rvad3va" translate="no">AudienceKit</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0yjvwpz" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start here</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/start/introduction/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Introduction</span></a></li><li class="astro-rmhv4bp6"><a href="/start/concepts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core concepts</span></a></li><li class="astro-rmhv4bp6"><a href="/start/local-development/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run AudienceKit locally</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">API</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/api/overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/api/authentication/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authentication</span></a></li><li class="astro-rmhv4bp6"><a href="/api/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GraphQL</span></a></li><li class="astro-rmhv4bp6"><a href="/api/validate-documents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Validate your documents</span></a></li><li class="astro-rmhv4bp6"><a href="/api/rest/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">REST endpoints</span></a></li><li class="astro-rmhv4bp6"><a href="/api/realtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Realtime</span></a></li><li class="astro-rmhv4bp6"><a href="/api/errors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Errors</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">GraphQL (consumer view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">StaffQL (staff view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/staffql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/evaluations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Evaluations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/friends/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/locales/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Locales</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/maintenance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Maintenance</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/moderation/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Moderation</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rooms/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rooms</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Guides</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/guides/theming/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theme an audience</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/domains/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Connect a domain</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/service-tokens/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Automate with service tokens</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/researcher/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run the researcher worker</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/deploy-heroku/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deploy to Heroku</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">SDKs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit SDK</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit SDK</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">iOS and macOS (Swift)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/swift/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit-binaries/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit binary package</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Android (Kotlin)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Kotlin Multiplatform core</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><a href="/sdks/ruby/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ruby</span></a></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Changelogs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/changelog/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/changelog/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Project</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/project/contributing-docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Contribute to these docs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friend" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Friend</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendvenue" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendVenue</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendvenueconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendVenueConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendvenueedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendVenueEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#localefriendsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LocaleFriendsView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuefriendsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenueFriendsView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ilocalefriends" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ILocaleFriends</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuefriends" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenueFriends</span></a></li></ul></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friend" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Friend</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendvenue" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendVenue</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendvenueconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendVenueConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#friendvenueedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">FriendVenueEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#localefriendsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">LocaleFriendsView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuefriendsview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenueFriendsView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ilocalefriends" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ILocaleFriends</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuefriends" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenueFriends</span></a></li></ul></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Friends</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><!-- Generated by scripts/graphql-reference.mjs from graphql/staff_schema.graphql. Do not edit by hand. -->
+<p>Where the signed-in user’s friends are out in a locale now.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="objects">Objects</h2><a class="sl-anchor-link" href="#objects"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Objects”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="friend">Friend</h3><a class="sl-anchor-link" href="#friend"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Friend”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/chat/#hastribes"><code dir="auto">HasTribes</code></a></p>
+<p>A Facebook friend of the signed-in user who also uses the app (from the user_friends permission).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">avatarUrl</code></td>
+<td><a href="/reference/staffql/locales/#photourl"><code dir="auto">PhotoURL</code></a></td>
+<td>Their profile photo.</td>
+</tr>
+<tr>
+<td><code dir="auto">facebookId</code></td>
+<td><code dir="auto">String</code></td>
+<td>The ID the audience’s Facebook app knows them by.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String</code></td>
+<td>Display name.</td>
+</tr>
+<tr>
+<td><code dir="auto">ping</code></td>
+<td><a href="/reference/staffql/ping/#iuserping"><code dir="auto">IUserPing</code></a></td>
+<td>The instance’s IUserPing mixin, when available.</td>
+</tr>
+<tr>
+<td><code dir="auto">presence</code></td>
+<td><a href="/reference/staffql/chat/#presence"><code dir="auto">Presence!</code></a></td>
+<td>Whether they can be reached now: in chat, by push, or neither. OFFLINE unless the viewer is them, a friend of theirs, or an admin.</td>
+</tr>
+<tr>
+<td><code dir="auto">sharedTribes</code></td>
+<td><a href="/reference/staffql/core/#tag"><code dir="auto">[Tag!]!</code></a></td>
+<td>The tribes the signed-in user and they both identify with, for the “You’re both” mark in venue chat (each tag has its bothPhrase). Only ever the two of them see it; empty for the viewer themselves and when signed out.</td>
+</tr>
+<tr>
+<td><code dir="auto">tribes</code></td>
+<td><a href="/reference/staffql/core/#tribeidentification"><code dir="auto">[TribeIdentification!]!</code></a></td>
+<td>Their tribes here that the signed-in user may see: the ones they share, and public ones only where the audience allows public tribes. All of them for the viewer themselves.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="friendconnection">FriendConnection</h3><a class="sl-anchor-link" href="#friendconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “FriendConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for Friend.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/staffql/friends/#friendedge"><code dir="auto">[FriendEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/staffql/friends/#friend"><code dir="auto">[Friend]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/staffql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="friendedge">FriendEdge</h3><a class="sl-anchor-link" href="#friendedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “FriendEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/staffql/friends/#friend"><code dir="auto">Friend</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="friendvenue">FriendVenue</h3><a class="sl-anchor-link" href="#friendvenue"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “FriendVenue”</span></a></div>
+<p><em>Object</em></p>
+<p>A venue where some of the signed-in user’s friends have been lately, with how many.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">friendCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many of their friends are there.</td>
+</tr>
+<tr>
+<td><code dir="auto">friends</code></td>
+<td><a href="/reference/staffql/friends/#friend"><code dir="auto">[Friend!]!</code></a></td>
+<td>Those friends, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/staffql/venues/#venue"><code dir="auto">Venue!</code></a></td>
+<td>Where they are.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="friendvenueconnection">FriendVenueConnection</h3><a class="sl-anchor-link" href="#friendvenueconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “FriendVenueConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for FriendVenue.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/staffql/friends/#friendvenueedge"><code dir="auto">[FriendVenueEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/staffql/friends/#friendvenue"><code dir="auto">[FriendVenue]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/staffql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="friendvenueedge">FriendVenueEdge</h3><a class="sl-anchor-link" href="#friendvenueedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “FriendVenueEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/staffql/friends/#friendvenue"><code dir="auto">FriendVenue</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="localefriendsview">LocaleFriendsView</h3><a class="sl-anchor-link" href="#localefriendsview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “LocaleFriendsView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/friends/#ilocalefriends"><code dir="auto">ILocaleFriends</code></a></p>
+<p>The local Friends implementation for a locale: the viewer’s friends out at its venues.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/friends/#friendconnection"><code dir="auto">FriendConnection!</code></a></td>
+<td>The signed-in user’s friends who have been at its venues lately, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">venues</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/friends/#friendvenueconnection"><code dir="auto">FriendVenueConnection!</code></a></td>
+<td>Its venues where those friends have been lately, most friends first, then by name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="venuefriendsview">VenueFriendsView</h3><a class="sl-anchor-link" href="#venuefriendsview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “VenueFriendsView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/staffql/friends/#ivenuefriends"><code dir="auto">IVenueFriends</code></a></p>
+<p>The local Friends implementation for a venue: the viewer’s friends there.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/friends/#friendconnection"><code dir="auto">FriendConnection!</code></a></td>
+<td>The signed-in user’s friends who have been here lately, by name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="interfaces">Interfaces</h2><a class="sl-anchor-link" href="#interfaces"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Interfaces”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="ilocalefriends">ILocaleFriends</h3><a class="sl-anchor-link" href="#ilocalefriends"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ILocaleFriends”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/friends/#localefriendsview"><code dir="auto">LocaleFriendsView</code></a> · mixin edge <code dir="auto">friends</code> on <a href="/reference/staffql/locales/#locale"><code dir="auto">Locale</code></a></p>
+<p>Where the signed-in user’s friends are out in a locale now.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/friends/#friendconnection"><code dir="auto">FriendConnection!</code></a></td>
+<td>The signed-in user’s friends who have been at its venues lately, by name.</td>
+</tr>
+<tr>
+<td><code dir="auto">venues</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/friends/#friendvenueconnection"><code dir="auto">FriendVenueConnection!</code></a></td>
+<td>Its venues where those friends have been lately, most friends first, then by name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ivenuefriends">IVenueFriends</h3><a class="sl-anchor-link" href="#ivenuefriends"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IVenueFriends”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/staffql/friends/#venuefriendsview"><code dir="auto">VenueFriendsView</code></a> · mixin edge <code dir="auto">friends</code> on <a href="/reference/staffql/venues/#venue"><code dir="auto">Venue</code></a></p>
+<p>Which of the signed-in user’s friends are at a venue now.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/staffql/friends/#friendconnection"><code dir="auto">FriendConnection!</code></a></td>
+<td>The signed-in user’s friends who have been here lately, by name.</td>
+</tr>
+</tbody>
+</table>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

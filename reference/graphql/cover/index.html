@@ -1,0 +1,1540 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Cover | AudienceKit</title><link rel="canonical" href="https://developer.audiencekit.com/reference/graphql/cover/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Cover"/><meta property="og:type" content="article"/><meta property="og:url" content="https://developer.audiencekit.com/reference/graphql/cover/"/><meta property="og:locale" content="en"/><meta property="og:description" content="The cover module of the consumer view: its root fields, operations and types."/><meta property="og:site_name" content="AudienceKit"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="The cover module of the consumer view: its root fields, operations and types."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.Ba7Mjohh.css"><style>@layer starlight.components{svg:where(.astro-hkc32dio){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><span class="astro-6rvad3va" translate="no">AudienceKit</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0yjvwpz" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Start here</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/start/introduction/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Introduction</span></a></li><li class="astro-rmhv4bp6"><a href="/start/concepts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core concepts</span></a></li><li class="astro-rmhv4bp6"><a href="/start/local-development/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run AudienceKit locally</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">API</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/api/overview/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/api/authentication/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authentication</span></a></li><li class="astro-rmhv4bp6"><a href="/api/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GraphQL</span></a></li><li class="astro-rmhv4bp6"><a href="/api/validate-documents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Validate your documents</span></a></li><li class="astro-rmhv4bp6"><a href="/api/rest/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">REST endpoints</span></a></li><li class="astro-rmhv4bp6"><a href="/api/realtime/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Realtime</span></a></li><li class="astro-rmhv4bp6"><a href="/api/errors/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Errors</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Reference</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">GraphQL (consumer view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/graphql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/cover/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/graphql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">StaffQL (staff view)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/reference/staffql/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/mutations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Mutations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/subscriptions/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Subscriptions</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Core</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/cover/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/evaluations/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Evaluations</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/events/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Events</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/facebook/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Facebook</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/friends/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Friends</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/karaoke/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Karaoke</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/liquor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Liquor</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/listings/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Listings</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/locales/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Locales</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/maintenance/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Maintenance</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/moderation/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Moderation</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/music/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Music</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ordering/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ordering</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/pair_up/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Pair up</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/payments/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Payments</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/people/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">People</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/photography/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Photography</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/places/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Places</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/posts/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Posts</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/push/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Push</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/requests/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Requests</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rooms/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rooms</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/rsvp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Rsvp</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/ticketing/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ticketing</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/tipping/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Tipping</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/trivia/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Trivia</span></a></li><li class="astro-rmhv4bp6"><a href="/reference/staffql/venues/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Venues</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Guides</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/guides/theming/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Theme an audience</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/domains/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Connect a domain</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/service-tokens/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Automate with service tokens</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/researcher/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Run the researcher worker</span></a></li><li class="astro-rmhv4bp6"><a href="/guides/deploy-heroku/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deploy to Heroku</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">SDKs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Overview</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit SDK</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit SDK</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">iOS and macOS (Swift)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/swift/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/swift/staffkit-binaries/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit binary package</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Android (Kotlin)</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/core/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Kotlin Multiplatform core</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/kotlin/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><a href="/sdks/ruby/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ruby</span></a></li><li class="astro-rmhv4bp6"><details class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Changelogs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/sdks/changelog/audiencekit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AudienceKit</span></a></li><li class="astro-rmhv4bp6"><a href="/sdks/changelog/staffkit/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">StaffKit</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Project</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/project/contributing-docs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Contribute to these docs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"><a href="https://github.com/lwm-luminx/audience-kit-sdk" rel="me" class="sl-flex astro-n2mnl6yq"><span class="sr-only astro-n2mnl6yq">GitHub</span><svg aria-hidden="true" class="astro-n2mnl6yq astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admission" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Admission</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coatcheck" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoatCheck</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#covercharge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverCharge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#covernight" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverNight</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#covertier" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverTier</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#doornight" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">DoorNight</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcoverview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCoverView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestpurchaseunclaimed" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestPurchaseUnclaimed</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#money" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Money</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#paymentaccount" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PaymentAccount</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#squarelocation" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">SquareLocation</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#tip" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Tip</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#userstatecoverview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">UserStateCoverView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuecoverview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenueCoverView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionrefundpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionRefundPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coatcheckbuypayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoatCheckBuyPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverbuypayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverBuyPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverconfirmpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverConfirmPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverpaypayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverPayPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestpurchasesclaimpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestPurchasesClaimPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionrefundinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionRefundInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coatcheckbuyinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoatCheckBuyInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverbuyinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverBuyInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverconfirminput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverConfirmInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverpayinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverPayInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestpurchasesclaiminput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestPurchasesClaimInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iadmissionoffer" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IAdmissionOffer</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#icharge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ICharge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ieventcover" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IEventCover</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iuserstatecover" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IUserStateCover</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuecover" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenueCover</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionkindenum" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionKindEnum</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionStatus</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverfeepayer" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverFeePayer</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestclaimreason" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestClaimReason</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#paymentenvironment" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PaymentEnvironment</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#paymentprovider" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PaymentProvider</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#tipstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TipStatus</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#scalars" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Scalars</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iso8601date" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ISO8601Date</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#timeofday" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TimeOfDay</span></a></li></ul></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#objects" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Objects</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admission" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Admission</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionconnection" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionConnection</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionedge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionEdge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coatcheck" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoatCheck</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#covercharge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverCharge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#covernight" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverNight</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#covertier" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverTier</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#doornight" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">DoorNight</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#eventcoverview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">EventCoverView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestpurchaseunclaimed" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestPurchaseUnclaimed</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#money" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Money</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#paymentaccount" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PaymentAccount</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#squarelocation" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">SquareLocation</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#tip" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Tip</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#userstatecoverview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">UserStateCoverView</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#venuecoverview" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">VenueCoverView</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#mutation-payloads" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Mutation payloads</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionrefundpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionRefundPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coatcheckbuypayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoatCheckBuyPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverbuypayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverBuyPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverconfirmpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverConfirmPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverpaypayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverPayPayload</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestpurchasesclaimpayload" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestPurchasesClaimPayload</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#inputs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Inputs</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionrefundinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionRefundInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coatcheckbuyinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoatCheckBuyInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverbuyinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverBuyInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverconfirminput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverConfirmInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverpayinput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverPayInput</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestpurchasesclaiminput" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestPurchasesClaimInput</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#interfaces" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Interfaces</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iadmissionoffer" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IAdmissionOffer</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#icharge" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ICharge</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ieventcover" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IEventCover</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iuserstatecover" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IUserStateCover</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#ivenuecover" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">IVenueCover</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#enums" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Enums</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionkindenum" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionKindEnum</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#admissionstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">AdmissionStatus</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#coverfeepayer" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">CoverFeePayer</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#guestclaimreason" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">GuestClaimReason</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#paymentenvironment" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PaymentEnvironment</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#paymentprovider" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">PaymentProvider</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#tipstatus" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TipStatus</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#scalars" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Scalars</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#iso8601date" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">ISO8601Date</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#timeofday" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">TimeOfDay</span></a></li></ul></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Cover</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><!-- Generated by scripts/graphql-reference.mjs from graphql/schema.graphql. Do not edit by hand. -->
+<p>An event’s cover, inside its tickets (Event.tickets { cover }): its own for the
+night, or its venue’s. Its charge is also one of tickets.offers.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutations">Mutations</h2><a class="sl-anchor-link" href="#mutations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutations”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">buyCoatCheck</code><br/><code dir="auto">input: CoatCheckBuyInput!</code></td>
+<td><a href="/reference/graphql/cover/#coatcheckbuypayload"><code dir="auto">CoatCheckBuyPayload</code></a></td>
+<td>Starts paying coat check at a venue tonight through the venue’s payment provider. Asking again the same night returns the same pending or paid coat check pass. <small>requires <code dir="auto">cover:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">buyCover</code><br/><code dir="auto">input: CoverBuyInput!</code></td>
+<td><a href="/reference/graphql/cover/#coverbuypayload"><code dir="auto">CoverBuyPayload</code></a></td>
+<td>Starts paying tonight’s cover at a venue, through the venue’s provider. Stripe: finish the payment with Stripe’s payment sheet (paymentIntentClientSecret, on the venue’s account stripeAccountId, with publishableKey), then call confirmCover. Square: make a payment token with Square’s In-App Payments SDK (squareApplicationId, squareLocationId), then call payCover with it. Asking again the same night returns the same pass. <small>requires <code dir="auto">cover:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">claimGuestPurchases</code><br/><code dir="auto">input: GuestPurchasesClaimInput!</code></td>
+<td><a href="/reference/graphql/cover/#guestpurchasesclaimpayload"><code dir="auto">GuestPurchasesClaimPayload</code></a></td>
+<td>Attaches covers and tips bought in the App Clip before signing in to the signed-in member, by the claim tokens the clip got when it started them (POST /v1/clip/covers and /v1/clip/tips, doc/APP_CLIP_CHECKOUT.md). Each token works once, in its own audience. A cover is left unclaimed when they already hold one at that venue that night. <small>requires <code dir="auto">cover:write:self</code> or <code dir="auto">tipping:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">confirmCover</code><br/><code dir="auto">input: CoverConfirmInput!</code></td>
+<td><a href="/reference/graphql/cover/#coverconfirmpayload"><code dir="auto">CoverConfirmPayload</code></a></td>
+<td>Checks a cover payment with its provider after the app finishes paying, so the pass works before the webhook arrives. <small>requires <code dir="auto">cover:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">payCover</code><br/><code dir="auto">input: CoverPayInput!</code></td>
+<td><a href="/reference/graphql/cover/#coverpaypayload"><code dir="auto">CoverPayPayload</code></a></td>
+<td>Pays a Square venue’s cover with a payment token from Square’s In-App Payments SDK (a card, Apple Pay or Google Pay), after buyCover. The pass works as soon as this returns it paid. <small>requires <code dir="auto">cover:write:self</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">refundAdmission</code><br/><code dir="auto">input: AdmissionRefundInput!</code></td>
+<td><a href="/reference/graphql/cover/#admissionrefundpayload"><code dir="auto">AdmissionRefundPayload</code></a></td>
+<td>Refunds a cover. Buyers can refund their own until it’s scanned at the door or the night is over; the venue’s door staff and the audience’s admins can refund any paid cover. <small>requires <code dir="auto">cover:write:self</code> or <code dir="auto">cover:write:door</code></small></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="objects">Objects</h2><a class="sl-anchor-link" href="#objects"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Objects”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="admission">Admission</h3><a class="sl-anchor-link" href="#admission"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Admission”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#icharge"><code dir="auto">ICharge</code></a>, <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>Someone’s cover for one night at a venue, and their pass. See CoverPass for the QR code.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">amount</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The cover.</td>
+</tr>
+<tr>
+<td><code dir="auto">checkedInAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When the door first scanned it.</td>
+</tr>
+<tr>
+<td><code dir="auto">claimCheckNumber</code></td>
+<td><code dir="auto">String</code></td>
+<td>Coat check hanger or claim number.</td>
+</tr>
+<tr>
+<td><code dir="auto">createdAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime!</code></a></td>
+<td>When the record was created.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The event that night, if it set the cover.</td>
+</tr>
+<tr>
+<td><code dir="auto">fee</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The Hot Mess fee.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">isRefundable</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the buyer can refund it themselves: paid, not scanned in, and the night isn’t over.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code></td>
+<td><a href="/reference/graphql/cover/#admissionkindenum"><code dir="auto">AdmissionKindEnum!</code></a></td>
+<td>The kind of pass (cover or coat_check).</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The local date of the cover night.</td>
+</tr>
+<tr>
+<td><code dir="auto">passCode</code></td>
+<td><code dir="auto">String</code></td>
+<td>The pass QR code right now, for clients that don’t make their own. Changes every 30 seconds. The buyer only.</td>
+</tr>
+<tr>
+<td><code dir="auto">passSecret</code></td>
+<td><code dir="auto">String</code></td>
+<td>The Base64 key the app makes the pass QR code with. The buyer only; null for everyone else.</td>
+</tr>
+<tr>
+<td><code dir="auto">profile</code></td>
+<td><a href="/reference/graphql/core/#profile"><code dir="auto">Profile!</code></a></td>
+<td>The buyer: their name for the door and the console, their picture so the door can match faces.</td>
+</tr>
+<tr>
+<td><code dir="auto">quantity</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Number of covers in this admission.</td>
+</tr>
+<tr>
+<td><code dir="auto">scanCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many times the door has scanned it.</td>
+</tr>
+<tr>
+<td><code dir="auto">status</code></td>
+<td><a href="/reference/graphql/cover/#admissionstatus"><code dir="auto">AdmissionStatus!</code></a></td>
+<td>Current payment status.</td>
+</tr>
+<tr>
+<td><code dir="auto">tier</code></td>
+<td><code dir="auto">String</code></td>
+<td>The cover tier, e.g. general, vip.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the buyer paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">venue</code></td>
+<td><a href="/reference/graphql/venues/#venue"><code dir="auto">Venue!</code></a></td>
+<td>The venue associated with this record.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="admissionconnection">AdmissionConnection</h3><a class="sl-anchor-link" href="#admissionconnection"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AdmissionConnection”</span></a></div>
+<p><em>Object</em></p>
+<p>The connection type for Admission.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">edges</code></td>
+<td><a href="/reference/graphql/cover/#admissionedge"><code dir="auto">[AdmissionEdge]</code></a></td>
+<td>A list of edges.</td>
+</tr>
+<tr>
+<td><code dir="auto">nodes</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">[Admission]</code></a></td>
+<td>A list of nodes.</td>
+</tr>
+<tr>
+<td><code dir="auto">pageInfo</code></td>
+<td><a href="/reference/graphql/core/#pageinfo"><code dir="auto">PageInfo!</code></a></td>
+<td>Information to aid in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">totalCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>How many there are in all, whatever page this is.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="admissionedge">AdmissionEdge</h3><a class="sl-anchor-link" href="#admissionedge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AdmissionEdge”</span></a></div>
+<p><em>Object</em></p>
+<p>An edge in a connection.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">String!</code></td>
+<td>A cursor for use in pagination.</td>
+</tr>
+<tr>
+<td><code dir="auto">node</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission</code></a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coatcheck">CoatCheck</h3><a class="sl-anchor-link" href="#coatcheck"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoatCheck”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#icharge"><code dir="auto">ICharge</code></a></p>
+<p>A venue’s coat check service for the night.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">amount</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The coat check fee the venue receives.</td>
+</tr>
+<tr>
+<td><code dir="auto">fee</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The platform fee.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The night this coat check applies.</td>
+</tr>
+<tr>
+<td><code dir="auto">payable</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether coat check can be paid in the app.</td>
+</tr>
+<tr>
+<td><code dir="auto">paymentMechanisms</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>Supported payment mechanisms, e.g. [“apple_pay”, “card”].</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the buyer pays per coat, all in.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="covercharge">CoverCharge</h3><a class="sl-anchor-link" href="#covercharge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverCharge”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#iadmissionoffer"><code dir="auto">IAdmissionOffer</code></a>, <a href="/reference/graphql/cover/#icharge"><code dir="auto">ICharge</code></a></p>
+<p>What it costs to get into a venue on a night. The apps show total, the all-in
+price, and take it with buyCover when payable is true; otherwise it’s paid at the door.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">amount</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The cover the venue receives.</td>
+</tr>
+<tr>
+<td><code dir="auto">coatCheck</code></td>
+<td><a href="/reference/graphql/cover/#coatcheck"><code dir="auto">CoatCheck</code></a></td>
+<td>The venue’s coat check service for the night, if offered.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The event that night, when it sets the night’s cover.</td>
+</tr>
+<tr>
+<td><code dir="auto">fee</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The Hot Mess fee in it. Part of total when the buyer pays fees; taken from the cover when the venue does. Zero when it is paid at the door.</td>
+</tr>
+<tr>
+<td><code dir="auto">from</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When the cover starts, local time, e.g. 21:00.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The night it is for. A night runs 6am to 6am, so 1am Saturday is Friday night.</td>
+</tr>
+<tr>
+<td><code dir="auto">override</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the venue changed this night’s cover from its usual one.</td>
+</tr>
+<tr>
+<td><code dir="auto">payable</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether it can be paid in the app.</td>
+</tr>
+<tr>
+<td><code dir="auto">paymentMechanisms</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>Supported payment mechanisms, e.g. apple_pay, card.</td>
+</tr>
+<tr>
+<td><code dir="auto">price</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money</code></a></td>
+<td>What it costs the buyer, all in (the lowest price for tickets). Null when the seller does not say.</td>
+</tr>
+<tr>
+<td><code dir="auto">seller</code></td>
+<td><a href="/reference/graphql/chat/#iprovider"><code dir="auto">IProvider!</code></a></td>
+<td>Who sells it: a ticketing partner, or AudienceKit itself.</td>
+</tr>
+<tr>
+<td><code dir="auto">tiers</code></td>
+<td><a href="/reference/graphql/cover/#covertier"><code dir="auto">[CoverTier!]</code></a></td>
+<td>Cover tiers for this night, if any.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the buyer pays, all in. The cover itself when it is paid at the door.</td>
+</tr>
+<tr>
+<td><code dir="auto">until</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When the cover ends, local time, e.g. 02:00.</td>
+</tr>
+<tr>
+<td><code dir="auto">url</code></td>
+<td><code dir="auto">String</code></td>
+<td>Where to buy it on the web. Null when it’s bought in the app (buyCover) or at the door.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="covernight">CoverNight</h3><a class="sl-anchor-link" href="#covernight"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverNight”</span></a></div>
+<p><em>Object</em></p>
+<p>One night’s change to a venue’s cover. Null fields keep the usual.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">coverCents</code></td>
+<td><code dir="auto">Int</code></td>
+<td>That night’s cover in cents: 0 for none, null for the usual.</td>
+</tr>
+<tr>
+<td><code dir="auto">from</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When the cover starts that night.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The night it changes.</td>
+</tr>
+<tr>
+<td><code dir="auto">until</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When the cover ends that night.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="covertier">CoverTier</h3><a class="sl-anchor-link" href="#covertier"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverTier”</span></a></div>
+<p><em>Object</em></p>
+<p>A pricing tier for a cover charge, e.g. General Admission, VIP.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">amount</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>Base cover amount for the tier.</td>
+</tr>
+<tr>
+<td><code dir="auto">description</code></td>
+<td><code dir="auto">String</code></td>
+<td>Perks or description of this tier.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Tier identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Name of the tier.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>All-in price for the tier.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="doornight">DoorNight</h3><a class="sl-anchor-link" href="#doornight"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “DoorNight”</span></a></div>
+<p><em>Object</em></p>
+<p>A venue’s door for one night: who paid cover and who has been scanned in.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissions</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/cover/#admissionconnection"><code dir="auto">AdmissionConnection!</code></a></td>
+<td>Paid, refunded and disputed covers, newest first; every one unless paged.</td>
+</tr>
+<tr>
+<td><code dir="auto">checkedInCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Paid covers scanned in.</td>
+</tr>
+<tr>
+<td><code dir="auto">gross</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>Covers paid and not refunded, before fees.</td>
+</tr>
+<tr>
+<td><code dir="auto">night</code></td>
+<td><a href="/reference/graphql/cover/#iso8601date"><code dir="auto">ISO8601Date!</code></a></td>
+<td>The local date of the cover night.</td>
+</tr>
+<tr>
+<td><code dir="auto">paidCount</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>Covers paid and not refunded.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="eventcoverview">EventCoverView</h3><a class="sl-anchor-link" href="#eventcoverview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “EventCoverView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#ieventcover"><code dir="auto">IEventCover</code></a></p>
+<p>The local Cover implementation of an event’s cover.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cents</code></td>
+<td><code dir="auto">Int</code></td>
+<td>The cover that night instead of the venue’s, in cents: 0 for none, null for the venue’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">charge</code></td>
+<td><a href="/reference/graphql/cover/#covercharge"><code dir="auto">CoverCharge</code></a></td>
+<td>The cover at its venue that night. Null when there’s none, or when it sells tickets (tickets.url).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="guestpurchaseunclaimed">GuestPurchaseUnclaimed</h3><a class="sl-anchor-link" href="#guestpurchaseunclaimed"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “GuestPurchaseUnclaimed”</span></a></div>
+<p><em>Object</em></p>
+<p>A claim token that claimed nothing, and why (ClipCheckout::Unclaimed).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">claimToken</code></td>
+<td><code dir="auto">String!</code></td>
+<td>The token as it was sent.</td>
+</tr>
+<tr>
+<td><code dir="auto">reason</code></td>
+<td><a href="/reference/graphql/cover/#guestclaimreason"><code dir="auto">GuestClaimReason!</code></a></td>
+<td>Why it claimed nothing.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="money">Money</h3><a class="sl-anchor-link" href="#money"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Money”</span></a></div>
+<p><em>Object</em></p>
+<p>An amount of money: whole cents of a currency. $10.00 is { cents: 1000, currency: “usd” }.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cents</code></td>
+<td><code dir="auto">Int!</code></td>
+<td>The amount in the currency’s minor unit (cents for dollars).</td>
+</tr>
+<tr>
+<td><code dir="auto">currency</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Its ISO 4217 code in lower case, e.g. usd.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="paymentaccount">PaymentAccount</h3><a class="sl-anchor-link" href="#paymentaccount"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PaymentAccount”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>A venue’s Stripe or Square account, which takes its cover charges.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">chargesEnabled</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>It can take payments.</td>
+</tr>
+<tr>
+<td><code dir="auto">detailsSubmitted</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Stripe: its owner finished Stripe’s onboarding.</td>
+</tr>
+<tr>
+<td><code dir="auto">environment</code></td>
+<td><a href="/reference/graphql/cover/#paymentenvironment"><code dir="auto">PaymentEnvironment!</code></a></td>
+<td>The payment environment for this account.</td>
+</tr>
+<tr>
+<td><code dir="auto">externalId</code></td>
+<td><code dir="auto">String!</code></td>
+<td>The provider’s ID for the account (Square’s merchant ID).</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">locationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Square: the location that gets paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">locationName</code></td>
+<td><code dir="auto">String</code></td>
+<td>The Square location display name.</td>
+</tr>
+<tr>
+<td><code dir="auto">payoutsEnabled</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Stripe: Stripe pays out to its bank account.</td>
+</tr>
+<tr>
+<td><code dir="auto">provider</code></td>
+<td><a href="/reference/graphql/cover/#paymentprovider"><code dir="auto">PaymentProvider!</code></a></td>
+<td>The provider serving this record.</td>
+</tr>
+<tr>
+<td><code dir="auto">squareLocations</code></td>
+<td><a href="/reference/graphql/cover/#squarelocation"><code dir="auto">[SquareLocation!]</code></a></td>
+<td>Square: the seller’s locations that can take cards, read from Square. Null for Stripe, or when Square doesn’t answer.</td>
+</tr>
+<tr>
+<td><code dir="auto">status</code></td>
+<td><code dir="auto">String!</code></td>
+<td>active (taking payments), pending (Stripe is reviewing it), incomplete (Stripe onboarding isn’t finished, or no Square location is picked) or disconnected.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="squarelocation">SquareLocation</h3><a class="sl-anchor-link" href="#squarelocation"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “SquareLocation”</span></a></div>
+<p><em>Object</em></p>
+<p>One of a Square seller’s locations that can take card payments.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">address</code></td>
+<td><code dir="auto">String</code></td>
+<td>Formatted street address.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td><code dir="auto">String!</code></td>
+<td>Display name.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="tip">Tip</h3><a class="sl-anchor-link" href="#tip"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Tip”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#icharge"><code dir="auto">ICharge</code></a>, <a href="/reference/graphql/core/#node"><code dir="auto">Node</code></a></p>
+<p>A fan’s tip to a performer, paid in the app.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">amount</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the performer gets.</td>
+</tr>
+<tr>
+<td><code dir="auto">createdAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime!</code></a></td>
+<td>When the record was created.</td>
+</tr>
+<tr>
+<td><code dir="auto">event</code></td>
+<td><a href="/reference/graphql/events/#event"><code dir="auto">Event</code></a></td>
+<td>The show it was for, if the app said.</td>
+</tr>
+<tr>
+<td><code dir="auto">fee</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The card fee the fan covered.</td>
+</tr>
+<tr>
+<td><code dir="auto">id</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">note</code></td>
+<td><code dir="auto">String</code></td>
+<td>Their note to the performer.</td>
+</tr>
+<tr>
+<td><code dir="auto">paidAt</code></td>
+<td><a href="/reference/graphql/chat/#iso8601datetime"><code dir="auto">ISO8601DateTime</code></a></td>
+<td>When it was paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">person</code></td>
+<td><a href="/reference/graphql/people/#person"><code dir="auto">Person!</code></a></td>
+<td>The performer.</td>
+</tr>
+<tr>
+<td><code dir="auto">status</code></td>
+<td><a href="/reference/graphql/cover/#tipstatus"><code dir="auto">TipStatus!</code></a></td>
+<td>Current payment status.</td>
+</tr>
+<tr>
+<td><code dir="auto">tipper</code></td>
+<td><a href="/reference/graphql/core/#profile"><code dir="auto">Profile</code></a></td>
+<td>The fan, for the performer and the console. Null when the account that tipped is gone.</td>
+</tr>
+<tr>
+<td><code dir="auto">tipperFirstName</code></td>
+<td><code dir="auto">String</code></td>
+<td>The fan’s first name, when they asked to show it with an App Clip tip (showFirstName) and have claimed it since. Null otherwise.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the fan paid.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="userstatecoverview">UserStateCoverView</h3><a class="sl-anchor-link" href="#userstatecoverview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “UserStateCoverView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#iuserstatecover"><code dir="auto">IUserStateCover</code></a></p>
+<p>The local Cover implementation of the cover module’s viewer state.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissions</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/cover/#admissionconnection"><code dir="auto">AdmissionConnection!</code></a></td>
+<td>The viewer’s cover passes in the audience, newest first (at most 100).</td>
+</tr>
+<tr>
+<td><code dir="auto">doorVenues</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/venues/#venueconnection"><code dir="auto">VenueConnection!</code></a></td>
+<td>Venues whose door the viewer can work, for the apps’ Door mode.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="venuecoverview">VenueCoverView</h3><a class="sl-anchor-link" href="#venuecoverview"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “VenueCoverView”</span></a></div>
+<p><em>Object</em> · implements <a href="/reference/graphql/cover/#ivenuecover"><code dir="auto">IVenueCover</code></a></p>
+<p>The local Cover implementation of a venue’s cover charge.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">canWorkDoor</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the viewer can scan passes: the audience’s admins and its listing managers.</td>
+</tr>
+<tr>
+<td><code dir="auto">cents</code></td>
+<td><code dir="auto">Int</code></td>
+<td>Its usual cover in cents, on the nights in days.</td>
+</tr>
+<tr>
+<td><code dir="auto">charge</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/cover/#covercharge"><code dir="auto">CoverCharge</code></a></td>
+<td>Tonight’s cover, or null when there is none (or an event tonight sells tickets instead).</td>
+</tr>
+<tr>
+<td><code dir="auto">coatCheck</code></td>
+<td><a href="/reference/graphql/cover/#coatcheck"><code dir="auto">CoatCheck</code></a></td>
+<td>The venue’s coat check service tonight, if offered.</td>
+</tr>
+<tr>
+<td><code dir="auto">days</code></td>
+<td><code dir="auto">[Int!]!</code></td>
+<td>The weekdays its cover applies, 0 for Sunday; empty for every night.</td>
+</tr>
+<tr>
+<td><code dir="auto">door</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/cover/#doornight"><code dir="auto">DoorNight</code></a></td>
+<td>Its door for a night: covers paid and scanned. Null unless canWorkDoor.</td>
+</tr>
+<tr>
+<td><code dir="auto">feePayer</code></td>
+<td><a href="/reference/graphql/cover/#coverfeepayer"><code dir="auto">CoverFeePayer!</code></a></td>
+<td>Who pays processing fees.</td>
+</tr>
+<tr>
+<td><code dir="auto">from</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When its cover starts.</td>
+</tr>
+<tr>
+<td><code dir="auto">nights</code></td>
+<td><a href="/reference/graphql/cover/#covernight"><code dir="auto">[CoverNight!]!</code></a></td>
+<td>Changes to its cover on nights from tonight on.</td>
+</tr>
+<tr>
+<td><code dir="auto">payable</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether its cover can be paid in the app. When false it is paid at the door, with no fees added, so feePayer does not apply.</td>
+</tr>
+<tr>
+<td><code dir="auto">paymentAccount</code><br/><code dir="auto">environment: PaymentEnvironment</code></td>
+<td><a href="/reference/graphql/cover/#paymentaccount"><code dir="auto">PaymentAccount</code></a></td>
+<td>The Stripe or Square account its covers are paid to. Admins and its listing managers only. <small>requires <code dir="auto">payments:read:mine</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">timeZone</code></td>
+<td><code dir="auto">String</code></td>
+<td>The IANA time zone its nights are counted in: its cover zone, else its locale’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">until</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When its cover ends.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerAdmission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission</code></a></td>
+<td>The signed-in user’s cover for tonight, paid or being paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerCoatCheck</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission</code></a></td>
+<td>The signed-in user’s coat check pass for tonight, paid or being paid.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="mutation-payloads">Mutation payloads</h2><a class="sl-anchor-link" href="#mutation-payloads"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mutation payloads”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="admissionrefundpayload">AdmissionRefundPayload</h3><a class="sl-anchor-link" href="#admissionrefundpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AdmissionRefundPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of AdmissionRefund.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission!</code></a></td>
+<td>The cover admission affected by this operation.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coatcheckbuypayload">CoatCheckBuyPayload</h3><a class="sl-anchor-link" href="#coatcheckbuypayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoatCheckBuyPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of CoatCheckBuy.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission!</code></a></td>
+<td>The coat check pass, pending until paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">paymentIntentClientSecret</code></td>
+<td><code dir="auto">String</code></td>
+<td>Stripe: for the payment sheet. Null once it’s paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">provider</code></td>
+<td><a href="/reference/graphql/cover/#paymentprovider"><code dir="auto">PaymentProvider!</code></a></td>
+<td>The provider serving this record.</td>
+</tr>
+<tr>
+<td><code dir="auto">publishableKey</code></td>
+<td><code dir="auto">String</code></td>
+<td>Stripe: the audience’s publishable key.</td>
+</tr>
+<tr>
+<td><code dir="auto">squareApplicationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Square: the audience’s application ID.</td>
+</tr>
+<tr>
+<td><code dir="auto">squareLocationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Square: the venue’s location that gets paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">stripeAccountId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Stripe: the venue’s account, for the payment sheet.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverbuypayload">CoverBuyPayload</h3><a class="sl-anchor-link" href="#coverbuypayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverBuyPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of CoverBuy.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission!</code></a></td>
+<td>The pass, pending until the payment succeeds.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">paymentIntentClientSecret</code></td>
+<td><code dir="auto">String</code></td>
+<td>Stripe: for the payment sheet. Null once it’s paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">provider</code></td>
+<td><a href="/reference/graphql/cover/#paymentprovider"><code dir="auto">PaymentProvider!</code></a></td>
+<td>The provider serving this record.</td>
+</tr>
+<tr>
+<td><code dir="auto">publishableKey</code></td>
+<td><code dir="auto">String</code></td>
+<td>Stripe: the audience’s publishable key.</td>
+</tr>
+<tr>
+<td><code dir="auto">squareApplicationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Square: the audience’s application ID.</td>
+</tr>
+<tr>
+<td><code dir="auto">squareLocationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Square: the venue’s location that gets paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">stripeAccountId</code></td>
+<td><code dir="auto">String</code></td>
+<td>Stripe: the venue’s account, for the payment sheet.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverconfirmpayload">CoverConfirmPayload</h3><a class="sl-anchor-link" href="#coverconfirmpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverConfirmPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of CoverConfirm.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission!</code></a></td>
+<td>The cover admission affected by this operation.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverpaypayload">CoverPayPayload</h3><a class="sl-anchor-link" href="#coverpaypayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverPayPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of CoverPay.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission!</code></a></td>
+<td>The cover admission affected by this operation.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="guestpurchasesclaimpayload">GuestPurchasesClaimPayload</h3><a class="sl-anchor-link" href="#guestpurchasesclaimpayload"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “GuestPurchasesClaimPayload”</span></a></div>
+<p><em>Object</em></p>
+<p>Autogenerated return type of GuestPurchasesClaim.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissions</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">[Admission!]!</code></a></td>
+<td>The covers now theirs.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">tips</code></td>
+<td><a href="/reference/graphql/cover/#tip"><code dir="auto">[Tip!]!</code></a></td>
+<td>The tips now theirs.</td>
+</tr>
+<tr>
+<td><code dir="auto">unclaimed</code></td>
+<td><a href="/reference/graphql/cover/#guestpurchaseunclaimed"><code dir="auto">[GuestPurchaseUnclaimed!]!</code></a></td>
+<td>The tokens that claimed nothing, and why.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="inputs">Inputs</h2><a class="sl-anchor-link" href="#inputs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Inputs”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="admissionrefundinput">AdmissionRefundInput</h3><a class="sl-anchor-link" href="#admissionrefundinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AdmissionRefundInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of AdmissionRefund</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissionId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The cover admission identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coatcheckbuyinput">CoatCheckBuyInput</h3><a class="sl-anchor-link" href="#coatcheckbuyinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoatCheckBuyInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of CoatCheckBuy</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">quantity</code></td>
+<td><code dir="auto">Int</code></td>
+<td>Number of coats to check.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue identifier.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverbuyinput">CoverBuyInput</h3><a class="sl-anchor-link" href="#coverbuyinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverBuyInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of CoverBuy</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">quantity</code></td>
+<td><code dir="auto">Int</code></td>
+<td>Number of covers to buy.</td>
+</tr>
+<tr>
+<td><code dir="auto">tier</code></td>
+<td><code dir="auto">String</code></td>
+<td>Optional cover tier to purchase.</td>
+</tr>
+<tr>
+<td><code dir="auto">venueId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The venue identifier.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverconfirminput">CoverConfirmInput</h3><a class="sl-anchor-link" href="#coverconfirminput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverConfirmInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of CoverConfirm</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissionId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The cover admission identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverpayinput">CoverPayInput</h3><a class="sl-anchor-link" href="#coverpayinput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverPayInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of CoverPay</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissionId</code></td>
+<td><code dir="auto">ID!</code></td>
+<td>The cover admission identifier.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+<tr>
+<td><code dir="auto">sourceId</code></td>
+<td><code dir="auto">String!</code></td>
+<td>The payment token (nonce) Square’s SDK made.</td>
+</tr>
+<tr>
+<td><code dir="auto">verificationToken</code></td>
+<td><code dir="auto">String</code></td>
+<td>From Square’s buyer verification, when the SDK asked for it.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="guestpurchasesclaiminput">GuestPurchasesClaimInput</h3><a class="sl-anchor-link" href="#guestpurchasesclaiminput"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “GuestPurchasesClaimInput”</span></a></div>
+<p><em>Input</em></p>
+<p>Autogenerated input type of GuestPurchasesClaim</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">claimTokens</code></td>
+<td><code dir="auto">[String!]!</code></td>
+<td>The claim tokens the App Clip kept, at most 20.</td>
+</tr>
+<tr>
+<td><code dir="auto">clientMutationId</code></td>
+<td><code dir="auto">String</code></td>
+<td>A unique identifier for the client performing the mutation.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="interfaces">Interfaces</h2><a class="sl-anchor-link" href="#interfaces"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Interfaces”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="iadmissionoffer">IAdmissionOffer</h3><a class="sl-anchor-link" href="#iadmissionoffer"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IAdmissionOffer”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/cover/#covercharge"><code dir="auto">CoverCharge</code></a>, <a href="/reference/graphql/core/#eventlisting"><code dir="auto">EventListing</code></a></p>
+<p>A way into an event or a venue night, from whoever sells it: tickets on a partner or the cover AudienceKit takes.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">price</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money</code></a></td>
+<td>What it costs the buyer, all in (the lowest price for tickets). Null when the seller does not say.</td>
+</tr>
+<tr>
+<td><code dir="auto">seller</code></td>
+<td><a href="/reference/graphql/chat/#iprovider"><code dir="auto">IProvider!</code></a></td>
+<td>Who sells it: a ticketing partner, or AudienceKit itself.</td>
+</tr>
+<tr>
+<td><code dir="auto">url</code></td>
+<td><code dir="auto">String</code></td>
+<td>Where to buy it on the web. Null when it’s bought in the app (buyCover) or at the door.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="icharge">ICharge</h3><a class="sl-anchor-link" href="#icharge"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ICharge”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/cover/#admission"><code dir="auto">Admission</code></a>, <a href="/reference/graphql/cover/#coatcheck"><code dir="auto">CoatCheck</code></a>, <a href="/reference/graphql/cover/#covercharge"><code dir="auto">CoverCharge</code></a>, <a href="/reference/graphql/cover/#tip"><code dir="auto">Tip</code></a>, <a href="/reference/graphql/tipping/#tipquote"><code dir="auto">TipQuote</code></a></p>
+<p>What a payment comes to: the amount its recipient gets, the fee on top, and the total the buyer pays.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">amount</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the venue or performer receives.</td>
+</tr>
+<tr>
+<td><code dir="auto">fee</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>The fee on top of the amount.</td>
+</tr>
+<tr>
+<td><code dir="auto">total</code></td>
+<td><a href="/reference/graphql/cover/#money"><code dir="auto">Money!</code></a></td>
+<td>What the buyer pays, all in.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ieventcover">IEventCover</h3><a class="sl-anchor-link" href="#ieventcover"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IEventCover”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/cover/#eventcoverview"><code dir="auto">EventCoverView</code></a> · mixin edge <code dir="auto">cover</code> on <a href="/reference/graphql/ticketing/#eventtickets"><code dir="auto">EventTickets</code></a></p>
+<p>An event’s cover, inside its tickets (Event.tickets { cover }): its own for the
+night, or its venue’s. Its charge is also one of tickets.offers.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">cents</code></td>
+<td><code dir="auto">Int</code></td>
+<td>The cover that night instead of the venue’s, in cents: 0 for none, null for the venue’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">charge</code></td>
+<td><a href="/reference/graphql/cover/#covercharge"><code dir="auto">CoverCharge</code></a></td>
+<td>The cover at its venue that night. Null when there’s none, or when it sells tickets (tickets.url).</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="iuserstatecover">IUserStateCover</h3><a class="sl-anchor-link" href="#iuserstatecover"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IUserStateCover”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/cover/#userstatecoverview"><code dir="auto">UserStateCoverView</code></a> · mixin edge <code dir="auto">cover</code> on <a href="/reference/graphql/core/#userstate"><code dir="auto">UserState</code></a></p>
+<p>The cover module’s viewer state: the viewer’s cover passes and the doors they work.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">admissions</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/cover/#admissionconnection"><code dir="auto">AdmissionConnection!</code></a></td>
+<td>The viewer’s cover passes in the audience, newest first (at most 100).</td>
+</tr>
+<tr>
+<td><code dir="auto">doorVenues</code><br/><code dir="auto">after: String</code><br/><code dir="auto">before: String</code><br/><code dir="auto">first: Int</code><br/><code dir="auto">last: Int</code></td>
+<td><a href="/reference/graphql/venues/#venueconnection"><code dir="auto">VenueConnection!</code></a></td>
+<td>Venues whose door the viewer can work, for the apps’ Door mode.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ivenuecover">IVenueCover</h3><a class="sl-anchor-link" href="#ivenuecover"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “IVenueCover”</span></a></div>
+<p><em>Interface</em> · implemented by <a href="/reference/graphql/cover/#venuecoverview"><code dir="auto">VenueCoverView</code></a> · mixin edge <code dir="auto">cover</code> on <a href="/reference/graphql/ticketing/#venuetickets"><code dir="auto">VenueTickets</code></a></p>
+<p>A venue’s cover charge, inside its tickets (Venue.tickets { cover }): what it
+usually charges and when, changes on coming nights, and its door. Its charge for
+a night is also one of tickets.offers.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">canWorkDoor</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether the viewer can scan passes: the audience’s admins and its listing managers.</td>
+</tr>
+<tr>
+<td><code dir="auto">cents</code></td>
+<td><code dir="auto">Int</code></td>
+<td>Its usual cover in cents, on the nights in days.</td>
+</tr>
+<tr>
+<td><code dir="auto">charge</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/cover/#covercharge"><code dir="auto">CoverCharge</code></a></td>
+<td>Tonight’s cover, or null when there is none (or an event tonight sells tickets instead).</td>
+</tr>
+<tr>
+<td><code dir="auto">coatCheck</code></td>
+<td><a href="/reference/graphql/cover/#coatcheck"><code dir="auto">CoatCheck</code></a></td>
+<td>The venue’s coat check service tonight, if offered.</td>
+</tr>
+<tr>
+<td><code dir="auto">days</code></td>
+<td><code dir="auto">[Int!]!</code></td>
+<td>The weekdays its cover applies, 0 for Sunday; empty for every night.</td>
+</tr>
+<tr>
+<td><code dir="auto">door</code><br/><code dir="auto">night: ISO8601Date</code></td>
+<td><a href="/reference/graphql/cover/#doornight"><code dir="auto">DoorNight</code></a></td>
+<td>Its door for a night: covers paid and scanned. Null unless canWorkDoor.</td>
+</tr>
+<tr>
+<td><code dir="auto">feePayer</code></td>
+<td><a href="/reference/graphql/cover/#coverfeepayer"><code dir="auto">CoverFeePayer!</code></a></td>
+<td>Who pays processing fees.</td>
+</tr>
+<tr>
+<td><code dir="auto">from</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When its cover starts.</td>
+</tr>
+<tr>
+<td><code dir="auto">nights</code></td>
+<td><a href="/reference/graphql/cover/#covernight"><code dir="auto">[CoverNight!]!</code></a></td>
+<td>Changes to its cover on nights from tonight on.</td>
+</tr>
+<tr>
+<td><code dir="auto">payable</code></td>
+<td><code dir="auto">Boolean!</code></td>
+<td>Whether its cover can be paid in the app. When false it is paid at the door, with no fees added, so feePayer does not apply.</td>
+</tr>
+<tr>
+<td><code dir="auto">paymentAccount</code><br/><code dir="auto">environment: PaymentEnvironment</code></td>
+<td><a href="/reference/graphql/cover/#paymentaccount"><code dir="auto">PaymentAccount</code></a></td>
+<td>The Stripe or Square account its covers are paid to. Admins and its listing managers only. <small>requires <code dir="auto">payments:read:mine</code></small></td>
+</tr>
+<tr>
+<td><code dir="auto">timeZone</code></td>
+<td><code dir="auto">String</code></td>
+<td>The IANA time zone its nights are counted in: its cover zone, else its locale’s.</td>
+</tr>
+<tr>
+<td><code dir="auto">until</code></td>
+<td><a href="/reference/graphql/cover/#timeofday"><code dir="auto">TimeOfDay</code></a></td>
+<td>When its cover ends.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerAdmission</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission</code></a></td>
+<td>The signed-in user’s cover for tonight, paid or being paid.</td>
+</tr>
+<tr>
+<td><code dir="auto">viewerCoatCheck</code></td>
+<td><a href="/reference/graphql/cover/#admission"><code dir="auto">Admission</code></a></td>
+<td>The signed-in user’s coat check pass for tonight, paid or being paid.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="enums">Enums</h2><a class="sl-anchor-link" href="#enums"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Enums”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="admissionkindenum">AdmissionKindEnum</h3><a class="sl-anchor-link" href="#admissionkindenum"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AdmissionKindEnum”</span></a></div>
+<p><em>Enum</em></p>
+<p>The kind of admission or service pass.</p>
+<ul>
+<li><code dir="auto">COAT_CHECK</code> A coat check claim ticket pass.</li>
+<li><code dir="auto">COVER</code> A cover pass to enter the venue.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="admissionstatus">AdmissionStatus</h3><a class="sl-anchor-link" href="#admissionstatus"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AdmissionStatus”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where a cover payment stands.</p>
+<ul>
+<li><code dir="auto">CANCELED</code> The payment was abandoned.</li>
+<li><code dir="auto">DISPUTED</code> The buyer disputed the charge with their bank.</li>
+<li><code dir="auto">FAILED</code> The payment was declined.</li>
+<li><code dir="auto">PAID</code> Paid: the pass works.</li>
+<li><code dir="auto">PENDING</code> Paying in the app has started but not finished.</li>
+<li><code dir="auto">REFUNDED</code> The money went back; the pass no longer works.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="coverfeepayer">CoverFeePayer</h3><a class="sl-anchor-link" href="#coverfeepayer"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CoverFeePayer”</span></a></div>
+<p><em>Enum</em></p>
+<p>Who pays the card fee and the Hot Mess fee on a cover.</p>
+<ul>
+<li><code dir="auto">BUYER</code> Added to the price, so the venue receives the full cover.</li>
+<li><code dir="auto">VENUE</code> Taken from the cover, so the buyer pays the round price.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="guestclaimreason">GuestClaimReason</h3><a class="sl-anchor-link" href="#guestclaimreason"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “GuestClaimReason”</span></a></div>
+<p><em>Enum</em></p>
+<p>Why a guest purchase’s claim token claimed nothing (claimGuestPurchases).</p>
+<ul>
+<li><code dir="auto">ALREADY_HAS_COVER</code> They already hold a cover at that venue that night. The guest pass still works in the App Clip with its token.</li>
+<li><code dir="auto">NOT_FOUND</code> No unclaimed cover or tip in this audience has that token: it is unknown, already claimed, or another audience’s.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="paymentenvironment">PaymentEnvironment</h3><a class="sl-anchor-link" href="#paymentenvironment"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PaymentEnvironment”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where a payment is taken: production, or Square’s sandbox, which staging builds pay in.</p>
+<ul>
+<li><code dir="auto">PRODUCTION</code> Real payments.</li>
+<li><code dir="auto">SANDBOX</code> Square’s sandbox: test cards, no money moves.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="paymentprovider">PaymentProvider</h3><a class="sl-anchor-link" href="#paymentprovider"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “PaymentProvider”</span></a></div>
+<p><em>Enum</em></p>
+<p>Who takes a payment.</p>
+<ul>
+<li><code dir="auto">SQUARE</code> Square; the apps pay with Square’s In-App Payments SDK.</li>
+<li><code dir="auto">STRIPE</code> Stripe Connect; the apps pay with Stripe’s payment sheet.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="tipstatus">TipStatus</h3><a class="sl-anchor-link" href="#tipstatus"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TipStatus”</span></a></div>
+<p><em>Enum</em></p>
+<p>Where an in-app tip stands.</p>
+<ul>
+<li><code dir="auto">CANCELED</code> The payment was abandoned.</li>
+<li><code dir="auto">DISPUTED</code> The fan disputed the charge with their bank.</li>
+<li><code dir="auto">FAILED</code> The payment was declined.</li>
+<li><code dir="auto">PAID</code> Paid to the performer.</li>
+<li><code dir="auto">PENDING</code> Paying in the app has started but not finished.</li>
+<li><code dir="auto">REFUNDED</code> The money went back to the fan.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="scalars">Scalars</h2><a class="sl-anchor-link" href="#scalars"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scalars”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="iso8601date">ISO8601Date</h3><a class="sl-anchor-link" href="#iso8601date"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ISO8601Date”</span></a></div>
+<p><em>Scalar</em></p>
+<p>An ISO 8601-encoded date</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="timeofday">TimeOfDay</h3><a class="sl-anchor-link" href="#timeofday"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “TimeOfDay”</span></a></div>
+<p><em>Scalar</em></p>
+<p>A time of day on a 24-hour clock, as HH:MM (e.g. “21:00”, “02:30”), local to the
+time zone of the venue or locale it belongs to. An empty string means no time, like null.</p>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>
