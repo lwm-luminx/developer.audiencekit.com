@@ -28,7 +28,8 @@ function newRelicHead() {
 	if (!snippet.includes('cookies_enabled:false') || !snippet.includes('obfuscate:[')) {
 		throw new Error('new-relic-browser.html lost its filtering: restore the NREUM.init line');
 	}
-	const script = snippet.replace(/^\s*<script[^>]*>/, '').replace(/<\/script>\s*$/, '');
+	// The file is New Relic's one script element: take what is between its opening tag and its closing tag.
+	const script = snippet.slice(snippet.indexOf('>') + 1, snippet.lastIndexOf('</script>'));
 	return [{ tag: /** @type {const} */ ('script'), content: script.replaceAll('__NR_APPLICATION_ID__', NEW_RELIC_APPLICATION_ID) }];
 }
 
