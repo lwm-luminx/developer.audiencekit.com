@@ -483,6 +483,27 @@
             "null"
           ]
         },
+        "playlist_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "What the night plays, e.g. https://open.spotify.com/playlist/<id>."
+        },
+        "playlist_shuffle": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Play the playlist shuffled (default true)."
+        },
+        "karaoke_provider": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Make each date a karaoke night using this provider over the venue's, e.g. sing_along (the playlist with lyrics on screen)."
+        },
         "organizers": {
           "type": [
             "array",
@@ -840,6 +861,15 @@
           "items": {
             "$ref": "#/$defs/person_entry"
           }
+        },
+        "credits": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/credit_entry"
+          }
         }
       },
       "unevaluatedProperties": false
@@ -1109,6 +1139,51 @@
                 "string",
                 "null"
               ]
+            },
+            "articles": {
+              "description": "Articles to add to its publication, each a link-out to the piece on its site, e.g. a guide. Skipped when it has one with the same title. A pending publication's wait for the audience's admins.",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "object",
+                "required": [
+                  "title"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "kind": {
+                    "enum": [
+                      "article",
+                      "guide",
+                      null
+                    ]
+                  },
+                  "url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "summary": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "published_at": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
             }
           },
           "additionalProperties": false
@@ -1443,6 +1518,33 @@
           "items": {
             "$ref": "#/$defs/division_entry"
           }
+        },
+        "super_locales": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Super locales grouping divisions (doc/LOCALE_HIERARCHY.md): a metro locale, by label or division_id, and the division_ids it groups. A locale is in at most one.",
+          "items": {
+            "type": "object",
+            "required": [
+              "locale",
+              "members"
+            ],
+            "properties": {
+              "locale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
         }
       },
       "unevaluatedProperties": false
@@ -1503,6 +1605,94 @@
             "null"
           ],
           "description": "GeoJSON Polygon or MultiPolygon."
+        },
+        "boundary_source": {
+          "enum": [
+            "tiger",
+            "statcan",
+            "osm",
+            "overture",
+            "manual",
+            null
+          ],
+          "description": "Where its outline came from."
+        },
+        "boundary_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The source's id for the outline, e.g. a TIGER GEOID."
+        },
+        "boundary_vintage": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The source's edition, e.g. TIGER/Line 2025."
+        }
+      },
+      "additionalProperties": false
+    },
+    "credit_entry": {
+      "title": "A credit (doc/CREDITS.md): a persona, by name, credited as a role on an article (by title) or a locale (by name). Hidden until its publisher onboards.",
+      "type": "object",
+      "required": [
+        "role",
+        "person"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "original_source",
+            "author",
+            "republisher",
+            "photographer",
+            "data_provider"
+          ]
+        },
+        "person": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A persona added by this file or already in the audience, by name."
+        },
+        "article": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "derived_from": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "For a republisher: the credit it republished, on the same thing.",
+          "required": [
+            "role",
+            "person"
+          ],
+          "properties": {
+            "role": {
+              "type": "string"
+            },
+            "person": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "additionalProperties": false
