@@ -264,6 +264,12 @@
             "null"
           ]
         },
+        "mixcloud": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "spotify": {
           "type": [
             "string",
@@ -275,6 +281,19 @@
             "string",
             "null"
           ]
+        },
+        "apple_podcasts": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "podcast_rss": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "An HTTPS podcast RSS feed URL."
         }
       }
     },
