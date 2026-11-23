@@ -523,6 +523,10 @@
           ],
           "description": "Make each date a karaoke night using this provider over the venue's, e.g. sing_along (the playlist with lyrics on screen)."
         },
+        "parent": {
+          "type": ["string", "null"],
+          "description": "The super-event it is part of (a bar's party during a Pride festival): another listing's slug in this file, or source:slug for one an earlier file imported. Each date joins the parent's occurrence it falls in."
+        },
         "organizers": {
           "type": [
             "array",
