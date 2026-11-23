@@ -1,0 +1,1724 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.audiencekit.com/schemas/listings-import/v1.json",
+  "title": "AudienceKit listings import file",
+  "description": "A listings file for Curate › Imports, POST /v1/research/imports or the MCP upload_listings tool (ListingImport). Its kind comes from `kind`, else from its shape: `events` = calendar, `locales` = locales, `divisions` = divisions, else people, socials or social_proposals by their entries. Every object refuses fields the importer doesn't read, except the reviewer fields each one lists (notes, confidence, evidence...), which are kept in the file but ignored on import. Validate against this before uploading: the server checks the same schema and refuses a file that doesn't match.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "This schema's URL, so editors and tools validate the file."
+    },
+    "kind": {
+      "enum": [
+        "calendar",
+        "locales",
+        "people",
+        "socials",
+        "social_proposals",
+        "divisions"
+      ],
+      "description": "What the file is. Recommended on every new file; without it the kind is guessed from the file's shape."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "calendar"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/calendar_file"
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "locales"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/locales_file"
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "people"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/people_file"
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "socials"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/socials_file"
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "social_proposals"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/social_proposals_file"
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "divisions"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/divisions_file"
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "required": [
+            "kind"
+          ]
+        }
+      },
+      "then": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/calendar_file"
+          },
+          {
+            "$ref": "#/$defs/locales_file"
+          },
+          {
+            "$ref": "#/$defs/divisions_file"
+          },
+          {
+            "$ref": "#/$defs/people_file"
+          },
+          {
+            "$ref": "#/$defs/socials_file"
+          },
+          {
+            "$ref": "#/$defs/social_proposals_file"
+          }
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "time_zone": {
+      "type": "string",
+      "description": "An IANA time zone, e.g. America/Denver.",
+      "pattern": "^[A-Za-z_]+(/[A-Za-z0-9_+-]+)*$"
+    },
+    "date_time": {
+      "type": "string",
+      "description": "ISO 8601 date and time with its UTC offset, e.g. 2026-11-23T21:00:00-07:00.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2})?([+-]\\d{2}:\\d{2}|Z)$"
+    },
+    "confidence": {
+      "description": "How sure the research is. Locales venues: high, medium or low (stored as 0.9/0.7/0.5). Elsewhere a note for the reviewer.",
+      "type": "string"
+    },
+    "note": {
+      "type": "string",
+      "description": "A note for the person reviewing the file; ignored on import."
+    },
+    "header": {
+      "description": "Top-level fields every file may have.",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "description": "Where the file comes from. Calendar files: a key ([a-z0-9-]) that prefixes every event's and venue's external key, so keep it the same across re-runs. Locales files: prefixes venue keys and is written on the research batch."
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "about": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Who or what researched it (written on the research batch)."
+        }
+      }
+    },
+    "social_links": {
+      "description": "Social profiles as handles or profile URLs.",
+      "properties": {
+        "instagram": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "facebook": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tiktok": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "x": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "threads": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bluesky": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "youtube": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "soundcloud": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mixcloud": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "spotify": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "apple_music": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "apple_podcasts": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "podcast_rss": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "An HTTPS podcast RSS feed URL."
+        }
+      }
+    },
+    "calendar_file": {
+      "title": "calendar: dated events at venues (CalendarSiteImport)",
+      "type": "object",
+      "required": [
+        "source",
+        "regions",
+        "events"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "calendar"
+        },
+        "source": {
+          "$ref": "#/$defs/key"
+        },
+        "regions": {
+          "type": "object",
+          "description": "Maps each event's and venue's `region` to a locale the audience already has, by its label (else its name, ignoring case). A venue Google places inside a locale's area files there instead.",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "minProperties": 1
+        },
+        "horizon_days": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "description": "How far ahead to list (default 60). Occurrences further out wait for a later run."
+        },
+        "max_days": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "description": "How many days one listing may run (default 1); longer `end`s are dropped."
+        },
+        "tba_events": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "List events whose venue is to be announced in their region's locale, without a venue."
+        },
+        "venues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/calendar_venue"
+          }
+        },
+        "events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/calendar_event"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "calendar_venue": {
+      "type": "object",
+      "description": "A venue the events name by `venue_slug`. Matched to the audience's venue at the same Google place (from name + address), else its venue of the same name in the region's locale, else added as a new public venue.",
+      "required": [
+        "slug",
+        "name"
+      ],
+      "properties": {
+        "slug": {
+          "$ref": "#/$defs/key"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Street address; without it Google isn't asked and only a same-name match works."
+        },
+        "region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "website": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Where the venue was found."
+        },
+        "hidden": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Add it hidden (a conference centre): its events list, it doesn't."
+        }
+      },
+      "additionalProperties": false
+    },
+    "calendar_event": {
+      "type": "object",
+      "description": "One listing. Each date in `all_dates` (else `start`) within the horizon becomes one event, keyed source:slug:date, so re-runs refresh rather than duplicate. Recurring nights must be expanded into `all_dates`; `rrule` is kept for reviewers only.",
+      "required": [
+        "slug",
+        "title",
+        "region",
+        "start"
+      ],
+      "properties": {
+        "slug": {
+          "$ref": "#/$defs/key"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "type": "string",
+          "description": "A key of the file's `regions`."
+        },
+        "venue_slug": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/key"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "venue_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The venue when it isn't in `venues`; TBA/TBD/secret marks it to be announced."
+        },
+        "venue_address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "start": {
+          "$ref": "#/$defs/date_time"
+        },
+        "end": {
+          "description": "End of the first occurrence; every occurrence keeps the same length.",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/date_time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "all_dates": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/date_time"
+          },
+          "description": "Start of every occurrence."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The listing's page, kept as the event's source link."
+        },
+        "ticket_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "playlist_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "What the night plays, e.g. https://open.spotify.com/playlist/<id>."
+        },
+        "playlist_shuffle": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Play the playlist shuffled (default true)."
+        },
+        "karaoke_provider": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Make each date a karaoke night using this provider over the venue's, e.g. sing_along (the playlist with lyrics on screen)."
+        },
+        "parent": {
+          "type": ["string", "null"],
+          "description": "The super-event it is part of (a bar's party during a Pride festival): another listing's slug in this file, or source:slug for one an earlier file imported. Each date joins the parent's occurrence it falls in."
+        },
+        "organizers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "People already on the audience's People who present it."
+        },
+        "rrule": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reviewer note: the recurrence the dates came from."
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "tentative",
+            null
+          ],
+          "description": "Reviewer note: tentative = a pattern or old listing, not confirmed for these dates."
+        },
+        "source": {
+          "type": "string",
+          "description": "Reviewer note: the kind of source."
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/confidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "locales_file": {
+      "title": "locales: locales and their venues (ResearchedLocalesImport)",
+      "type": "object",
+      "required": [
+        "source",
+        "locales"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "locales"
+        },
+        "locales": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/locale_entry"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "locale_entry": {
+      "type": "object",
+      "description": "A locale, found by its label (parameterized) or created, with its venues. Only entries with include: true are imported. With existing: true it only adds venues to a locale the audience already has (by label or name) and never creates one.",
+      "required": [
+        "name",
+        "include"
+      ],
+      "properties": {
+        "include": {
+          "type": "boolean",
+          "description": "Required: entries without include: true are skipped silently."
+        },
+        "existing": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The locale's key, e.g. missoula. Required unless existing. Pick one that can't clash with a same-named city elsewhere (birmingham-uk)."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "State or region, used with the name to find the city's Google place."
+        },
+        "time_zone": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/time_zone"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "city_names": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Towns it covers (default: its name)."
+        },
+        "kind": {
+          "enum": [
+            "metro",
+            "country",
+            "state",
+            "territory",
+            "county",
+            "city",
+            "neighborhood",
+            "congressional_district",
+            "state_senate_district",
+            "state_house_district",
+            "ward",
+            "precinct"
+          ]
+        },
+        "division_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Open Civic Data division ID."
+        },
+        "parent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Label of a locale earlier in the file or already in the audience; missing = filed at the top level (row no_parent)."
+        },
+        "venues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/locale_venue"
+          }
+        },
+        "center": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "lat": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "lng": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "description": "Reviewer note; the importer uses Google's place."
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reviewer note."
+        },
+        "region_group": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reviewer note."
+        },
+        "liquor_jurisdiction": {
+          "description": "Reviewer note; liquor rules import separately."
+        }
+      },
+      "if": {
+        "not": {
+          "required": [
+            "existing"
+          ],
+          "properties": {
+            "existing": {
+              "const": true
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "label"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "locale_venue": {
+      "type": "object",
+      "description": "A venue, looked up on Google by name + address (place, coordinates and address come from Google). Skipped when Google finds nothing or lists it permanently closed. Matched to the audience's venue by key, else Google place (which moves it into this locale).",
+      "required": [
+        "name",
+        "address"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": "string",
+          "minLength": 1
+        },
+        "website": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            null
+          ]
+        },
+        "evidence_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Kept as the venue's source URL."
+        },
+        "kind": {
+          "type": "string",
+          "description": "What it is (gay bar, karaoke bar, arts center), kept in provenance."
+        },
+        "note": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reviewer note; Google fills the phone."
+        },
+        "hours": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reviewer note; Google fills the hours."
+        }
+      },
+      "additionalProperties": false
+    },
+    "people_file": {
+      "title": "people: talent, organizations, committees, officeholders, publishers (ResearchedPeopleImport)",
+      "type": "object",
+      "required": [
+        "people"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "people"
+        },
+        "publication_trust": {
+          "enum": [
+            "pending",
+            "trusted",
+            "suspended",
+            null
+          ]
+        },
+        "read_feeds": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "people": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/person_entry"
+          }
+        },
+        "credits": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/credit_entry"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "person_entry": {
+      "type": "object",
+      "description": "Someone for People, matched by name (theirs, their Page's or its override, ignoring case); anyone already there is left as is.",
+      "required": [
+        "name"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/social_links"
+        }
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "talent",
+            "organization",
+            "committee"
+          ]
+        },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Locales to feature them in, by name or label."
+        },
+        "website": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "members": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "division_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "office": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "chamber": {
+          "enum": [
+            "house",
+            "senate",
+            null
+          ]
+        },
+        "office_kind": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "office_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "party": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "caucus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "term_start": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "term_end": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "election_date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bioguide_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fec_candidate_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "photo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visibility": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visibility_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "identifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "value"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "issuer": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "jurisdiction": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source": {}
+            },
+            "additionalProperties": false
+          }
+        },
+        "donation_targets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "required": [
+              "recipient_kind",
+              "provider",
+              "url"
+            ],
+            "properties": {
+              "recipient_kind": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "recipient_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "disclaimer": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "identifier": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "publication": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "masthead": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "about": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "website_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "editorial_email": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "feed_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "locale": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "articles": {
+              "description": "Articles to add to its publication, each a link-out to the piece on its site, e.g. a guide. Skipped when it has one with the same title. A pending publication's wait for the audience's admins.",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "object",
+                "required": [
+                  "title"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "kind": {
+                    "enum": [
+                      "article",
+                      "guide",
+                      null
+                    ]
+                  },
+                  "url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "summary": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "published_at": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "source": {
+          "description": "Reviewer note."
+        },
+        "confidence": {
+          "description": "Reviewer note."
+        },
+        "note": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "home": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notable": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tier": {},
+        "scope": {},
+        "medium": {},
+        "official_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "committee_group": {},
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state_division_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "district": {},
+        "at_large": {},
+        "senate_class": {},
+        "state_rank": {},
+        "serving_since": {},
+        "contact_form": {},
+        "phone": {},
+        "dc_office": {},
+        "campaign_website": {},
+        "donate_url": {},
+        "volunteer_url": {}
+      },
+      "unevaluatedProperties": false
+    },
+    "socials_file": {
+      "title": "socials: fill in social profiles on people, venues and events (ResearchedSocialsImport)",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "people"
+          ]
+        },
+        {
+          "required": [
+            "venues"
+          ]
+        },
+        {
+          "required": [
+            "events"
+          ]
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "socials"
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/socials_entry"
+          }
+        },
+        "venues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/socials_entry"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/socials_entry"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "socials_entry": {
+      "type": "object",
+      "description": "A person, venue (narrowed by `locale`) or event by name; only networks it has no link on yet are filled.",
+      "required": [
+        "name"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/social_links"
+        }
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "website": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "linktree": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discord": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "matrix": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "irc": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mailing_list": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "remove": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "{ provider: handle } links to take off while they still hold that handle."
+        },
+        "note": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "not": {
+        "required": [
+          "candidates"
+        ]
+      },
+      "unevaluatedProperties": false
+    },
+    "social_proposals_file": {
+      "title": "social_proposals: social profiles to propose for review (SocialLinkProposals)",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "people"
+          ]
+        },
+        {
+          "required": [
+            "venues"
+          ]
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "social_proposals"
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/proposal_entry"
+          }
+        },
+        "venues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/proposal_entry"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "proposal_entry": {
+      "type": "object",
+      "required": [
+        "name",
+        "candidates"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Network (default instagram)."
+        },
+        "candidates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "description": "Handles found, likeliest first."
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Why it's unsure; shown to the reviewer."
+        }
+      },
+      "additionalProperties": false
+    },
+    "divisions_file": {
+      "title": "divisions: official divisions as nested locales (DivisionsImport)",
+      "type": "object",
+      "required": [
+        "divisions"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "divisions"
+        },
+        "divisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/division_entry"
+          }
+        },
+        "super_locales": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Super locales grouping divisions (doc/LOCALE_HIERARCHY.md): a metro locale, by label or division_id, and the division_ids it groups. A locale is in at most one.",
+          "items": {
+            "type": "object",
+            "required": [
+              "locale",
+              "members"
+            ],
+            "properties": {
+              "locale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "division_entry": {
+      "type": "object",
+      "description": "Found by division_id, else label. Parents come before children.",
+      "required": [
+        "division_id",
+        "name"
+      ],
+      "properties": {
+        "division_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The parent's division_id."
+        },
+        "time_zone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city_names": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "boundary": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "GeoJSON Polygon or MultiPolygon."
+        },
+        "boundary_source": {
+          "enum": [
+            "tiger",
+            "statcan",
+            "osm",
+            "overture",
+            "manual",
+            null
+          ],
+          "description": "Where its outline came from."
+        },
+        "boundary_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The source's id for the outline, e.g. a TIGER GEOID."
+        },
+        "boundary_vintage": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The source's edition, e.g. TIGER/Line 2025."
+        }
+      },
+      "additionalProperties": false
+    },
+    "credit_entry": {
+      "title": "A credit (doc/CREDITS.md): a persona, by name, credited as a role on an article (by title) or a locale (by name). Hidden until its publisher onboards.",
+      "type": "object",
+      "required": [
+        "role",
+        "person"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "original_source",
+            "author",
+            "republisher",
+            "photographer",
+            "data_provider"
+          ]
+        },
+        "person": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A persona added by this file or already in the audience, by name."
+        },
+        "article": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "derived_from": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "For a republisher: the credit it republished, on the same thing.",
+          "required": [
+            "role",
+            "person"
+          ],
+          "properties": {
+            "role": {
+              "type": "string"
+            },
+            "person": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
