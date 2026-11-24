@@ -16,3 +16,13 @@
   Access-Control-Allow-Origin: *
 /schemas/*
   Access-Control-Allow-Origin: *
+
+# Workers static assets don't know the .graphql extension and send no Content-Type for the schema dumps.
+/graphql/schema.graphql
+  Content-Type: text/plain; charset=utf-8
+/graphql/staff_schema.graphql
+  Content-Type: text/plain; charset=utf-8
+/graphql/next/schema.graphql
+  Content-Type: text/plain; charset=utf-8
+/graphql/next/staff_schema.graphql
+  Content-Type: text/plain; charset=utf-8
