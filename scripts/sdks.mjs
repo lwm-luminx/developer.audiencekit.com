@@ -40,7 +40,12 @@ const SDKS = [
 			// The server and scripting clients, each versioned on its own in the same repository.
 			'node/README.md': { slug: 'node', label: 'Node and TypeScript', order: 1, description: 'The audience-kit npm package: a typed Node 20+ client for the consumer GraphQL API.' },
 			'python/README.md': { slug: 'python', label: 'Python', order: 2, description: 'The audiencekit package for Python 3.10+, with blocking and asyncio clients.' },
-			'php/README.md': { slug: 'php', label: 'PHP', order: 3, description: 'audiencekit/audiencekit for PHP 8.1+, over any PSR-18 HTTP client.' },
+			'php/README.md': { slug: 'php', label: 'Overview', order: 3, description: 'audiencekit/audiencekit for PHP 8.1+, over any PSR-18 HTTP client.' },
+			// The PHP SDK's guides and reference, in their own sidebar group under the overview. `optional` pages are
+			// skipped when the checkout doesn't have them yet (a site build ahead of the SDK's main).
+			'php/docs/sign-in.md': { slug: 'php/sign-in', label: 'Signing people in', order: 1, optional: true, description: 'Facebook, Google, Apple and App Review sign-in on a PHP website, keeping the session in PHP\'s session.' },
+			'php/docs/websites.md': { slug: 'php/websites', label: 'Building a website', order: 2, optional: true, description: 'Service tokens, public listings, the community, news, calendars and cover passes on a PHP site or WordPress plugin.' },
+			'php/docs/reference.md': { slug: 'php/reference', label: 'Reference', order: 3, optional: true, description: 'Every call, model and helper in the PHP SDK.' },
 			'rust/README.md': { slug: 'rust', label: 'Rust', order: 4, description: 'The audiencekit crate, async on tokio and reqwest.' },
 			'node/CHANGELOG.md': { slug: 'changelog/node', label: 'Node', order: 3, description: 'Every release of the Node SDK.' },
 			'python/CHANGELOG.md': { slug: 'changelog/python', label: 'Python', order: 4, description: 'Every release of the Python SDK.' },
@@ -148,6 +153,10 @@ for (const sdk of SDKS) {
 	const version = readFileSync(join(source, 'VERSION'), 'utf8').trim();
 	versions[sdk.key] = version;
 	for (const [from, page] of Object.entries(sdk.pages)) {
+		if (page.optional && !existsSync(join(source, from))) {
+			console.log(`${sdk.name}: ${from} isn't in this checkout yet, so /sdks/${page.slug}/ is left out`);
+			continue;
+		}
 		let body = readFileSync(join(source, from), 'utf8');
 		const h1 = body.match(/^# (.+)\n+/);
 		const title = h1 ? h1[1] : page.label;

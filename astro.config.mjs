@@ -83,7 +83,7 @@ export default defineConfig({
 						{ label: 'Android (Kotlin)', items: [{ autogenerate: { directory: 'sdks/kotlin' } }] },
 						{
 							label: 'Servers and scripts',
-							items: [{ slug: 'sdks/node' }, { slug: 'sdks/python' }, { slug: 'sdks/php' }, { slug: 'sdks/rust' }, { slug: 'sdks/ruby' }],
+							items: [{ slug: 'sdks/node' }, { slug: 'sdks/python' }, { label: 'PHP', items: [{ slug: 'sdks/php' }, { autogenerate: { directory: 'sdks/php' } }] }, { slug: 'sdks/rust' }, { slug: 'sdks/ruby' }],
 						},
 						{ label: 'Changelogs', collapsed: true, items: [{ autogenerate: { directory: 'sdks/changelog' } }] },
 					],
