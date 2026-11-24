@@ -26,7 +26,7 @@ require "audience-kit"
 Audience::Kit.configure do |c|
   c.token = ENV["AUDIENCE_KIT_TOKEN"]        # sent as "Authorization: Bearer <token>"
   c.audience_id = ENV["AUDIENCE_KIT_AUDIENCE_ID"]
-  c.base_url = "https://api.audiencekit.io"  # the default
+  c.base_url = "https://api.audiencekit.com"  # production
 end
 ```
 

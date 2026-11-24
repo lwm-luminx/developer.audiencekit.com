@@ -5,14 +5,14 @@ sidebar:
   order: 7
 ---
 
-Everything live is a GraphQL subscription. The API mounts [Action Cable](https://guides.rubyonrails.org/action_cable_overview.html) at `/connection` (backed by Redis in production), and the cable is only a way to carry GraphQL: queries, mutations and subscriptions, with the same context as `POST /v1/audience/:audience_id/graphql`, or as `staffql` when the subscription asks for the staff view (see [the consumer view and staffql](/api/graphql/#the-consumer-view-and-staffql)).
+Everything live is a GraphQL subscription. The API mounts [Action Cable](https://guides.rubyonrails.org/action_cable_overview.html) at `/connection`, and the cable is only a way to carry GraphQL: queries, mutations and subscriptions, with the same context as `POST /v1/audience/:audience_id/graphql`, or as `staffql` when the subscription asks for the staff view (see [the consumer view and staffql](/api/graphql/#the-consumer-view-and-staffql)).
 
 ## Connect
 
 Open the WebSocket with the user's session JWT in the `Authorization` header:
 
 ```http
-Authorization: JWT <session jwt>
+Authorization: Bearer <session jwt>
 ```
 
 Browsers can't set headers on a WebSocket, so a web client offers the token as a subprotocol instead, beside Action Cable's own: `actioncable-v1-json` and `jwt.<session jwt>`. A connection without a live session is refused.
@@ -62,7 +62,7 @@ An `execute` without an `id` gets messages without one, as graphql-ruby's own cl
 
 ## Server-Sent Events
 
-A client that would rather not hold a WebSocket (a server-side moderation provider, a script) can run a subscription as a plain HTTP request instead: POST it to the audience's GraphQL endpoint with `Accept: text/event-stream` (`/v1/audience/:audience_id/graphql` for the consumer view, `/v1/audience/:audience_id/staffql` for the staff view), and the response is a stream of its events, in the [GraphQL over SSE](https://github.com/enisdenjo/graphql-sse/blob/master/PROTOCOL.md) protocol's "distinct connections" mode. Authentication, context and who is let in are the endpoint's own: a session JWT (`Authorization: JWT <session jwt>` or `Bearer <session jwt>`), or a moderation provider's service JWT (`Authorization: Bearer <service jwt>`) on `staffql`, which reaches only the moderation feed there, as on the cable. Either way the token's `iss` and `aud` are checked as for any request to that endpoint (see [Authentication](/api/authentication/)): an app's token streams from `graphql` but gets `401` at `staffql`.
+A client that would rather not hold a WebSocket (a server-side moderation provider, a script) can run a subscription as a plain HTTP request instead: POST it to the audience's GraphQL endpoint with `Accept: text/event-stream` (`/v1/audience/:audience_id/graphql` for the consumer view, `/v1/audience/:audience_id/staffql` for the staff view), and the response is a stream of its events, in the [GraphQL over SSE](https://github.com/enisdenjo/graphql-sse/blob/master/PROTOCOL.md) protocol's "distinct connections" mode. Authentication, context and who is let in are the endpoint's own: a session JWT (`Authorization: Bearer <session jwt>`), or a moderation provider's service JWT (`Authorization: Bearer <service jwt>`) on `staffql`, which reaches only the moderation feed there, as on the cable. Either way the token's `iss` and `aud` are checked as for any request to that endpoint (see [Authentication](/api/authentication/)): an app's token streams from `graphql` but gets `401` at `staffql`.
 
 ```sh
 curl -N https://api.audiencekit.com/v1/audience/<audience UUID>/staffql \

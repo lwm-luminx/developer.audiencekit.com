@@ -11,7 +11,7 @@ sees at runtime. `check.mjs` reads those literals out of Kotlin, Swift, TypeScri
 validates each against the schema dump of the endpoint it is sent to, and fails on anything the API would refuse
 and on every use of a `@deprecated` field, argument or enum value.
 
-This site serves the pieces a client repository needs, built from `main` of `lwm-luminx/audience_kit_api`:
+This site serves the pieces a client repository needs, built from what production serves:
 
 | URL | What it is |
 | --- | --- |
@@ -100,16 +100,7 @@ and say why in the workflow.
 
 ## Which schema is served
 
-`/graphql/` is the API that production serves (the API's `main` branch). A client branch that tracks the API's
-`next` branch fetches the same files from `/graphql/next/` instead, for example
-`https://developer.audiencekit.com/graphql/next/schema.graphql`, so a field added on `next` passes before it ships.
+`/graphql/` is the API that production serves. A client that tracks the upcoming release (`https://api.next.audiencekit.com`) fetches the same files from `/graphql/next/` instead, for example
+`https://developer.audiencekit.com/graphql/next/schema.graphql`, so a field added there passes before it ships.
 `/graphql/manifest.json` says which API commit each set was built from.
 
-## Inside this repository
-
-`.github/workflows/graphql-documents.yml` runs the same script on every push and pull request that touches a
-schema dump or a client: the Kotlin SDK against the consumer view (and its door documents against staffql), and
-StaffKit with Focus, Velvet and Backstage against staffql. The admin console isn't in that workflow: the Relay
-compiler validates it in `admin.yml`, against the staff and tenants dumps in `contracts/schema/`. Run the checks locally with `npm ci --prefix
-scripts/graphql-documents`, then the commands in the workflow; `node scripts/graphql-documents/test.mjs` runs the
-validator's own test, which includes deliberately broken documents.

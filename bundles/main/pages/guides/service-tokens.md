@@ -5,39 +5,24 @@ sidebar:
   order: 3
 ---
 
-Service tokens let a machine, such as a laptop running the [researcher worker](/guides/researcher/), read and write one audience's venues and events without a person signed in.
+Service tokens let a machine, such as a research worker, a bot or an import job, read and write one audience's venues and events without a person signed in.
 
 ## Create a token
 
-Run this on a machine with access to the API's database:
+Audience admins mint tokens in the admin console under **System › Service tokens**: pick the audience, give the token a name you'll recognize, choose only the scopes it needs, and optionally an expiry. The secret, shaped like `akst_<prefix>_<secret>`, is shown **once**; only a digest is stored, so copy it somewhere safe right away.
 
-```sh
-cd api
-bin/rails service_token:create AUDIENCE=lgbt NAME="rick macbook researcher"
-```
-
-| Variable | Required | Meaning |
-| --- | --- | --- |
-| `AUDIENCE` | Yes | The audience's subdomain. If no audience has it, the task creates one. |
-| `NAME` | Yes | A label so you can tell tokens apart. |
-| `AUDIENCE_NAME` | No | The name for a newly created audience. Defaults to the subdomain in capitals. |
-| `SCOPES` | No | Comma-separated scopes. Defaults to all of them: `research:read,places:write,events:write`. |
-| `EXPIRES_IN_DAYS` | No | Expire the token after this many days. By default it never expires. |
-
-The task prints the secret, shaped like `akst_<prefix>_<secret>`, **once**. Only a SHA-256 digest is stored, so copy it somewhere safe right away.
-
-List tokens with `bin/rails service_token:list` and revoke one with `bin/rails service_token:revoke ID=<uuid>`. Revoking takes effect on the next request, even for JWTs already issued.
+Revoke a token on the same page. Revoking takes effect on the next request, even for JWTs already issued.
 
 ## Use a token
 
 Exchange the secret for a JWT, then send it on each request. Mint a new JWT when it expires after an hour.
 
 ```sh
-JWT=$(curl -s https://api.audiencekit.io/v1/token/service \
+JWT=$(curl -s https://api.audiencekit.com/v1/token/service \
   -H "Content-Type: application/json" \
   -d "{\"service_token\": \"$AUDIENCEKIT_SERVICE_TOKEN\"}" | jq -r .token)
 
-curl https://api.audiencekit.io/v1/research/snapshot -H "Authorization: JWT $JWT"
+curl https://api.audiencekit.com/v1/research/snapshot -H "Authorization: Bearer $JWT"
 ```
 
 ## Upsert venues and events
