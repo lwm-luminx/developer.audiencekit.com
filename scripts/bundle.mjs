@@ -62,8 +62,12 @@ const main = verify(mainDir);
 const content = join(site, 'src/content/docs');
 for (const owned of OWNED) rmSync(join(content, owned), { recursive: true, force: true });
 cpSync(join(mainDir, 'pages'), content, { recursive: true });
+// Pages the API's bundle may still carry that are for the team, not the public (Rick, 2026-11-24: "remove Deploy to
+// Heroku and any internal info"). The API moved them out of its bundle; this keeps older bundles from publishing them.
+const INTERNAL = ['pages/guides/deploy-heroku.md', 'pages/start/local-development.md', 'pages/guides/researcher.md'];
+for (const page of INTERNAL) rmSync(join(content, page.slice('pages/'.length)), { force: true });
 // The pages' source is in the private API repository, so they get no "Edit page" link.
-for (const page of main.pages) {
+for (const page of main.pages.filter((page) => !INTERNAL.includes(page))) {
 	const path = join(content, page.slice('pages/'.length));
 	writeFileSync(path, readFileSync(path, 'utf8').replace(/^---\n/, '---\neditUrl: false\n'));
 }

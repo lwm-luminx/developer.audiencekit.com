@@ -56,9 +56,7 @@ const SDKS = [
 		pages: {
 			'README.md': { slug: 'staffkit', label: 'StaffKit SDK', order: 2, description: 'The private StaffKit SDK behind Focus, Velvet, Backstage and Arbiter, for Swift and Android.' },
 			'swift/README.md': { slug: 'swift/staffkit', label: 'StaffKit', order: 2, description: 'StaffKitCore, StaffKit, StaffKitServices, StaffKitUI, StaffOnboarding and ArbiterUI: the staff-side Swift modules.' },
-			'docs/BINARY_PACKAGE_README.md': { slug: 'swift/staffkit-binaries', label: 'StaffKit binary package', order: 3, description: 'Add StaffKit to an app outside the staff-kit repository as prebuilt XCFrameworks.' },
 			'android/README.md': { slug: 'kotlin/staffkit', label: 'StaffKit', order: 3, description: 'com.audiencekit:staffkit, the staff calls for Android as extensions of the member client.' },
-			'CHANGELOG.md': { slug: 'changelog/staffkit', label: 'StaffKit', order: 2, description: 'Every release of StaffKit.' },
 		},
 	},
 ];
@@ -112,6 +110,25 @@ function rewriteLinks(sdk, dir, markdown, from) {
 	});
 }
 
+// The READMEs and changelogs carry maintainers' notes: who asked for a change and when, and links into the
+// private API repository. Those stay in the repositories; the published pages drop them (outside code blocks).
+function publicMarkdown(markdown) {
+	return markdown
+		.split(/(^```[\s\S]*?^```)/m)
+		.map((part, index) =>
+			index % 2
+				? part
+				: part
+						.replace(/\s*\((?:[^()]|\([^()]*\))*(?:Rick, \d{4}-|audience_kit_api)(?:[^()]|\([^()]*\))*\)/g, '')
+						.replace(/,?\s*(?:See |see )?the API's `doc\/[\w./-]+\.md`(?:, "[^"]*")?/g, '')
+						.replace(/\s*\(doc\/[\w./-]+\.md\)/g, '')
+						.replace(/since audience_kit_api \s*#\d+/g, 'for some time')
+						.replace(/audience_kit_api(?:\s*#\d+(?:,\s*#\d+)*)?/g, 'the API')
+						.replace(/ +([.,:;])/g, '$1'),
+		)
+		.join('');
+}
+
 // Only this script's pages are replaced: the bundle's Ruby page (sdks/ruby.md) lives in the same directory.
 for (const page of [...Object.values(allPages), { slug: 'index' }]) rmSync(join(out, `${page.slug}.md`), { force: true });
 mkdirSync(out, { recursive: true });
@@ -153,7 +170,7 @@ for (const sdk of SDKS) {
 		].join('\n');
 		const target = join(out, `${page.slug}.md`);
 		mkdirSync(dirname(target), { recursive: true });
-		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, body, from));
+		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, publicMarkdown(body), from));
 	}
 	console.log(`Imported ${Object.keys(sdk.pages).length} pages from ${sdk.key} ${version}${checkout ? '' : ' (snapshot)'}`);
 }
@@ -162,7 +179,7 @@ for (const sdk of SDKS) {
 const ak = versions['audience-kit-sdk'];
 const staff = imported.has('staff-kit');
 const staffRow = staff
-	? `| A staff tool: the door, listings, chat moderation, decisions (Focus, Velvet, Backstage, Arbiter) | [StaffKit for Swift](/sdks/swift/staffkit/), also as a [binary package](/sdks/swift/staffkit-binaries/) | [StaffKit for Android](/sdks/kotlin/staffkit/) | ${versions['staff-kit']} ([changelog](/sdks/changelog/staffkit/)) |`
+	? `| A staff tool: the door, listings, chat moderation, decisions (Focus, Velvet, Backstage, Arbiter) | [StaffKit for Swift](/sdks/swift/staffkit/) | [StaffKit for Android](/sdks/kotlin/staffkit/) | ${versions['staff-kit']} |`
 	: '| A staff tool: the door, listings, chat moderation, decisions (Focus, Velvet, Backstage, Arbiter) | StaffKit for Swift, from [lwm-luminx/staff-kit](https://github.com/lwm-luminx/staff-kit) | StaffKit for Android, from the same repository | |';
 writeFileSync(
 	join(out, 'index.md'),
@@ -191,7 +208,7 @@ ${staffRow}
 
 ## StaffKit
 
-${staff ? '[StaffKit](/sdks/staffkit/)' : 'StaffKit'} is private at [lwm-luminx/staff-kit](https://github.com/lwm-luminx/staff-kit) and builds on AudienceKit. It adds the staff session (the platform sign-in and the chosen audience, shared between the staff apps), and the calls of the [staff view](/reference/staffql/): venue and talent management, the door, chat moderation and the decision queue. Swift apps outside the repository add it as a ${staff ? '[binary package](/sdks/swift/staffkit-binaries/)' : 'binary package'} of prebuilt XCFrameworks; Android adds \`com.audiencekit:staffkit\` as extension functions on the member client.${staff ? '' : ' Its pages are published from its own repository.'}
+${staff ? '[StaffKit](/sdks/staffkit/)' : 'StaffKit'} is private at [lwm-luminx/staff-kit](https://github.com/lwm-luminx/staff-kit) and builds on AudienceKit. It adds the staff session (the platform sign-in and the chosen audience, shared between the staff apps), and the calls of the [staff view](/reference/staffql/): venue and talent management, the door, chat moderation and the decision queue. Android adds \`com.audiencekit:staffkit\` as extension functions on the member client.${staff ? '' : ' Its pages are published from its own repository.'}
 
 ## Server and scripting clients
 

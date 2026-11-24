@@ -61,9 +61,30 @@ function inline(text) {
 		.join('')
 		.replace(/\|/g, '\\|');
 }
-const oneLine = (text) => inline((text ?? '').replace(/\s+/g, ' ').trim());
+// The schema's descriptions are written for the API's own developers: they point at design notes in the private API
+// repository (doc/….md), and a few name its hosting. This site is public, so those references come out of what it
+// shows. The schema dumps served at /graphql/ are left as the API exports them.
+function publicText(text) {
+	return (text ?? '')
+		.replace(/\s*\(Heroku\s+Scheduler\s+running\s+`?rake\s+maintenance:scheduled`?\s+hourly\)/g, ' (hourly)')
+		.replace(/Heroku\s+Scheduler\s+running\s+`?rake\s+maintenance:scheduled`?\s+hourly/g, 'the hourly maintenance schedule')
+		.replace(/Does what `rake app_review:reset` does: r/g, 'R')
+		.replace(/null for rake\b/g, 'null for scheduled runs')
+		.replace(/Heroku's certificate status/g, 'The certificate status')
+		.replace(/, once it has been added to Heroku/g, ', once it is set up')
+		.replace(/\b([Aa]) rake task\b/g, '$1 scheduled task')
+		.replace(/(?:See |see )?(?:the API's |api )?`?doc\/[\w./-]+\.md`?(?:, "[^"]*")?/g, '')
+		.replace(/\(\s*[,;:]?\s*\)/g, '')
+		.replace(/\(\s*[,;]\s*/g, '(')
+		.replace(/\s*[,;]\s*\)/g, ')')
+		.replace(/\(([A-Za-z]\w*)\)/g, '($1)')
+		.replace(/ +([.,:;])/g, '$1')
+		.replace(/[ \t]{2,}/g, ' ')
+		.replace(/\.\s*\./g, '.');
+}
+const oneLine = (text) => inline(publicText(text).replace(/\s+/g, ' ').trim());
 // A description as its own paragraph(s): HTML escaped outside code, pipes kept.
-const block = (text) => (text ?? '').split(/(```[\s\S]*?```|`[^`]*`)/).map((part, i) => (i % 2 ? part : part.replace(/</g, '&lt;').replace(/>/g, '&gt;'))).join('').trim();
+const block = (text) => publicText(text).split(/(```[\s\S]*?```|`[^`]*`)/).map((part, i) => (i % 2 ? part : part.replace(/</g, '&lt;').replace(/>/g, '&gt;'))).join('').trim();
 const slug = (name) => name.toLowerCase();
 const small = (text) => `<small>${text}</small>`;
 
