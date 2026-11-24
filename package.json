@@ -12,7 +12,9 @@
     "dev": "astro dev",
     "prebuild": "npm run sources",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy": "wrangler deploy",
+    "preview:cloudflare": "npm run build && wrangler dev"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
@@ -22,5 +24,8 @@
   },
   "allowScripts": {
     "fsevents@2.3.3": true
+  },
+  "devDependencies": {
+    "wrangler": "^4.168.0"
   }
 }

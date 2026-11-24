@@ -61,7 +61,7 @@ export default defineConfig({
 			// The start, API and guide pages come from the API's bundle (scripts/bundle.mjs); each page's sidebar.order
 			// frontmatter sets its place.
 			sidebar: [
-				{ label: 'Start here', items: [{ autogenerate: { directory: 'start' } }] },
+				{ label: 'Start here', items: [{ slug: 'quickstart' }, { autogenerate: { directory: 'start' } }] },
 				{ label: 'API', items: [{ autogenerate: { directory: 'api' } }] },
 				// The references are generated per view by scripts/graphql-reference.mjs: one page per module.
 				{
@@ -81,10 +81,14 @@ export default defineConfig({
 						...page('sdks/staffkit'),
 						{ label: 'iOS and macOS (Swift)', items: [{ autogenerate: { directory: 'sdks/swift' } }] },
 						{ label: 'Android (Kotlin)', items: [{ autogenerate: { directory: 'sdks/kotlin' } }] },
-						{ slug: 'sdks/ruby' },
+						{
+							label: 'Servers and scripts',
+							items: [{ slug: 'sdks/node' }, { slug: 'sdks/python' }, { slug: 'sdks/php' }, { slug: 'sdks/rust' }, { slug: 'sdks/ruby' }],
+						},
 						{ label: 'Changelogs', collapsed: true, items: [{ autogenerate: { directory: 'sdks/changelog' } }] },
 					],
 				},
+				{ label: 'Platform', items: [{ slug: 'platform/environments' }, { slug: 'licensing' }] },
 				{ label: 'Project', items: [{ label: 'Contribute to these docs', slug: 'project/contributing-docs' }] },
 			],
 		}),

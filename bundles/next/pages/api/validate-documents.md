@@ -11,7 +11,7 @@ sees at runtime. `check.mjs` reads those literals out of Kotlin, Swift, TypeScri
 validates each against the schema dump of the endpoint it is sent to, and fails on anything the API would refuse
 and on every use of a `@deprecated` field, argument or enum value.
 
-This site serves the pieces a client repository needs, built from `main` of `lwm-luminx/audience-kit`:
+This site serves the pieces a client repository needs, built from `main` of `lwm-luminx/audience_kit_api`:
 
 | URL | What it is |
 | --- | --- |

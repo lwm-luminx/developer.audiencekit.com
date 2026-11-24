@@ -24,7 +24,7 @@ The site is built from four sources:
   the snapshot committed in [`vendor/staff-kit/`](vendor/staff-kit/). A checkout beside this one (or `.staff-kit/`
   in CI, when the `STAFF_KIT_TOKEN` secret is set) refreshes the snapshot.
 
-Pushes to `main` (including each new bundle) and a daily run publish the build to the `gh-pages` branch (`.github/workflows/site.yml`).
+Pushes to `main` (including each new bundle) and a daily run deploy the build to the Cloudflare Worker `developer-audiencekit-com` (`wrangler.jsonc`, `.github/workflows/site.yml`), served at developer.audiencekit.com.
 See [Contribute to these docs](src/content/docs/project/contributing-docs.md) for details and the writing guide.
 
 ## License and copyright

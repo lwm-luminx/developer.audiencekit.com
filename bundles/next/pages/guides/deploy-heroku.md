@@ -21,7 +21,7 @@ The build uses two buildpacks, as `app.json` lists them. `heroku/nodejs` builds 
 heroku buildpacks:clear -a audience-kit
 heroku buildpacks:add -a audience-kit heroku/nodejs
 heroku buildpacks:add -a audience-kit heroku/ruby
-heroku config:set -a audience-kit RAILS_MASTER_KEY="$(cat api/config/master.key)"
+heroku config:set -a audience-kit RAILS_MASTER_KEY="$(cat config/master.key)"
 heroku addons:create -a audience-kit heroku-postgresql:essential-0
 heroku addons:create -a audience-kit heroku-redis:mini
 heroku addons:create -a audience-kit bucketeer:hobbyist
@@ -87,7 +87,7 @@ To set it up, with the Heroku CLI signed in as an owner of `audience-kit`:
 
 1. Run `scripts/heroku/provision-next.sh`. It creates the app and pipeline, adds Postgres `essential-0` and Redis `mini`, copies production's config vars except add-on URLs, signing and encryption keys and hosts, sets the `next` hosts, adds the five domains with ACM, and prints the DNS records.
 2. Add those five CNAME records to `audiencekit.com` at Namecheap (hosts `api.next`, `admin.next`, `*.next`, `*.api.next`, `*.admin.next`). ACM issues the certificates once they resolve.
-3. In the app's Deploy tab, connect `lwm-luminx/audience-kit` and enable automatic deploys from `next`, then deploy the branch once. The release phase migrates the empty database.
+3. In the app's Deploy tab, connect `lwm-luminx/audience_kit_api` and enable automatic deploys from `next`, then deploy the branch once. The release phase migrates the empty database.
 4. Add `https://admin.next.audiencekit.com/` to the AudienceKit - Next Facebook app's allowed JavaScript SDK domains so the platform console can sign in. That app is deliberately outside the Love Wins Media business portfolio, so people who sign in on the preview get their own preview accounts, separate from their production ones, to experiment with.
 
 Keep the current shared preview without a Scheduler job or worker dyno so it does not duplicate production maintenance or consume the shared job queue. Uploads use the shared Bucketeer bucket. An isolated preview provisioned from scratch has no Bucketeer bucket until storage is configured separately.

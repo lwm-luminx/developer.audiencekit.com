@@ -48,7 +48,9 @@ npm run build   # writes the static site to dist/
 
 ## Publishing
 
-Every push to `main` (including each new bundle) and a daily run (to pick up SDK changes) build the site and publish it to the `gh-pages` branch, which GitHub Pages serves at https://developer.audiencekit.com. Pull requests build without publishing.
+Every push to `main` (including each new bundle) and a daily run (to pick up SDK changes) build the site and deploy it with `wrangler deploy` to the Cloudflare Worker `developer-audiencekit-com`, which serves only the static build (`wrangler.jsonc`). Its custom domain, developer.audiencekit.com, gives it its DNS record and certificate. Pull requests build without deploying.
+
+`public/_headers` sets the response headers (security headers, long caching for Astro's hashed bundles, and CORS on `/graphql/` and `/schemas/` so client CI can fetch them). To try the Worker locally, run `npm run preview:cloudflare`.
 
 ## Look and feel
 

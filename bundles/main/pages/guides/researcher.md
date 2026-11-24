@@ -55,6 +55,6 @@ Only stale venues are planned, so after an interruption or a failed batch, the n
 
 Payloads and a `report.json` for each pass are written under `RUNS_DIR`. The worker runs from `dist/`, so after pulling changes, run `npm run build` and restart it.
 
-The [worker's README](https://github.com/lwm-luminx/audience-kit/tree/main/workers/researcher) has the full reference: every option and setting, the tools the model can call, and troubleshooting.
+The [worker's README](https://github.com/lwm-luminx/audience_kit_api/tree/main/workers/researcher) has the full reference: every option and setting, the tools the model can call, and troubleshooting.
 
 To run it in the background, install the LaunchAgent in `workers/researcher/launchd/com.audiencekit.researcher.plist`; the commands are in the file's header comment.

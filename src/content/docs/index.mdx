@@ -5,9 +5,10 @@ template: splash
 hero:
   tagline: AudienceKit links audiences (sub-cultures and communities) to the real-world venues, people and events they care about. One API serves every audience, and each one keeps its own name, domain and look.
   actions:
-    - text: Get started
-      link: /start/introduction/
+    - text: Quickstart
+      link: /quickstart/
       variant: primary
+      icon: right-arrow
     - text: GraphQL reference
       link: /reference/graphql/
       variant: secondary
@@ -19,28 +20,44 @@ hero:
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 <CardGrid>
-	<Card title="One API, many audiences">
-		Every audience is a tenant with its own locales, venues, people and events. Scope a GraphQL request to one audience with its endpoint path.
+	<Card title="One API, many audiences" icon="puzzle">
+		Every audience is a tenant with its own locales, venues, people and events. Scope a GraphQL request to one audience with its endpoint path, and read it as members see it ([GraphQL](/reference/graphql/)) or as staff do ([StaffQL](/reference/staffql/)).
 	</Card>
-	<Card title="Themed per audience">
+	<Card title="Realtime by default" icon="rocket">
+		Chat, presence, the door and every list are GraphQL subscriptions over Action Cable or Server-Sent Events. See [Realtime](/api/realtime/).
+	</Card>
+	<Card title="Themed per audience" icon="seti:css">
 		Each audience picks a preset of the AudienceKit design system, built on [Astryx](https://astryx.atmeta.com/), and may override its accent and spectrum colors. The API checks every override for contrast.
 	</Card>
-	<Card title="Kept fresh by machines">
-		Service tokens let workers such as the researcher verify venues and events and upsert them with provenance.
-	</Card>
-	<Card title="Source-available SDKs">
-		[AudienceKit](/sdks/audiencekit/) for an audience's own app and [StaffKit](/sdks/#staffkit) for staff tools, for Swift and Kotlin, released together on one version, with Ruby, PHP, Node and Python clients beside them. They ship under the [AudienceKit SDK License](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE): for apps that connect to AudienceKit as hosted by Love Wins Media only.
+	<Card title="Kept fresh by machines" icon="random">
+		Service tokens let workers and AI agents verify venues and events, import listings files and upsert them with provenance.
 	</Card>
 </CardGrid>
 
-## Where to go next
+## SDKs for every platform
+
+Source-available clients for the hosted API, on the same GraphQL documents everywhere. See the [SDK overview](/sdks/) for which to pick.
+
+<CardGrid>
+	<LinkCard title="Swift" href="/sdks/swift/audiencekit/" description="AudienceKit for iOS 16+, macOS 13+ and Linux, with SwiftUI views." />
+	<LinkCard title="Kotlin" href="/sdks/kotlin/audiencekit/" description="AudienceKit for Android and the JVM, on a Kotlin Multiplatform core." />
+	<LinkCard title="Node and TypeScript" href="/sdks/node/" description="A typed client for websites, bots and backends." />
+	<LinkCard title="Python" href="/sdks/python/" description="Blocking and asyncio clients for services and scripts." />
+	<LinkCard title="PHP and Rust" href="/sdks/php/" description="PHP 8.1+ over PSR-18, and an async Rust crate." />
+	<LinkCard title="StaffKit" href="/sdks/staffkit/" description="The staff-side SDK behind Focus, Velvet, Backstage and Arbiter: the door, listings, moderation and decisions." />
+</CardGrid>
+
+## Learn the platform
 
 <CardGrid>
 	<LinkCard title="Core concepts" href="/start/concepts/" description="Audiences, locales, venues, people and events, and how they relate." />
-	<LinkCard title="Authentication" href="/api/authentication/" description="User JWTs, application API keys, admin access and service tokens." />
+	<LinkCard title="Authentication" href="/api/authentication/" description="User sessions, application API keys and service tokens." />
+	<LinkCard title="Environments" href="/platform/environments/" description="Production and the next preview, and the schema each one serves." />
+	<LinkCard title="Import listings" href="/guides/listings-imports/" description="Load venues, people and events from a file checked against a published JSON Schema." />
 	<LinkCard title="Theme an audience" href="/guides/theming/" description="Presets, tenant tokens and the contrast rules the API enforces." />
-	<LinkCard title="StaffQL reference" href="/reference/staffql/" description="The whole graph as staff tools see it, with the permissions each field needs." />
-	<LinkCard title="AudienceKit for Swift" href="/sdks/swift/audiencekit/" description="Sign people in and read an audience from an iOS or macOS app." />
-	<LinkCard title="AudienceKit for Kotlin" href="/sdks/kotlin/audiencekit/" description="The same client for Android and the JVM." />
-	<LinkCard title="Realtime" href="/api/realtime/" description="GraphQL subscriptions for chat, presence and the door." />
+	<LinkCard title="Licensing" href="/licensing/" description="What the AudienceKit SDK License lets you build." />
 </CardGrid>
+
+:::note[Built for partners]
+AudienceKit is hosted by Love Wins Media, Inc. Every app built on it connects to the hosted platform, and there is no commission on your sales. Want an audience of your own? Write to [hello@audiencekit.com](mailto:hello@audiencekit.com).
+:::

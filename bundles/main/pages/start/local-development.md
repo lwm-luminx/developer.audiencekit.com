@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Toolchains and tasks for every component are defined with [mise](https://mise.jdx.dev) in the `mise.toml` of lwm-luminx/audience-kit, the workspace repository. Clone it and the component repositories side by side; it links them in (the API at `api/`).
+Toolchains and tasks are defined with [mise](https://mise.jdx.dev) in the `mise.toml` of lwm-luminx/audience_kit_api, the API repository.
 
 ## Prerequisites
 
@@ -15,12 +15,12 @@ Toolchains and tasks for every component are defined with [mise](https://mise.jd
 
 ## Set up
 
-From the audience-kit checkout:
+From the audience_kit_api checkout:
 
 ```sh
-mise run workspace:link   # clone the component repositories next to it if missing, and link them in
-mise install     # Ruby 4.0.7, Node 26, Yarn and Bun
-mise run setup   # install dependencies and create hotmess_development and hotmess_test
+mise install            # Ruby 4.0.7, Node 26, Yarn and Bun
+mise run api:setup      # install gems and create hotmess_development
+mise run admin:setup    # install the admin console's packages
 ```
 
 ## Run the API and admin console
@@ -35,12 +35,10 @@ GraphQL is served at `http://localhost:3000/v1/audience/:audience_id/graphql`, t
 ## Test and lint
 
 ```sh
-mise run test        # every component; the API specs need PostgreSQL running
-mise run api:test    # one component
+mise run api:test    # the API specs; they need PostgreSQL running
+mise run admin:test  # the admin console's tests
 mise run lint
 mise tasks           # list every task
 ```
 
-Swift is not managed by mise. Use Xcode on macOS or the `swift:6.1` image on Linux, and run `swift build` and `swift test` from the repository root.
-
-The repository's [README](https://github.com/lwm-luminx/audience-kit#readme) also covers setting up JetBrains IDEs, with run configurations for the API, admin console and tests.
+The repository's [local stack guide](https://github.com/lwm-luminx/audience_kit_api/blob/next/doc/LOCAL_STACK.md) also covers local HTTPS names, Hedonism and setting up JetBrains IDEs, with run configurations for the API, admin console and tests.

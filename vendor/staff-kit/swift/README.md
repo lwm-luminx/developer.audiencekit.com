@@ -23,15 +23,15 @@ The package uses seven framework modules:
 
 Management clients take `session: AudienceManagementSession`. They authenticate using the platform Facebook app, then select an authorized audience; the server remains authoritative for all permissions. The staff apps share one sign-in: give the session a `StaffCredentialStore` and `StaffKeychain.audienceStore(for:)`, and the credential (the token JSON the API issues; nothing decodes the JWT) and the chosen audience live in the `group.com.audiencekit.shared` keychain access group under one service per environment (`com.audiencekit.staff.next`, `com.audiencekit.staff.production`), so Focus, Velvet and Backstage sign in, switch audience and sign out together. `restoreAudience()` opens the remembered audience without swapping the server session again. A venue device's session (a redeemed device code) is bound to one device and stays in the app's own keychain item; `StaffCredentialStore` routes it there and never shares it. Apps call `restoreAudience()` again when they return to the foreground to pick up a sibling's change. Audience-facing services extend `AudienceSession`; `AudienceKitClient` remains its source-compatible alias.
 
-Velvet and Backstage import the management modules. HotMess imports AudienceKit and AudienceKitUI. Focus, the audience administration app, uses the same management modules. The modules were called AudienceManagementCore, AudienceManagementKit and AudienceManagementUI until StaffKit; products under those names still re-export StaffKitCore, StaffKit and StaffKitUI for one release, and FocusKit, VelvetKit and BackstageKit are gone.
+Velvet and Backstage import the management modules. HotMess imports AudienceKit and AudienceKitUI. Focus, the audience administration app, uses the same management modules. The modules were called AudienceManagementCore, AudienceManagementKit and AudienceManagementUI until StaffKit; those names are gone now (import StaffKitCore, StaffKit and StaffKitUI), as are FocusKit, VelvetKit and BackstageKit.
 
 The native test client and distribution instructions live in `apps/velvet/README.md`.
 
-Focus, Velvet, and Backstage share Facebook app `1612226510640564`, with separate
+Focus, Velvet, and Backstage share Facebook app `713525445368431`, with separate
 iOS bundle IDs. Register `com.audiencekit.Focus`, `com.audiencekit.Velvet`, and
 `com.audiencekit.Backstage` under that app's iOS platform. Velvet and Backstage have native clients; Focus is being implemented separately. App Store Connect registration and distribution remain app-specific.
 
-Use `ASWebAuthenticationSession` with callback `fb1612226510640564://authorize`.
+Use `ASWebAuthenticationSession` with callback `fb713525445368431://authorize`.
 Apple routes the authentication callback only to the calling session, even when
 multiple apps register the same scheme. Each `FacebookOAuth` instance generates
 its own state and rejects callbacks from other sessions. The resulting session

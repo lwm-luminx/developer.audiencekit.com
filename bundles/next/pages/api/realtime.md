@@ -176,4 +176,4 @@ You hear about a change only while you can still see the record, and about a lis
 
 ## Older channels
 
-`RealtimeChannel`, `LocaleChannel` and `DoorChannel` still serve app builds from before the subscriptions, with the same events as untyped frames. They're deprecated and will be removed; new clients use `GraphQLChannel` only.
+The untyped `RealtimeChannel`, `LocaleChannel` and `DoorChannel` that served app builds from before the subscriptions are gone (`/v1/status` asks those builds to update). Use `GraphQLChannel`.

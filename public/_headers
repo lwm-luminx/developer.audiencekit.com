@@ -1,0 +1,18 @@
+# Response headers for the Worker's static assets (Cloudflare Workers _headers format).
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Astro's hashed bundles never change under the same name.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Client CI fetches these; let browsers and tools on other origins read them.
+/graphql/*
+  Access-Control-Allow-Origin: *
+/schemas/*
+  Access-Control-Allow-Origin: *
