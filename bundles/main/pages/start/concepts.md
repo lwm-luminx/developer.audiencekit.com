@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-AudienceKit's data model is small. Every object below is defined in `app/models`.
+AudienceKit's data model is small.
 
 ## Audience
 
@@ -25,7 +25,7 @@ A **locale** is a city or metro area inside an audience, such as Seattle. It has
 
 A **venue** is a place that holds events: a bar, club or community space. It belongs to a locale and an audience, and it can have a `location` (a point plus Google Places data) and a legacy Facebook `page`. Venues have an `order`, can be `hidden`, and have a `distanceTolerance` used when the API decides whether a user is at the venue.
 
-Venues maintained by the [researcher worker](/guides/researcher/) also carry an `external_key`, a `confidence` between 0 and 1, `provenance` and `last_verified_at`.
+Venues maintained by automated research also carry an `external_key`, a `confidence` between 0 and 1, `provenance` and `last_verified_at`.
 
 ## Person
 
@@ -45,4 +45,4 @@ An **application** is an API key that belongs to one audience. Server-side apps 
 
 ## Service token
 
-A **service token** is a long-lived secret for a machine, such as the researcher worker. It belongs to one audience, carries scopes, and is exchanged for short-lived JWTs. See [Automate with service tokens](/guides/service-tokens/).
+A **service token** is a long-lived secret for a machine, such as a research worker or an import job. It belongs to one audience, carries scopes, and is exchanged for short-lived JWTs. See [Automate with service tokens](/guides/service-tokens/).

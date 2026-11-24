@@ -6,7 +6,7 @@ sidebar:
   label: Overview
 ---
 
-The AudienceKit API is a Rails application (the `lwm-luminx/audience_kit_api` repository). It speaks three protocols:
+The AudienceKit API speaks three protocols:
 
 | Protocol | Where | Use it for |
 | --- | --- | --- |
@@ -16,7 +16,7 @@ The AudienceKit API is a Rails application (the `lwm-luminx/audience_kit_api` re
 
 ## Base URL
 
-The Ruby SDK defaults to `https://api.audiencekit.io`. A self-hosted deployment serves the same paths from its own host, and a local server runs on `http://localhost:3000`.
+Production is `https://api.audiencekit.com`, and `https://api.next.audiencekit.com` runs the API's upcoming `next` branch against the same data. A local server runs on `http://localhost:3000`.
 
 `GET /up` is the health check. It returns 200 when the app has booted.
 
@@ -40,4 +40,4 @@ The audience ID is a UUID. On this endpoint the query root is the audience itsel
 
 ## CORS
 
-Browsers may call the API from the origins in the `ADMIN_ORIGINS` setting (by default `http://localhost:4000`) and from any `https://admin.<domain>` whose domain belongs to an audience. Native apps and servers are not affected by CORS.
+Browsers may call the API from any `https://admin.<domain>` whose domain belongs to an audience, and from an audience's verified domains. Native apps and servers are not affected by CORS.

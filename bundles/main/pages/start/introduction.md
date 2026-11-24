@@ -9,24 +9,20 @@ AudienceKit is a generic, multi-tenant system for creating **audiences** (sub-cu
 
 ## What's in the platform
 
-The platform is split across a few repositories under [lwm-luminx](https://github.com/lwm-luminx):
-
-| Component | Where | What it does |
-| --- | --- | --- |
-| API | `audience_kit_api` | Rails 8.1 on Ruby 4.0.7 with PostgreSQL/PostGIS and Redis. Serves GraphQL, a REST API under `/v1`, and Action Cable at `/connection`. |
-| Admin console | `audience_kit_api`, `app/frontend/` | React and Relay, built and served by the API through Vite Ruby. Served at `admin.<audience domain>`, skinned and scoped to that audience. |
-| Researcher worker | `audience-kit`, `workers/researcher/` | A local TypeScript worker that uses a model in LM Studio and Chrome to verify venues and events. |
-| Ruby SDK | `audience-kit`, `sdk/ruby/` | The `audience-kit` gem. |
-| SDK | [audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk) | The `AudienceKit` Swift package, the Kotlin Multiplatform core and the `audiencekit` Kotlin libraries for Android and the JVM, on one version. |
-| These docs | `audience_kit_api`, `docs/developer/` | developer.audiencekit.com, built with Astro Starlight in [developer.audiencekit.com](https://github.com/lwm-luminx/developer.audiencekit.com). |
+| Component | What it does |
+| --- | --- |
+| API | Serves GraphQL (the main API), a small REST API under `/v1` for sign-in, branding and automation, and realtime subscriptions over WebSockets and Server-Sent Events. |
+| Admin consoles | Each audience's console at `admin.<audience domain>`, skinned and scoped to that audience, and the platform console at admin.audiencekit.com. |
+| [SDKs](/sdks/) | Source-available clients for Swift, Kotlin, Node, Python, PHP, Rust and Ruby. |
+| These docs | developer.audiencekit.com, from the public [developer.audiencekit.com](https://github.com/lwm-luminx/developer.audiencekit.com) repository. |
 
 ## How these docs are organized
 
-- **Start here** explains the data model and how to run the platform on your machine.
+- **Start here** explains the data model.
 - **API** covers endpoints, authentication, the GraphQL schema and realtime channels.
-- **Guides** walk through common tasks: theming an audience, connecting a domain, automating with service tokens and deploying.
+- **Guides** walk through common tasks: theming an audience, connecting a domain, importing listings and automating with service tokens.
 - **SDKs** describe the client libraries.
 
 :::note[Early days]
-AudienceKit is under active development, and these docs describe the `main` branch. Some endpoints still carry names from Hot Mess, where the platform started (the GraphQL schema class is `HotMessApiSchema`, for example).
+AudienceKit is under active development, and these docs describe what production serves today.
 :::

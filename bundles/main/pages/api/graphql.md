@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-GraphQL is AudienceKit's main API. The schema is built with [graphql-ruby](https://graphql-ruby.org) in `app/graphql` and supports Relay-style global object IDs.
+GraphQL is AudienceKit's main API. It supports Relay-style global object IDs.
 
 ## Endpoints
 
@@ -29,7 +29,7 @@ Pick the endpoint by what the client is: the apps people use go to `graphql`, st
 Send a JSON body with `query`, and optionally `variables` and `operationName`:
 
 ```sh
-curl https://api.audiencekit.io/v1/audience/$AUDIENCE_ID/graphql \
+curl https://api.audiencekit.com/v1/audience/$AUDIENCE_ID/graphql \
   -H "Authorization: JWT $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -142,11 +142,3 @@ The full list of types, queries and mutations is in the references, one page per
 
 A query may contain at most 5,000 tokens, and validation stops after 100 errors.
 
-## Keep the schema dump current
-
-The API checks in `contracts/schema/schema.graphql` and `contracts/schema/schema.json` (the consumer view), `contracts/schema/staff_schema.graphql` and `contracts/schema/staff_schema.json` (staffql), and `contracts/schema/tenants_schema.graphql` and `contracts/schema/tenants_schema.json` (tenant management). The admin console's Relay compiler and the [GraphQL](/reference/graphql/) and [StaffQL](/reference/staffql/) references are built from the dumps, so regenerate them whenever you change a type:
-
-```sh
-cd api
-bin/rails graphql:schema:dump graphql:staff:schema:dump graphql:tenants:schema:dump
-```

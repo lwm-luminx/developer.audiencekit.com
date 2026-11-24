@@ -46,7 +46,7 @@ The admin console calls this before anyone signs in so it can skin itself. `host
 
 ## Research
 
-Used by the [researcher worker](/guides/researcher/) with a service JWT. Admins can call them too, naming the audience with `?audience_id=<uuid>` or `?audience=<subdomain>`.
+Used by research workers with a service JWT. Admins can call them too, naming the audience with `?audience_id=<uuid>` or `?audience=<subdomain>`.
 
 | Method and path | Scope | Description |
 | --- | --- | --- |
@@ -60,7 +60,7 @@ Used by the [researcher worker](/guides/researcher/) with a service JWT. Admins 
 
 See [Automate with service tokens](/guides/service-tokens/) for the batch format.
 
-A listings file is one of the JSON files the `listings:*` rake tasks take, and its `kind` is read from its shape unless
+A listings file is JSON checked against the [listings import schema](/guides/listings-imports/), and its `kind` is read from its shape unless
 given: calendar listings (`calendar`: `{ source, regions, venues, events }`), researched locales and their venues
 (`locales`), researched People (`people`, each with a `kind`), social profiles to fill in where missing (`socials`:
 `people` or `venues` with their handles) or profiles to propose for review (`social_proposals`: entries with
