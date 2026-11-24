@@ -136,7 +136,7 @@ mutation Rebrand($input: AudienceThemeUpdateInput!) {
 
 When a record fails validation, the error's `extensions` carry the field errors. See [Errors](/api/errors/).
 
-The full list of types, queries and mutations is in the [GraphQL reference](/api/graphql-reference/).
+The full list of types, queries and mutations is in the references, one page per module: the [GraphQL reference](/reference/graphql/) for the consumer view and the [StaffQL reference](/reference/staffql/) for the staff view, which also shows the permissions each field needs.
 
 ## Limits
 
@@ -144,7 +144,7 @@ A query may contain at most 5,000 tokens, and validation stops after 100 errors.
 
 ## Keep the schema dump current
 
-The API checks in `contracts/schema/schema.graphql` and `contracts/schema/schema.json` (the consumer view), `contracts/schema/staff_schema.graphql` and `contracts/schema/staff_schema.json` (staffql), and `contracts/schema/tenants_schema.graphql` and `contracts/schema/tenants_schema.json` (tenant management). The admin console's Relay compiler and the [GraphQL reference](/api/graphql-reference/) are built from the dumps, so regenerate them whenever you change a type:
+The API checks in `contracts/schema/schema.graphql` and `contracts/schema/schema.json` (the consumer view), `contracts/schema/staff_schema.graphql` and `contracts/schema/staff_schema.json` (staffql), and `contracts/schema/tenants_schema.graphql` and `contracts/schema/tenants_schema.json` (tenant management). The admin console's Relay compiler and the [GraphQL](/reference/graphql/) and [StaffQL](/reference/staffql/) references are built from the dumps, so regenerate them whenever you change a type:
 
 ```sh
 cd api

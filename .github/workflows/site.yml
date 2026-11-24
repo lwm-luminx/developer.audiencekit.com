@@ -2,9 +2,12 @@ name: Site
 
 # Builds developer.audiencekit.com from the API's docs bundles (bundles/main and bundles/next, committed to main by the
 # API repository's Developer docs workflow on every build of its main and next branches), the public audience-kit-sdk
-# and the private staff-kit (or its snapshot in vendor/staff-kit/), and publishes it to gh-pages, which GitHub Pages
-# serves with the custom domain developer.audiencekit.com. A daily run picks up SDK changes, which don't trigger this
-# repository.
+# and the private staff-kit (or its snapshot in vendor/staff-kit/), and deploys it to the Cloudflare Worker
+# developer-audiencekit-com (wrangler.jsonc), whose custom domain is developer.audiencekit.com. A daily run picks up
+# SDK changes, which don't trigger this repository. Pull requests build without deploying.
+#
+# Deploying needs the repository secrets CLOUDFLARE_API_TOKEN (a token with Workers Scripts: Edit on the account, and
+# Workers Routes: Edit plus DNS: Edit on the audiencekit.com zone, for the custom domain) and CLOUDFLARE_ACCOUNT_ID.
 
 on:
   push:
@@ -15,7 +18,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 # Publishes queue behind each other; a new push to a PR cancels that PR's older run.
 concurrency:
@@ -51,12 +54,14 @@ jobs:
         with:
           name: site
           path: dist
-      - if: github.event_name != 'pull_request'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: dist
-          cname: developer.audiencekit.com
-          force_orphan: true
-          commit_message: Publish developer.audiencekit.com
+      - name: Deploy to Cloudflare
+        if: github.event_name != 'pull_request'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are not set, so the site was built but not deployed."
+            exit 1
+          fi
+          npm run deploy

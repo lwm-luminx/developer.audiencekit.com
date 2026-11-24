@@ -1,0 +1,102 @@
+---
+title: Quickstart
+description: Make your first AudienceKit request in five minutes, then move it into an SDK.
+sidebar:
+  label: Quickstart
+---
+
+import { Steps, Tabs, TabItem, LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+This page takes you from nothing to a working GraphQL request against an audience, then shows the same call through an SDK. It uses [Hot Mess](https://hotmess.social) as the example audience; swap in your own.
+
+<Steps>
+
+1. **Find the audience.** Every audience answers `GET /v1/branding` for its hosts, with no credential. `<subdomain>.admin.audiencekit.com` works for every audience; its own domain works once it is verified.
+
+   ```sh
+   curl -s "https://api.audiencekit.com/v1/branding?host=hotmess.admin.audiencekit.com"
+   ```
+
+   The response carries `audience.id` (a UUID), the audience's name, the sign-in methods its apps offer, and its theme. Keep the id: it is the scope of every GraphQL request. See [REST: Branding](/api/rest/#branding).
+
+2. **Get a credential.** Which one depends on who is calling:
+
+   | You are building | Use | How you get it |
+   | --- | --- | --- |
+   | A server or website acting as one audience's app | An application API key | From the audience's admin console |
+   | An app people sign in to | A user token | Sign the person in (Facebook, Apple, Google and others), then exchange that for a session |
+   | A worker, bot or import job | A service token | Minted in the admin console with only the scopes it needs |
+
+   [Authentication](/api/authentication/) explains each one, and [Service tokens](/guides/service-tokens/) walks through minting one.
+
+3. **Send a query.** The audience is the query root, so this lists five of its venues:
+
+   ```sh
+   curl https://api.audiencekit.com/v1/audience/$AUDIENCE_ID/graphql \
+     -H "Authorization: Bearer $AUDIENCE_KIT_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"query":"{ name venues { list(first: 5) { nodes { id name } } } }"}'
+   ```
+
+   Errors come back in the usual GraphQL `errors` array, with an `extensions.code`; see [Errors](/api/errors/). A field from a module the audience hasn't installed is refused as `undefinedField`, which the SDKs handle for you.
+
+4. **Explore the graph.** The [GraphQL reference](/reference/graphql/) documents the consumer view one module at a time, with the permissions every field needs. Staff tools use the wider [StaffQL view](/reference/staffql/). Download the schema for your own tooling from [`/graphql/schema.graphql`](/graphql/schema.graphql).
+
+5. **Check your documents in CI.** Run the [document validator](/api/validate-documents/) against the published schema so a renamed or deprecated field fails your build, not your users.
+
+</Steps>
+
+## The same call from an SDK
+
+The SDKs sign people in, keep the session, send the API version header, and retry around modules an audience doesn't have. They all speak to `https://api.audiencekit.com` by default.
+
+<Tabs syncKey="sdk">
+<TabItem label="Node">
+
+```ts
+import { AudienceKitClient } from "audience-kit";
+
+const client = new AudienceKitClient({
+  configuration: { host: "hotmess.admin.audiencekit.com" },
+});
+// Sign in (or adopt a credential you minted), then read the audience.
+```
+
+[Node and TypeScript SDK](/sdks/node/)
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+from audiencekit import Client, Configuration
+
+client = Client(Configuration(host="hotmess.social"))
+# client.sign_in_with_facebook(...) or client.adopt(credential), then:
+venues = client.venues()
+```
+
+[Python SDK](/sdks/python/)
+
+</TabItem>
+<TabItem label="Swift">
+
+See [AudienceKit for Swift](/sdks/swift/audiencekit/) for the package, sign-in and the SwiftUI views.
+
+</TabItem>
+<TabItem label="Kotlin">
+
+See [AudienceKit for Kotlin](/sdks/kotlin/audiencekit/) for Android and the JVM.
+
+</TabItem>
+</Tabs>
+
+PHP, Rust and Ruby clients work the same way; the [SDK overview](/sdks/) lists them all.
+
+## Next steps
+
+<CardGrid>
+	<LinkCard title="Core concepts" href="/start/concepts/" description="Audiences, locales, venues, people and events, and how they relate." />
+	<LinkCard title="Realtime" href="/api/realtime/" description="Subscriptions for chat, presence and the door." />
+	<LinkCard title="Environments" href="/platform/environments/" description="Production, the next preview, and which schema each one serves." />
+	<LinkCard title="Licensing" href="/licensing/" description="What the AudienceKit SDK License lets you do." />
+</CardGrid>

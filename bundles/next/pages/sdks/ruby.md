@@ -12,10 +12,10 @@ Requires Ruby 3.2 or newer.
 
 ## Install
 
-The gem lives in `sdk/ruby/` of the AudienceKit repository. Install it from Git with Bundler:
+The gem lives in `ruby/` of the AudienceKit SDK repository. Install it from Git with Bundler:
 
 ```ruby
-gem "audience-kit", git: "https://github.com/lwm-luminx/audience-kit.git", glob: "sdk/ruby/*.gemspec"
+gem "audience-kit", git: "https://github.com/lwm-luminx/audience-kit-sdk.git", glob: "ruby/*.gemspec"
 ```
 
 ## Configure
