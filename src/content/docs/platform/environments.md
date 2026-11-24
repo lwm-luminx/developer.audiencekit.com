@@ -7,14 +7,14 @@ AudienceKit runs two public API environments. Both are hosted by Love Wins Media
 
 | Environment | API base URL | Runs | Schema |
 | --- | --- | --- | --- |
-| Production | `https://api.audiencekit.com` | The API's `main` branch | [`/graphql/schema.graphql`](/graphql/schema.graphql), [`/graphql/staff_schema.graphql`](/graphql/staff_schema.graphql) |
-| Next (preview) | `https://api.next.audiencekit.com` | The API's `next` branch, ahead of production | [`/graphql/next/schema.graphql`](/graphql/next/schema.graphql), [`/graphql/next/staff_schema.graphql`](/graphql/next/staff_schema.graphql) |
+| Production | `https://api.audiencekit.com` | The current release | [`/graphql/schema.graphql`](/graphql/schema.graphql), [`/graphql/staff_schema.graphql`](/graphql/staff_schema.graphql) |
+| Next (preview) | `https://api.next.audiencekit.com` | The upcoming release, ahead of production | [`/graphql/next/schema.graphql`](/graphql/next/schema.graphql), [`/graphql/next/staff_schema.graphql`](/graphql/next/staff_schema.graphql) |
 
 :::caution[Next reads production data]
 The next preview runs newer code against the same data as production. Use it to try upcoming fields, not as a sandbox: anything you write there is real.
 :::
 
-These docs describe production. [`/graphql/manifest.json`](/graphql/manifest.json) says which API commit each published schema came from.
+These docs describe production. [`/graphql/manifest.json`](/graphql/manifest.json) says which API build each published schema came from.
 
 ## Hosts that name an audience
 
