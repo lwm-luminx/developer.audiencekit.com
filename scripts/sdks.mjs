@@ -34,8 +34,10 @@ const SDKS = [
 		pages: {
 			'README.md': { slug: 'audiencekit', label: 'AudienceKit SDK', order: 1, description: 'The source-available AudienceKit SDK: Swift and Kotlin on one version, with Node, Python, PHP and Rust clients beside them.' },
 			'swift/README.md': { slug: 'swift/audiencekit', label: 'AudienceKit', order: 1, description: 'AudienceCore, AudienceKit and AudienceKitUI: the Swift package for iOS 16+, macOS 13+ and Linux.' },
+			'swift/Examples/README.md': { slug: 'swift/examples', label: 'Examples', order: 3, optional: true, description: 'Swift examples run by the SDK\'s tests: a "What\'s on" list by night, a news digest and a night out.' },
 			'android/README.md': { slug: 'kotlin/audiencekit', label: 'AudienceKit', order: 1, description: 'The audiencekit Kotlin client (plain JVM) and audiencekit-android, for Android 8.0+.' },
 			'core/README.md': { slug: 'kotlin/core', label: 'Kotlin Multiplatform core', order: 2, description: 'audiencekit-core, the Kotlin Multiplatform code shared by the JVM, Android and Apple targets.' },
+			'android/examples/README.md': { slug: 'kotlin/examples', label: 'Examples', order: 4, optional: true, description: 'Kotlin examples run by the SDK\'s tests: a "What\'s on" list by night, a news digest and a night out.' },
 			'CHANGELOG.md': { slug: 'changelog/audiencekit', label: 'AudienceKit', order: 1, description: 'Every release of the AudienceKit SDK, Swift and Kotlin together.' },
 			// The server and scripting clients, each versioned on its own in the same repository.
 			'node/README.md': { slug: 'node', label: 'Overview', order: 1, description: 'The audience-kit npm package: a typed Node 20+ client for the consumer GraphQL API.' },
@@ -116,13 +118,14 @@ const allPages = Object.fromEntries(SDKS.flatMap((sdk) => Object.entries(sdk.pag
 // file its table links to, in the order linked, as a code block under its own heading.
 const EXAMPLE_LANGUAGES = { ts: 'ts', js: 'js', py: 'python', rs: 'rust', php: 'php', rb: 'ruby', swift: 'swift', kt: 'kotlin' };
 function exampleSources(dir, markdown) {
-	const files = [...new Set([...markdown.matchAll(/\]\(([\w.-]+\.(\w+))\)/g)].map((m) => m[1]))].filter(
+	const files = [...new Set([...markdown.matchAll(/\]\(((?:\.\.\/)*[\w./-]+\.(\w+))\)/g)].map((m) => m[1]))].filter(
 		(file) => EXAMPLE_LANGUAGES[file.split('.').pop()] && existsSync(join(dir, file)),
 	);
 	return files
 		.map((file) => {
 			const code = readFileSync(join(dir, file), 'utf8').trimEnd();
-			return `\n## ${file}\n\n\`\`\`${EXAMPLE_LANGUAGES[file.split('.').pop()]} title="${file}"\n${code}\n\`\`\`\n`;
+			const name = posix.basename(file);
+			return `\n## ${name}\n\n\`\`\`${EXAMPLE_LANGUAGES[file.split('.').pop()]} title="${name}"\n${code}\n\`\`\`\n`;
 		})
 		.join('');
 }
@@ -236,7 +239,7 @@ for (const sdk of SDKS) {
 		].join('\n');
 		const target = join(out, `${page.slug}.md`);
 		mkdirSync(dirname(target), { recursive: true });
-		if (from.endsWith('examples/README.md')) body += exampleSources(join(source, dirname(from)), body);
+		if (/(^|\/)examples\/README\.md$/i.test(from)) body += exampleSources(join(source, dirname(from)), body);
 		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, currentOnly(publicMarkdown(body), from, version), from));
 	}
 	console.log(`Imported ${Object.keys(sdk.pages).length} pages from ${sdk.key} ${version}${checkout ? '' : ' (snapshot)'}`);
