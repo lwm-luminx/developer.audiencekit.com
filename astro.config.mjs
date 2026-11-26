@@ -83,7 +83,13 @@ export default defineConfig({
 						{ label: 'Android (Kotlin)', items: [{ autogenerate: { directory: 'sdks/kotlin' } }] },
 						{
 							label: 'Servers and scripts',
-							items: [{ slug: 'sdks/node' }, { slug: 'sdks/python' }, { label: 'PHP', items: [{ slug: 'sdks/php' }, { autogenerate: { directory: 'sdks/php' } }] }, { slug: 'sdks/rust' }, { slug: 'sdks/ruby' }],
+							items: [
+								{ label: 'Node and TypeScript', items: [{ slug: 'sdks/node' }, { autogenerate: { directory: 'sdks/node' } }] },
+								{ label: 'Python', items: [{ slug: 'sdks/python' }, { autogenerate: { directory: 'sdks/python' } }] },
+								{ label: 'PHP', items: [{ slug: 'sdks/php' }, { autogenerate: { directory: 'sdks/php' } }] },
+								{ label: 'Rust', items: [{ slug: 'sdks/rust' }, { autogenerate: { directory: 'sdks/rust' } }] },
+								{ slug: 'sdks/ruby' },
+							],
 						},
 						{ label: 'Changelogs', collapsed: true, items: [{ autogenerate: { directory: 'sdks/changelog' } }] },
 					],
