@@ -137,6 +137,32 @@ function publicMarkdown(markdown) {
 		.join('');
 }
 
+// The site points only at current releases (Rick, 2026-11-26: steer people away from older versions). Changelogs keep
+// the latest releases, from after the move off the MIT License, without the license-history bullets or the pointers
+// to the per-platform changelogs that came before; install lines name the current version.
+const CHANGELOG_RELEASES = 25;
+function currentOnly(markdown, from, version) {
+	if (/CHANGELOG\.md$/.test(from)) {
+		const [preamble, ...releases] = markdown.split(/^(?=## )/m);
+		const kept = [];
+		for (const release of releases) {
+			if (/MIT License/.test(release) || kept.length === CHANGELOG_RELEASES) break;
+			const trimmed = release.replace(/^- License[\s\S]*?(?=^- |^## |(?![\s\S]))/gm, '');
+			if (trimmed.replace(/^## .*$/m, '').trim()) kept.push(trimmed);
+		}
+		const intro = preamble.replace(/^One changelog[\s\S]*?(?:\n\n|(?![\s\S]))/m, '').trim();
+		return `${intro ? `${intro}\n\n` : ''}The latest releases, newest first.\n\n${kept.join('')}`;
+	}
+	return markdown
+		.replace(/(\.package\(url: "[^"]+", from: ")\d+\.\d+\.\d+(")/g, `$1${version}$2`)
+		.replace(/a tag \(`\d+\.\d+\.\d+`, no `v`\)/g, `a tag (\`${version}\`, no \`v\`)`)
+		.replace(/ with a GitHub release; the\s+\[releases page\]\([^)]*\) lists them\./g, '.')
+		.replace(/bare `\d+\.\d+\.\d+` tags/g, 'bare version tags')
+		.replace(/("com\.audiencekit:audiencekit[\w-]*:)\d+\.\d+\.\d+(")/g, `$1${version}$2`)
+		.replace(/(set-version\.sh )\d+\.\d+\.\d+/g, `$1${version}`)
+		.replace(/tags the release \(`\d+\.\d+\.\d+`, no `v`\)/g, `tags the release (\`${version}\`, no \`v\`)`);
+}
+
 // Only this script's pages are replaced: the bundle's Ruby page (sdks/ruby.md) lives in the same directory.
 for (const page of [...Object.values(allPages), { slug: 'index' }]) rmSync(join(out, `${page.slug}.md`), { force: true });
 mkdirSync(out, { recursive: true });
@@ -182,7 +208,7 @@ for (const sdk of SDKS) {
 		].join('\n');
 		const target = join(out, `${page.slug}.md`);
 		mkdirSync(dirname(target), { recursive: true });
-		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, publicMarkdown(body), from));
+		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, currentOnly(publicMarkdown(body), from, version), from));
 	}
 	console.log(`Imported ${Object.keys(sdk.pages).length} pages from ${sdk.key} ${version}${checkout ? '' : ' (snapshot)'}`);
 }
