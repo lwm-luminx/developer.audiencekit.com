@@ -25,10 +25,6 @@ The AudienceKit SDKs ([audience-kit-sdk](https://github.com/lwm-luminx/audience-
 
 Any other use needs a written agreement signed by Love Wins Media, Inc., and an audience credential issued for it.
 
-## Earlier releases
-
-Releases made under the MIT License before the change stay under MIT; the license file in [audience-kit-sdk](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE) lists them.
-
 ## These docs and the platform
 
 The text of this site, the API, the admin consoles and the apps are copyright Love Wins Media, Inc., all rights reserved. The [site's repository](https://github.com/lwm-luminx/developer.audiencekit.com) is public so it can be read and security-scanned, not reused; see its [NOTICE](https://github.com/lwm-luminx/developer.audiencekit.com/blob/main/NOTICE.md).

@@ -117,6 +117,8 @@ function rewriteLinks(sdk, dir, markdown, from) {
 
 // The READMEs and changelogs carry maintainers' notes: who asked for a change and when, and links into the
 // private API repository. Those stay in the repositories; the published pages drop them (outside code blocks).
+// The paragraphs on which old copies stay under the MIT License stay in the repositories' READMEs and licenses too;
+// the site doesn't repeat them.
 function publicMarkdown(markdown) {
 	return markdown
 		.split(/(^```[\s\S]*?^```)/m)
@@ -124,6 +126,7 @@ function publicMarkdown(markdown) {
 			index % 2
 				? part
 				: part
+						.replace(/^[^\n]*(?:released|published) under the MIT License[\s\S]*?(?:\n\n|(?![\s\S]))/gm, '\n')
 						.replace(/\s*\((?:[^()]|\([^()]*\))*(?:Rick, \d{4}-|audience_kit_api)(?:[^()]|\([^()]*\))*\)/g, '')
 						.replace(/,?\s*(?:See |see )?the API's `doc\/[\w./-]+\.md`(?:, "[^"]*")?/g, '')
 						.replace(/\s*\(doc\/[\w./-]+\.md\)/g, '')
@@ -132,6 +135,32 @@ function publicMarkdown(markdown) {
 						.replace(/ +([.,:;])/g, '$1'),
 		)
 		.join('');
+}
+
+// The site points only at current releases (Rick, 2026-11-26: steer people away from older versions). Changelogs keep
+// the latest releases, from after the move off the MIT License, without the license-history bullets or the pointers
+// to the per-platform changelogs that came before; install lines name the current version.
+const CHANGELOG_RELEASES = 25;
+function currentOnly(markdown, from, version) {
+	if (/CHANGELOG\.md$/.test(from)) {
+		const [preamble, ...releases] = markdown.split(/^(?=## )/m);
+		const kept = [];
+		for (const release of releases) {
+			if (/MIT License/.test(release) || kept.length === CHANGELOG_RELEASES) break;
+			const trimmed = release.replace(/^- License[\s\S]*?(?=^- |^## |(?![\s\S]))/gm, '');
+			if (trimmed.replace(/^## .*$/m, '').trim()) kept.push(trimmed);
+		}
+		const intro = preamble.replace(/^One changelog[\s\S]*?(?:\n\n|(?![\s\S]))/m, '').trim();
+		return `${intro ? `${intro}\n\n` : ''}The latest releases, newest first.\n\n${kept.join('')}`;
+	}
+	return markdown
+		.replace(/(\.package\(url: "[^"]+", from: ")\d+\.\d+\.\d+(")/g, `$1${version}$2`)
+		.replace(/a tag \(`\d+\.\d+\.\d+`, no `v`\)/g, `a tag (\`${version}\`, no \`v\`)`)
+		.replace(/ with a GitHub release; the\s+\[releases page\]\([^)]*\) lists them\./g, '.')
+		.replace(/bare `\d+\.\d+\.\d+` tags/g, 'bare version tags')
+		.replace(/("com\.audiencekit:audiencekit[\w-]*:)\d+\.\d+\.\d+(")/g, `$1${version}$2`)
+		.replace(/(set-version\.sh )\d+\.\d+\.\d+/g, `$1${version}`)
+		.replace(/tags the release \(`\d+\.\d+\.\d+`, no `v`\)/g, `tags the release (\`${version}\`, no \`v\`)`);
 }
 
 // Only this script's pages are replaced: the bundle's Ruby page (sdks/ruby.md) lives in the same directory.
@@ -179,7 +208,7 @@ for (const sdk of SDKS) {
 		].join('\n');
 		const target = join(out, `${page.slug}.md`);
 		mkdirSync(dirname(target), { recursive: true });
-		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, publicMarkdown(body), from));
+		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, currentOnly(publicMarkdown(body), from, version), from));
 	}
 	console.log(`Imported ${Object.keys(sdk.pages).length} pages from ${sdk.key} ${version}${checkout ? '' : ' (snapshot)'}`);
 }
@@ -229,7 +258,7 @@ AudienceKit calls the audience's \`graphql\` endpoint, StaffKit its \`staffql\` 
 
 ## License
 
-The SDKs are **source-available, not open source**. They ship under the [AudienceKit SDK License](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE), which lets you build them into apps and services that connect to AudienceKit as hosted by Love Wins Media (audiencekit.com, the audiences' own domains, and the development instances it provides), and nothing else: not another implementation of the API. Changes are allowed only in a GitHub fork of the repository, after written notice to Love Wins Media (an app that only depends on the unchanged SDK needs neither), and misrepresenting where the code came from is prohibited. Any other use needs written permission from Love Wins Media, Inc. Releases made under the MIT License before the change stay MIT. See [Licensing](/licensing/) for a plain-language summary.
+The SDKs are **source-available, not open source**. They ship under the [AudienceKit SDK License](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE), which lets you build them into apps and services that connect to AudienceKit as hosted by Love Wins Media (audiencekit.com, the audiences' own domains, and the development instances it provides), and nothing else: not another implementation of the API. Changes are allowed only in a GitHub fork of the repository, after written notice to Love Wins Media (an app that only depends on the unchanged SDK needs neither), and misrepresenting where the code came from is prohibited. Any other use needs written permission from Love Wins Media, Inc. See [Licensing](/licensing/) for a plain-language summary.
 
 ## Versions and the API
 
