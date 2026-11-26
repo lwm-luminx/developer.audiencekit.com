@@ -34,19 +34,34 @@ const SDKS = [
 		pages: {
 			'README.md': { slug: 'audiencekit', label: 'AudienceKit SDK', order: 1, description: 'The source-available AudienceKit SDK: Swift and Kotlin on one version, with Node, Python, PHP and Rust clients beside them.' },
 			'swift/README.md': { slug: 'swift/audiencekit', label: 'AudienceKit', order: 1, description: 'AudienceCore, AudienceKit and AudienceKitUI: the Swift package for iOS 16+, macOS 13+ and Linux.' },
+			'swift/Examples/README.md': { slug: 'swift/examples', label: 'Examples', order: 3, optional: true, description: 'Swift examples run by the SDK\'s tests: a "What\'s on" list by night, a news digest and a night out.' },
 			'android/README.md': { slug: 'kotlin/audiencekit', label: 'AudienceKit', order: 1, description: 'The audiencekit Kotlin client (plain JVM) and audiencekit-android, for Android 8.0+.' },
 			'core/README.md': { slug: 'kotlin/core', label: 'Kotlin Multiplatform core', order: 2, description: 'audiencekit-core, the Kotlin Multiplatform code shared by the JVM, Android and Apple targets.' },
+			'android/examples/README.md': { slug: 'kotlin/examples', label: 'Examples', order: 4, optional: true, description: 'Kotlin examples run by the SDK\'s tests: a "What\'s on" list by night, a news digest and a night out.' },
 			'CHANGELOG.md': { slug: 'changelog/audiencekit', label: 'AudienceKit', order: 1, description: 'Every release of the AudienceKit SDK, Swift and Kotlin together.' },
 			// The server and scripting clients, each versioned on its own in the same repository.
-			'node/README.md': { slug: 'node', label: 'Node and TypeScript', order: 1, description: 'The audience-kit npm package: a typed Node 20+ client for the consumer GraphQL API.' },
-			'python/README.md': { slug: 'python', label: 'Python', order: 2, description: 'The audiencekit package for Python 3.10+, with blocking and asyncio clients.' },
+			'node/README.md': { slug: 'node', label: 'Overview', order: 1, description: 'The audience-kit npm package: a typed Node 20+ client for the consumer GraphQL API.' },
+			// Each server SDK's guides and reference, in its own sidebar group under its overview. `optional` pages are
+			// left out until the SDK release that adds them.
+			'node/docs/sign-in.md': { slug: 'node/sign-in', label: 'Signing people in', order: 1, optional: true, description: 'Facebook, Google, Apple and App Review sign-in on a Node server, one session per browser.' },
+			'node/docs/websites.md': { slug: 'node/websites', label: 'Building a website', order: 2, optional: true, description: 'Service tokens, public listings, the community, news, calendars and cover passes on a Node site, worker or bot.' },
+			'node/docs/reference.md': { slug: 'node/reference', label: 'Reference', order: 3, optional: true, description: 'Every call, model and helper in the Node SDK.' },
+			'node/examples/README.md': { slug: 'node/examples', label: 'Examples', order: 4, optional: true, description: 'Runnable Node programs: a listings site, a news digest, Facebook sign-in, member actions and a community export.' },
+			'python/README.md': { slug: 'python', label: 'Overview', order: 2, description: 'The audiencekit package for Python 3.10+, with blocking and asyncio clients.' },
+			'python/docs/sign-in.md': { slug: 'python/sign-in', label: 'Signing people in', order: 1, optional: true, description: 'Facebook, Google, Apple and App Review sign-in on a Python server (Django, Flask, FastAPI), one session per browser.' },
+			'python/docs/websites.md': { slug: 'python/websites', label: 'Building a website', order: 2, optional: true, description: 'Service tokens, public listings, the community, news, calendars and cover passes on a Python site or job.' },
+			'python/docs/reference.md': { slug: 'python/reference', label: 'Reference', order: 3, optional: true, description: 'Every call, model and helper in the Python SDK.' },
+			'python/examples/README.md': { slug: 'python/examples', label: 'Examples', order: 4, optional: true, description: 'Runnable Python programs: a listings site, a news digest, Facebook sign-in, member actions and a community export.' },
 			'php/README.md': { slug: 'php', label: 'Overview', order: 3, description: 'audiencekit/audiencekit for PHP 8.1+, over any PSR-18 HTTP client.' },
 			// The PHP SDK's guides and reference, in their own sidebar group under the overview. `optional` pages are
 			// skipped when the checkout doesn't have them yet (a site build ahead of the SDK's main).
 			'php/docs/sign-in.md': { slug: 'php/sign-in', label: 'Signing people in', order: 1, optional: true, description: 'Facebook, Google, Apple and App Review sign-in on a PHP website, keeping the session in PHP\'s session.' },
 			'php/docs/websites.md': { slug: 'php/websites', label: 'Building a website', order: 2, optional: true, description: 'Service tokens, public listings, the community, news, calendars and cover passes on a PHP site or WordPress plugin.' },
 			'php/docs/reference.md': { slug: 'php/reference', label: 'Reference', order: 3, optional: true, description: 'Every call, model and helper in the PHP SDK.' },
-			'rust/README.md': { slug: 'rust', label: 'Rust', order: 4, description: 'The audiencekit crate, async on tokio and reqwest.' },
+			'rust/README.md': { slug: 'rust', label: 'Overview', order: 4, description: 'The audiencekit crate, async on tokio and reqwest.' },
+			'rust/docs/websites.md': { slug: 'rust/websites', label: 'Building a website', order: 1, optional: true, description: 'Credentials, public listings, the community and news from a Rust server, job or agent.' },
+			'rust/docs/reference.md': { slug: 'rust/reference', label: 'Reference', order: 2, optional: true, description: 'Every call, model and error in the Rust crate.' },
+			'rust/examples/README.md': { slug: 'rust/examples', label: 'Examples', order: 3, optional: true, description: 'Runnable Rust programs: a static listings page, a news digest and a community export.' },
 			'node/CHANGELOG.md': { slug: 'changelog/node', label: 'Node', order: 3, description: 'Every release of the Node SDK.' },
 			'python/CHANGELOG.md': { slug: 'changelog/python', label: 'Python', order: 4, description: 'Every release of the Python SDK.' },
 			'php/CHANGELOG.md': { slug: 'changelog/php', label: 'PHP', order: 5, description: 'Every release of the PHP SDK.' },
@@ -98,6 +113,22 @@ function snapshot(sdk, dir) {
 
 const quote = (text) => JSON.stringify(text);
 const allPages = Object.fromEntries(SDKS.flatMap((sdk) => Object.entries(sdk.pages).map(([file, page]) => [`${sdk.key}/${file}`, page])));
+
+// An examples page shows each program it lists, so the code is on the site and not only in the repository: every
+// file its table links to, in the order linked, as a code block under its own heading.
+const EXAMPLE_LANGUAGES = { ts: 'ts', js: 'js', py: 'python', rs: 'rust', php: 'php', rb: 'ruby', swift: 'swift', kt: 'kotlin' };
+function exampleSources(dir, markdown) {
+	const files = [...new Set([...markdown.matchAll(/\]\(((?:\.\.\/)*[\w./-]+\.(\w+))\)/g)].map((m) => m[1]))].filter(
+		(file) => EXAMPLE_LANGUAGES[file.split('.').pop()] && existsSync(join(dir, file)),
+	);
+	return files
+		.map((file) => {
+			const code = readFileSync(join(dir, file), 'utf8').trimEnd();
+			const name = posix.basename(file);
+			return `\n## ${name}\n\n\`\`\`${EXAMPLE_LANGUAGES[file.split('.').pop()]} title="${name}"\n${code}\n\`\`\`\n`;
+		})
+		.join('');
+}
 
 function rewriteLinks(sdk, dir, markdown, from) {
 	return markdown.replace(/(\]\()([^)\s]+)(\))/g, (match, open, target, close) => {
@@ -208,6 +239,7 @@ for (const sdk of SDKS) {
 		].join('\n');
 		const target = join(out, `${page.slug}.md`);
 		mkdirSync(dirname(target), { recursive: true });
+		if (/(^|\/)examples\/README\.md$/i.test(from)) body += exampleSources(join(source, dirname(from)), body);
 		writeFileSync(target, frontmatter + rewriteLinks(sdk, source, currentOnly(publicMarkdown(body), from, version), from));
 	}
 	console.log(`Imported ${Object.keys(sdk.pages).length} pages from ${sdk.key} ${version}${checkout ? '' : ' (snapshot)'}`);
