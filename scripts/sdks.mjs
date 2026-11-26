@@ -117,6 +117,8 @@ function rewriteLinks(sdk, dir, markdown, from) {
 
 // The READMEs and changelogs carry maintainers' notes: who asked for a change and when, and links into the
 // private API repository. Those stay in the repositories; the published pages drop them (outside code blocks).
+// The paragraphs on which old copies stay under the MIT License stay in the repositories' READMEs and licenses too;
+// the site doesn't repeat them.
 function publicMarkdown(markdown) {
 	return markdown
 		.split(/(^```[\s\S]*?^```)/m)
@@ -124,6 +126,7 @@ function publicMarkdown(markdown) {
 			index % 2
 				? part
 				: part
+						.replace(/^[^\n]*(?:released|published) under the MIT License[\s\S]*?(?:\n\n|(?![\s\S]))/gm, '\n')
 						.replace(/\s*\((?:[^()]|\([^()]*\))*(?:Rick, \d{4}-|audience_kit_api)(?:[^()]|\([^()]*\))*\)/g, '')
 						.replace(/,?\s*(?:See |see )?the API's `doc\/[\w./-]+\.md`(?:, "[^"]*")?/g, '')
 						.replace(/\s*\(doc\/[\w./-]+\.md\)/g, '')
@@ -229,7 +232,7 @@ AudienceKit calls the audience's \`graphql\` endpoint, StaffKit its \`staffql\` 
 
 ## License
 
-The SDKs are **source-available, not open source**. They ship under the [AudienceKit SDK License](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE), which lets you build them into apps and services that connect to AudienceKit as hosted by Love Wins Media (audiencekit.com, the audiences' own domains, and the development instances it provides), and nothing else: not another implementation of the API. Changes are allowed only in a GitHub fork of the repository, after written notice to Love Wins Media (an app that only depends on the unchanged SDK needs neither), and misrepresenting where the code came from is prohibited. Any other use needs written permission from Love Wins Media, Inc. Releases made under the MIT License before the change stay MIT. See [Licensing](/licensing/) for a plain-language summary.
+The SDKs are **source-available, not open source**. They ship under the [AudienceKit SDK License](https://github.com/lwm-luminx/audience-kit-sdk/blob/main/LICENSE), which lets you build them into apps and services that connect to AudienceKit as hosted by Love Wins Media (audiencekit.com, the audiences' own domains, and the development instances it provides), and nothing else: not another implementation of the API. Changes are allowed only in a GitHub fork of the repository, after written notice to Love Wins Media (an app that only depends on the unchanged SDK needs neither), and misrepresenting where the code came from is prohibited. Any other use needs written permission from Love Wins Media, Inc. See [Licensing](/licensing/) for a plain-language summary.
 
 ## Versions and the API
 
