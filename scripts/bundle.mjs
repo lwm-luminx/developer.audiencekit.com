@@ -17,7 +17,10 @@ import { fileURLToPath } from 'node:url';
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // The content directories the bundle owns. Everything in them is replaced on each run (and not committed).
-const OWNED = ['start', 'api', 'guides', 'sdks/ruby.md'];
+const OWNED = ['start', 'api', 'guides'];
+// Pages the API's bundle still carries that the site imports from elsewhere: the Ruby gem's docs come from
+// audience-kit-sdk (scripts/sdks.mjs), like every other SDK's.
+const IMPORTED_ELSEWHERE = ['pages/sdks/ruby.md'];
 
 const isBundle = (dir) => existsSync(join(dir, 'manifest.json'));
 // The exporter in an audience_kit_api checkout, or in the retired audience-kit monorepo's api/ submodule.
@@ -61,13 +64,16 @@ const main = verify(mainDir);
 
 const content = join(site, 'src/content/docs');
 for (const owned of OWNED) rmSync(join(content, owned), { recursive: true, force: true });
-cpSync(join(mainDir, 'pages'), content, { recursive: true });
+cpSync(join(mainDir, 'pages'), content, {
+	recursive: true,
+	filter: (from) => !IMPORTED_ELSEWHERE.some((page) => from === join(mainDir, page)),
+});
 // Pages the API's bundle may still carry that are for the team, not the public (Rick, 2026-11-24: "remove Deploy to
 // Heroku and any internal info"). The API moved them out of its bundle; this keeps older bundles from publishing them.
 const INTERNAL = ['pages/guides/deploy-heroku.md', 'pages/start/local-development.md', 'pages/guides/researcher.md'];
 for (const page of INTERNAL) rmSync(join(content, page.slice('pages/'.length)), { force: true });
 // The pages' source is in the private API repository, so they get no "Edit page" link.
-for (const page of main.pages.filter((page) => !INTERNAL.includes(page))) {
+for (const page of main.pages.filter((page) => !INTERNAL.includes(page) && !IMPORTED_ELSEWHERE.includes(page))) {
 	const path = join(content, page.slice('pages/'.length));
 	writeFileSync(path, readFileSync(path, 'utf8').replace(/^---\n/, '---\neditUrl: false\n'));
 }

@@ -59,13 +59,19 @@ const SDKS = [
 			'php/docs/websites.md': { slug: 'php/websites', label: 'Building a website', order: 2, optional: true, description: 'Service tokens, public listings, the community, news, calendars and cover passes on a PHP site or WordPress plugin.' },
 			'php/docs/reference.md': { slug: 'php/reference', label: 'Reference', order: 3, optional: true, description: 'Every call, model and helper in the PHP SDK.' },
 			'rust/README.md': { slug: 'rust', label: 'Overview', order: 4, description: 'The audiencekit crate, async on tokio and reqwest.' },
+			'ruby/README.md': { slug: 'ruby', label: 'Overview', order: 5, description: 'The audience-kit gem for Ruby 3.2+ on Faraday: Rails and Sinatra sites, jobs, bots and scripts.' },
 			'rust/docs/websites.md': { slug: 'rust/websites', label: 'Building a website', order: 1, optional: true, description: 'Credentials, public listings, the community and news from a Rust server, job or agent.' },
 			'rust/docs/reference.md': { slug: 'rust/reference', label: 'Reference', order: 2, optional: true, description: 'Every call, model and error in the Rust crate.' },
+			'ruby/docs/sign-in.md': { slug: 'ruby/sign-in', label: 'Signing people in', order: 1, optional: true, description: 'Facebook, Google, Apple and App Review sign-in on a Rails or Sinatra site, keeping the session in the framework\'s session.' },
+			'ruby/docs/websites.md': { slug: 'ruby/websites', label: 'Building a website', order: 2, optional: true, description: 'API keys, service tokens, public listings, the community, news, calendars and cover passes on a Ruby site, job or bot.' },
+			'ruby/docs/reference.md': { slug: 'ruby/reference', label: 'Reference', order: 3, optional: true, description: 'Every call, model and helper in the Ruby gem.' },
+			'ruby/examples/README.md': { slug: 'ruby/examples', label: 'Examples', order: 4, optional: true, description: 'Runnable Ruby programs: a static listings page, a news digest, member actions and a community export.' },
 			'rust/examples/README.md': { slug: 'rust/examples', label: 'Examples', order: 3, optional: true, description: 'Runnable Rust programs: a static listings page, a news digest and a community export.' },
 			'node/CHANGELOG.md': { slug: 'changelog/node', label: 'Node', order: 3, description: 'Every release of the Node SDK.' },
 			'python/CHANGELOG.md': { slug: 'changelog/python', label: 'Python', order: 4, description: 'Every release of the Python SDK.' },
 			'php/CHANGELOG.md': { slug: 'changelog/php', label: 'PHP', order: 5, description: 'Every release of the PHP SDK.' },
 			'rust/CHANGELOG.md': { slug: 'changelog/rust', label: 'Rust', order: 6, description: 'Every release of the Rust SDK.' },
+			'ruby/CHANGELOG.md': { slug: 'changelog/ruby', label: 'Ruby', order: 7, description: 'Every release of the Ruby gem.' },
 		},
 	},
 	{
@@ -194,7 +200,7 @@ function currentOnly(markdown, from, version) {
 		.replace(/tags the release \(`\d+\.\d+\.\d+`, no `v`\)/g, `tags the release (\`${version}\`, no \`v\`)`);
 }
 
-// Only this script's pages are replaced: the bundle's Ruby page (sdks/ruby.md) lives in the same directory.
+// Only this script's pages are replaced.
 for (const page of [...Object.values(allPages), { slug: 'index' }]) rmSync(join(out, `${page.slug}.md`), { force: true });
 mkdirSync(out, { recursive: true });
 const versions = {};
@@ -270,7 +276,7 @@ Two SDKs for apps, each for Swift and Kotlin and released together on one versio
 | --- | --- | --- | --- |
 | An audience's own app, for its members (Hot Mess, Hack Different) | [AudienceKit for Swift](/sdks/swift/audiencekit/) | [AudienceKit for Kotlin](/sdks/kotlin/audiencekit/) | ${ak} ([changelog](/sdks/changelog/audiencekit/)) |
 ${staffRow}
-| A server, website or script | [Node and TypeScript](/sdks/node/), [Python](/sdks/python/), [PHP](/sdks/php/), [Rust](/sdks/rust/), [Ruby](/sdks/ruby/) | | Each versioned on its own (changelogs: [Node](/sdks/changelog/node/), [Python](/sdks/changelog/python/), [PHP](/sdks/changelog/php/), [Rust](/sdks/changelog/rust/)) |
+| A server, website or script | [Node and TypeScript](/sdks/node/), [Python](/sdks/python/), [PHP](/sdks/php/), [Rust](/sdks/rust/), [Ruby](/sdks/ruby/) | | Each versioned on its own (changelogs: [Node](/sdks/changelog/node/), [Python](/sdks/changelog/python/), [PHP](/sdks/changelog/php/), [Rust](/sdks/changelog/rust/), [Ruby](/sdks/changelog/ruby/)) |
 
 ## AudienceKit
 
@@ -282,7 +288,7 @@ ${staff ? '[StaffKit](/sdks/staffkit/)' : 'StaffKit'} is private at [lwm-luminx/
 
 ## Server and scripting clients
 
-The [Node](/sdks/node/), [Python](/sdks/python/), [PHP](/sdks/php/) and [Rust](/sdks/rust/) clients live in the same repository and send the same module-shaped GraphQL documents as the Swift and Kotlin SDKs, so a website, a bot or a backend job reads an audience the way the apps do. Each takes the token your sign-in produced, or an [application API key](/api/authentication/) for a server acting as an app of one audience. The [Ruby gem](/sdks/ruby/) is older and smaller.
+The [Node](/sdks/node/), [Python](/sdks/python/), [PHP](/sdks/php/), [Rust](/sdks/rust/) and [Ruby](/sdks/ruby/) clients live in the same repository and send the same module-shaped GraphQL documents as the Swift and Kotlin SDKs, so a website, a bot or a backend job reads an audience the way the apps do. Each takes the token your sign-in produced, or an [application API key](/api/authentication/) for a server acting as an app of one audience.
 
 ## Which endpoint
 

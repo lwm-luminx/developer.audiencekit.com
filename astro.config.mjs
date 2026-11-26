@@ -88,7 +88,7 @@ export default defineConfig({
 								{ label: 'Python', items: [{ slug: 'sdks/python' }, { autogenerate: { directory: 'sdks/python' } }] },
 								{ label: 'PHP', items: [{ slug: 'sdks/php' }, { autogenerate: { directory: 'sdks/php' } }] },
 								{ label: 'Rust', items: [{ slug: 'sdks/rust' }, { autogenerate: { directory: 'sdks/rust' } }] },
-								{ slug: 'sdks/ruby' },
+								{ label: 'Ruby', items: [{ slug: 'sdks/ruby' }, { autogenerate: { directory: 'sdks/ruby' } }] },
 							],
 						},
 						{ label: 'Changelogs', collapsed: true, items: [{ autogenerate: { directory: 'sdks/changelog' } }] },
