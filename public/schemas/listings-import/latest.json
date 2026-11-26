@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://developer.audiencekit.com/schemas/listings-import/latest.json",
   "title": "AudienceKit listings import file",
-  "description": "A listings file for Curate › Imports, POST /v1/research/imports or the MCP upload_listings tool (ListingImport). Its kind comes from `kind`, else from its shape: `events` = calendar, `locales` = locales, `divisions` = divisions, else people, socials or social_proposals by their entries. Every object refuses fields the importer doesn't read, except the reviewer fields each one lists (notes, confidence, evidence...), which are kept in the file but ignored on import. Validate against this before uploading: the server checks the same schema and refuses a file that doesn't match.",
+  "description": "A listings file for Curate › Imports, POST /v1/research/imports or the MCP upload_listings tool (ListingImport). Its kind comes from `kind`, else from its shape: `events` = calendar, `locales` = locales, `divisions` = divisions, `posters` = posters, else people, socials or social_proposals by their entries. Every object refuses fields the importer doesn't read, except the reviewer fields each one lists (notes, confidence, evidence...), which are kept in the file but ignored on import. Validate against this before uploading: the server checks the same schema and refuses a file that doesn't match.",
   "type": "object",
   "properties": {
     "$schema": {
@@ -16,7 +16,8 @@
         "people",
         "socials",
         "social_proposals",
-        "divisions"
+        "divisions",
+        "posters"
       ],
       "description": "What the file is. Recommended on every new file; without it the kind is guessed from the file's shape."
     }
@@ -114,6 +115,21 @@
     },
     {
       "if": {
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "const": "posters"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/posters_file"
+      }
+    },
+    {
+      "if": {
         "not": {
           "required": [
             "kind"
@@ -139,6 +155,9 @@
           },
           {
             "$ref": "#/$defs/social_proposals_file"
+          },
+          {
+            "$ref": "#/$defs/posters_file"
           }
         ]
       }
@@ -524,7 +543,10 @@
           "description": "Make each date a karaoke night using this provider over the venue's, e.g. sing_along (the playlist with lyrics on screen)."
         },
         "parent": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "The super-event it is part of (a bar's party during a Pride festival): another listing's slug in this file, or source:slug for one an earlier file imported. Each date joins the parent's occurrence it falls in."
         },
         "organizers": {
@@ -1715,6 +1737,90 @@
           "type": [
             "string",
             "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "posters_file": {
+      "title": "posters: posters and flyers whose dated events a vision model reads and lists at their venues (PosterEventsImport)",
+      "description": "Each poster is read once (by post_id and the image's SHA-256), and each event it lists is matched to the venue's event starting within an hour of it, so importing the same posters again never adds events twice.",
+      "type": "object",
+      "required": [
+        "posters"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/header"
+        }
+      ],
+      "properties": {
+        "kind": {
+          "const": "posters"
+        },
+        "posters": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/poster_entry"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "poster_entry": {
+      "type": "object",
+      "description": "One poster or flyer: its image (image_url or photo_id) and its venue (venue_id, or venue with locale).",
+      "anyOf": [
+        {
+          "required": [
+            "image_url"
+          ]
+        },
+        {
+          "required": [
+            "photo_id"
+          ]
+        }
+      ],
+      "properties": {
+        "image_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The image (https)."
+        },
+        "photo_id": {
+          "type": "string",
+          "description": "An image already stored (Photo id), such as one uploaded in the console."
+        },
+        "venue_id": {
+          "type": "string",
+          "description": "The audience's venue that posted it."
+        },
+        "venue": {
+          "type": "string",
+          "description": "The venue's name, when there's no venue_id; matched ignoring case."
+        },
+        "locale": {
+          "type": "string",
+          "description": "The venue's locale (label or name), to tell venues of the same name apart."
+        },
+        "post_id": {
+          "type": "string",
+          "description": "The social post's ID with its network, e.g. instagram:17890000000000000. Keeps it from being read twice."
+        },
+        "post_url": {
+          "type": "string",
+          "description": "The post or page that showed it; the events link to it."
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/note"
+            },
+            {
+              "type": "null"
+            }
           ]
         }
       },
