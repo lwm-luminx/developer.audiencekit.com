@@ -25,6 +25,10 @@ The AudienceKit SDKs ([audience-kit-sdk](https://github.com/lwm-luminx/audience-
 
 Any other use needs a written agreement signed by Love Wins Media, Inc., and an audience credential issued for it.
 
+## Our open-source libraries
+
+The general-purpose libraries Love Wins Media publishes, such as graph_query and retcon, are different: they're open source under the MIT License and carry none of the conditions above. See [Open-source libraries](/open-source/).
+
 ## These docs and the platform
 
 The text of this site, the API, the admin consoles and the apps are copyright Love Wins Media, Inc., all rights reserved. The [site's repository](https://github.com/lwm-luminx/developer.audiencekit.com) is public so it can be read and security-scanned, not reused; see its [NOTICE](https://github.com/lwm-luminx/developer.audiencekit.com/blob/main/NOTICE.md).

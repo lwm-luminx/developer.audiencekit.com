@@ -95,6 +95,8 @@ export default defineConfig({
 					],
 				},
 				{ label: 'Platform', items: [{ slug: 'platform/environments' }, { slug: 'licensing' }] },
+				// Love Wins Media's MIT-licensed libraries (not the source-available SDKs).
+				{ label: 'Open source', items: [{ label: 'Libraries', slug: 'open-source' }] },
 				{ label: 'Project', items: [{ label: 'Contribute to these docs', slug: 'project/contributing-docs' }] },
 			],
 		}),
